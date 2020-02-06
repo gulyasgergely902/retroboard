@@ -22,7 +22,7 @@
                 <input class="form-control mr-sm-2 bg-dark text-light" type="text" name="board_name" placeholder="My board" aria-label="My board">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="addboard" title="Hint" data-placement="bottom" data-content="You can add a new board here to store your Stickies"><i class="fas fa-plus-circle"></i> Create</button>
             </form>-->
-                <button type="button" class="btn btn-outline-success my-2 my-sm-0" data-toggle="modal" data-target="#addBoardModal" data-content="You can add a new board here to store your Stickies"><i class="fas fa-plus-circle"></i> Create</button>
+                <button type="button" id="addboard" class="btn btn-outline-success my-2 my-sm-0" data-toggle="modal" data-target="#addBoardModal" data-content="You can add a new board here to store your Stickies"><i class="fas fa-plus-circle"></i> Create</button>
         </nav>
 
         <!-- Add Modal -->
