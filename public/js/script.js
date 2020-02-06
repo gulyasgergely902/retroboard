@@ -1,6 +1,6 @@
 $(function(){
 	if(getCookieByName("index_add-popover_dismissed") == "false"){
-		$('#addboard').popover('show');
+		//$('#addboard').popover('show');
 		$('#addboard').on('click', function(){
 			$('#addboard').popover('dispose');
 			var exp_date = new Date();
@@ -12,7 +12,7 @@ $(function(){
 		});
 	}
 	if(getCookieByName("display_addsingle-popover_dismissed") == "false"){
-		$("#addsingle").popover('show');
+		//$("#addsingle").popover('show');
 		$("#addsingle").on('click', function(){
 			$('#addsingle').popover('dispose');
 			var exp_date = new Date();
@@ -24,7 +24,7 @@ $(function(){
 		});
 	}
 	if(getCookieByName("display_deleteall-popover_dismissed") == "false"){
-		$("#deleteall").popover('show');
+		//$("#deleteall").popover('show');
 		$("#deleteall").on('click', function(){
 			$('#deleteall').popover('dispose');
 			var exp_date = new Date();
