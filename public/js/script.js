@@ -63,3 +63,10 @@ $('#addStickyModal').on('show.bs.modal', function (event) {
   modal.find('.hiddenBidBoxAddSticky').val(bid);
 });
 
+$('#clearAllStickyModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget);
+  var bid = button.data('bid');
+  var modal = $(this);
+  modal.find('.hiddenBidBoxClearAllSticky').val(bid);
+});
+
