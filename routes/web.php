@@ -78,11 +78,23 @@ Route::post('/remove', function(Request $request){
 
 Route::post('/export', function(Request $request){
 	$bid = $request->input('bid');
-	$table = DB::select('select * from stickies where bid=?', [$bid]);
+	$stickies = DB::select('select * from stickies where bid=?', [$bid]);
 
-	$table_array = array('sticky_type', 'sticky_content');
+	$handle = fopen("output.csv", "w");
 
-	dd($table_array);
+	$headers = array("sticky_type, sticky_content");
+
+	fputcsv($handle, $headers);
+
+	foreach ($stickies as $sticky) {
+		$line = array($sticky->sticky_type, $sticky->sticky_content);
+		fputcsv($handle, $line);
+	}
+
+	fclose($handle);
+
+	return Response::download("output.csv");
+
 
 	/*$headers = [
             'Cache-Control'       => 'must-revalidate, post-check=0, pre-check=0'
