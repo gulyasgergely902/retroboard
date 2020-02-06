@@ -25,10 +25,7 @@
                 <button type="button" class="btn btn-outline-success" id="addsingle" title="Add new sticky" data-placement="left" data-content="You can add new stickies to the board..." data-toggle="modal" data-target="#addStickyModal" data-bid="{{ $bid }}"><i class="fas fa-plus-circle"></i>&nbspAdd item</button>
             </form>
             <form class="form-inline my-2 my-lg-0" action="{{ url('remove/') }}" method="POST">
-                <input type="hidden" value="full" name="mode">
-                <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
-                <input type="hidden" value="{{ $bid }}" name="bid">
-                <button type="submit" class="btn btn-outline-danger" id="deleteall" title="Clear all stickies" data-placement="bottom" data-content="...or you can delete them alltogether."><i class="fas fa-trash-alt"></i>&nbspClear board</button>
+                <button type="button" class="btn btn-outline-danger" id="deleteall" title="Clear all stickies" data-placement="bottom" data-content="...or you can delete them alltogether." data-toggle="modal" data-target="#clearAllStickyModal" data-bid="{{ $bid }}"><i class="fas fa-trash-alt"></i>&nbspClear board</button>
             </form>
         </nav>
 
@@ -63,6 +60,32 @@
                     <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-success">Create sticky</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Clear All Modal -->
+        <div class="modal fade" id="clearAllStickyModal" tabindex="-1" role="dialog" aria-labelledby="clearAllModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="clearAllModalLabel">Confirm</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        This will clear the board! All stickies will be gone!
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <form class="remove-board-form" action="{{ url('remove/') }}" method="POST">
+                            <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+                            <input type="hidden" value="full" name="mode">
+                            <input class="hiddenBidBoxClearAllSticky" type="hidden" value="0" name="bid">
+                            <button type="submit" class="btn btn-danger">Clear</button>
                         </form>
                     </div>
                 </div>

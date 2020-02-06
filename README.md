@@ -6,9 +6,9 @@ Retro Board is an essential tool for retrospective ceremonies.
   - Write sticky notes
   - Have fun looking back at your last sprint!
 
-### New Features (2020. 02. 05.)
+### Changelog/New Features (2020. 02. 06.)
 
-  - Created a separate repository for the laravel version, from now on this is the only live code!
+  - On the display page, clear all button have confirmation dialog to prevent accidental board clearing.
 
 ### Installation
   
