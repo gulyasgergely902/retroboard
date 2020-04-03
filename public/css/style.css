@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Sriracha&display=swap');
 
 /* global */
 body {
@@ -53,7 +54,6 @@ body {
 }
 
 /* display.php */
-
 .grid-container {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, 280px);
@@ -67,16 +67,17 @@ body {
 .note-base {
 	width: 260px;
 	height: auto;
-	min-height: 200px;
+	/*min-height: 200px;*/
 	text-align: justify;  
 	color: #ffffff;
-	font-family: 'Indie Flower', cursive;
+	/*font-family: 'Indie Flower', cursive;*/
+	font-family: 'Sriracha', cursive;
 	font-size: 1.3em;
 	display: inline-block;
 	margin: 20px;
-	-webkit-box-shadow: 0 1px 1px #777;
-	-moz-box-shadow: 0 1px 1px #777;
-	box-shadow: 0 1px 1px #777;
+	-webkit-box-shadow: 0 1px 1px #222;
+	-moz-box-shadow: 0 1px 1px #222;
+	box-shadow: 0 1px 1px #222;
 	-webkit-transform: rotate(-3deg);
 	-moz-transform: rotate(-3deg);
 	-o-transform: rotate(-3deg);
@@ -87,9 +88,9 @@ body {
 }
 
 .note-base:hover {
-	-webkit-box-shadow: 0 15px 40px #777;
-	-moz-box-shadow: 0 15px 40px #777;
-	box-shadow: 0 15px 40px #777;
+	-webkit-box-shadow: 0 15px 40px #222;
+	-moz-box-shadow: 0 15px 40px #222;
+	box-shadow: 0 15px 40px #222;
 	-webkit-transform: scale(1.2);
 	-moz-transform: scale(1.2);
 	-o-transform: scale(1.2);
