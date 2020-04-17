@@ -101,7 +101,7 @@ body {
 
 .note-base-actions {
 	padding: 5px;
-	height: 25%;
+	height: auto;
 	width: 100%;
 }
 
