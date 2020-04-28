@@ -6,11 +6,12 @@ use Illuminate\Http\Request;
 
 class BoardController extends Controller
 {
-    public function displayBoard($bid){
+    public function displayBoard($bid, $tab){
     	$stickies = \DB::table('stickies')->select('sticky_id', 'sticky_type', 'bid', 'sticky_content')->where('bid', '=', $bid)->get();
 		return view('display', [
 			'stickies' => $stickies,
-			'bid' => $bid
+			'bid' => $bid,
+			'tab' => $tab
 		]);
     }
 
@@ -21,10 +22,10 @@ class BoardController extends Controller
 			$sticky_type = $request->input('sticky_type');
 			$sticky_content = $request->input('sticky_content');
 			if($sticky_content == "") {
-				return redirect('/display/'.$bid);
+				return redirect('/display/'.$bid.'/'.$sticky_type);
 			}
 			\DB::table('stickies')->insert(['sticky_type' => $sticky_type, 'bid' => $bid, 'sticky_content' => $sticky_content]);
-			return redirect('display/'.$bid);
+			return redirect('/display/'.$bid.'/'.$sticky_type);
 		} elseif($mode == 'board') {
 			$board_name = $request->input('board_name');
 			if($board_name == ""){
