@@ -64,8 +64,12 @@ body {
 	color: #ffffff;
 }
 
+.card-columns {
+    column-count: 5 !important;
+}
+
 .note-base {
-	width: 260px;
+	width: 300px !important;
 	height: auto;
 	/*min-height: 200px;*/
 	text-align: justify;  

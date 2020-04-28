@@ -20,7 +20,7 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/display/{bid}', 'BoardController@displayBoard');
+Route::get('/display/{bid}/{tab}', 'BoardController@displayBoard');
 Route::post('/add', 'BoardController@add');
 Route::post('/remove', 'BoardController@remove');
 Route::post('/export', 'BoardController@export');;
