@@ -75,21 +75,17 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ url('add/') }}" method="POST">
+                <form action="{{ url('unlock/') }}" method="POST">
                     <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
-                    <input type="hidden" value="board" name="mode">
-                    <div class="form-group">
-                        <label for="board-name">Board name</label>
-                        <input type="text" class="form-control" id="board_name" name="board_name" aria-describedby="board-name-help" placeholder="Board name">
-                    </div>
+                    <input class="hiddenBidBoxUnlock" type="hidden" value="0" name="bid">
                     <div class="form-group">
                         <label for="board-password">Board password</label>
-                        <input type="text" class="form-control" id="board_password" name="board_password" aria-describedby="board-password-help" placeholder="Board password">
+                        <input type="text" class="form-control" id="password" name="password" aria-describedby="password-help" placeholder="Board password">
                     </div>
             </div>
             <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Create board</button>
+                    <button type="submit" class="btn btn-success">Unlock board</button>
                 </form>
             </div>
         </div>
@@ -105,25 +101,35 @@
             <div class="d-flex w-100 justify-content-between">
                 <h3>{{ $board->board_name }}</h3>
                 @if($board->board_password != "")
-                    <h3 class="faded"><i class="fas fa-lock"></i></h3> 
+                    @if(\Cookie::get($board->board_id . '-unlocked') == 1)
+                        <h3 class="faded"><i class="fas fa-unlock"></i></h3>
+                    @else
+                        <h3 class="faded"><i class="fas fa-lock"></i></h3> 
+                    @endif
                 @endif
             </div>
             @if($board->board_password != "")
-                <form class="open-board-form">
-                    <button class="btn btn-outline-warning btn-sm" type="submit" title="Unlock board">Unlock</button>
-                </form>
+                @if(\Cookie::get($board->board_id . '-unlocked') == 1)
+                    <form class="board-form" action="display/{{ $board->board_id }}/0" method="GET">
+                        <button class="btn btn-outline-warning btn-sm" type="submit" title="Open board">Open</button>
+                    </form>
+                @else
+                    <form class="board-form">
+                        <button type="button" class="btn btn-outline-warning btn-sm" data-toggle="modal" data-target="#passwordModal" data-bid="{{ $board->board_id }}">Unlock</button>
+                    </form>
+                @endif
             @else
-                <form class="open-board-form" action="display/{{ $board->board_id }}/0" method="GET">
+                <form class="board-form" action="display/{{ $board->board_id }}/0" method="GET">
                     <button class="btn btn-outline-success btn-sm" type="submit" title="Open board">Open</button>
                 </form>
             @endif
             
-            <form class="export-board-form" action="{{ url('export/') }}" method="POST">
+            <form class="board-form" action="{{ url('export/') }}" method="POST">
                 <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                 <input type="hidden" value="{{ $board->board_id }}" name="bid">
                 <button class="btn btn-outline-warning btn-sm" type="submit" title="Export the contents of this board to .csv">Export</button>
             </form>
-            <form class="delete-board-form">
+            <form class="board-form">
                 <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#deleteModal" data-boardname="{{ $board->board_name }}" data-bid="{{ $board->board_id }}" title="Delete board">Delete</button>
             </form>
         </a>
