@@ -38,17 +38,7 @@ body {
 	margin-top: 32px;
 }
 
-.export-board-form {
-	float: left;
-	padding: 5px;
-}
-
-.open-board-form {
-	float: left;
-	padding: 5px;
-}
-
-.delete-board-form {
+.board-form {
 	float: left;
 	padding: 5px;
 }

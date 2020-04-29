@@ -23,4 +23,6 @@ Route::get('/', function () {
 Route::get('/display/{bid}/{tab}', 'BoardController@displayBoard');
 Route::post('/add', 'BoardController@add');
 Route::post('/remove', 'BoardController@remove');
-Route::post('/export', 'BoardController@export');;
+Route::post('/export', 'BoardController@export');
+Route::post('/unlock', 'BoardController@unlock');
+Route::get('/lock', 'BoardController@lock');

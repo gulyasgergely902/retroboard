@@ -4,16 +4,32 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Response;
+use Illuminate\Support\Facades\Hash;
 
 class BoardController extends Controller
 {
     public function displayBoard($bid, $tab){
+    	$board_password = \DB::table('boards')->select('board_password')->where('board_id', $bid)->pluck('board_password')[0];
     	$stickies = \DB::table('stickies')->select('sticky_id', 'sticky_type', 'bid', 'sticky_content')->where('bid', '=', $bid)->get();
-		return view('display', [
-			'stickies' => $stickies,
-			'bid' => $bid,
-			'tab' => $tab
-		]);
+    	if($board_password != ""){
+    		if(\Cookie::get($bid . '-unlocked') == 1){
+    			return view('display', [
+					'stickies' => $stickies,
+					'bid' => $bid,
+					'tab' => $tab,
+					'protected' => 1
+				]);
+    		} else {
+    			return redirect('/');
+    		}
+    	} else {
+    		return view('display', [
+				'stickies' => $stickies,
+				'bid' => $bid,
+				'tab' => $tab,
+				'protected' => 0
+			]);
+    	}
     }
 
     public function add(Request $request){
@@ -29,10 +45,11 @@ class BoardController extends Controller
 			return redirect('/display/'.$bid.'/'.$sticky_type);
 		} elseif($mode == 'board') {
 			$board_name = $request->input('board_name');
+			$board_password = $request->input('board_password');
 			if($board_name == ""){
 				return redirect('/');
 			}
-			\DB::table('boards')->insert(['board_name' => $board_name]);
+			\DB::table('boards')->insert(['board_name' => $board_name, 'board_password' => Hash::make($board_password)]);
 			return redirect('/');
 		}
 		return redirect('/');
@@ -75,5 +92,23 @@ class BoardController extends Controller
 		fclose($handle);
 
 		return Response::download("output.csv");
+    }
+
+    public function unlock(Request $request){
+    	$bid = $request->input('bid');
+    	$board_password = \DB::table('boards')->select('board_password')->where('board_id', $bid)->pluck('board_password')[0];
+    	$current_password = $request->input('password');
+    	if(Hash::check($current_password, $board_password)){
+    		$cookie_name = $bid . "-unlocked";
+    		\Cookie::queue($cookie_name, 1, 120);
+    		return redirect('/display/' . $bid . '/0');
+    	}
+    }
+
+    public function lock(Request $request){
+    	$bid = $request->input('bid');
+    	$cookie_name = $bid . "-unlocked";
+    	\Cookie::queue(\Cookie::forget($cookie_name));
+    	return redirect('/');
     }
 }

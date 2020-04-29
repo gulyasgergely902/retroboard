@@ -85,3 +85,10 @@ $('#clearAllStickyModal').on('show.bs.modal', function (event) {
   modal.find('.hiddenBidBoxClearAllSticky').val(bid);
 });
 
+$('#passwordModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget);
+  var bid = button.data('bid');
+  var modal = $(this);
+  modal.find('.hiddenBidBoxUnlock').val(bid);
+});
+
