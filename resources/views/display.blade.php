@@ -1,25 +1,36 @@
 @extends ('layout')
 
 @section ('content')
-<nav class="navbar navbar-dark bg-dark text-light">
-    <a class="navbar-brand">Retro Board</a>
-    <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-            <a class="nav-item nav-link" href="/">Home</a>
-        </li>
-    </ul>
-    @if($protected)
-    <form class="form-inline my-2 mr-2 my-lg-0" method="GET" action="/lock">
-        <input type="hidden" name="bid" value="{{ $bid }}">
-        <button type="submit" class="btn btn-outline-warning" id="lockboard" title="Lock board" data-placement="left" data-content="You can lock the board after complete"><i class="fas fa-lock pr-2"></i>Lock board</button>
-    </form>
-    @endif
-    <form class="form-inline my-2 mr-2 my-lg-0">
-        <button type="button" class="btn btn-outline-success" id="addsingle" title="Add new sticky" data-placement="left" data-content="You can add new stickies to the board..." data-toggle="modal" data-target="#addStickyModal" data-bid="{{ $bid }}"><i class="fas fa-plus-circle pr-2"></i>Add item</button>
-    </form>
-    <form class="form-inline my-2 my-lg-0" action="{{ url('remove/') }}" method="POST">
-        <button type="button" class="btn btn-outline-danger" id="deleteall" title="Clear all stickies" data-placement="bottom" data-content="...or you can delete them alltogether." data-toggle="modal" data-target="#clearAllStickyModal" data-bid="{{ $bid }}"><i class="fas fa-trash-alt pr-2"></i>Clear board</button>
-    </form>
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark text-light">
+    <a class="navbar-brand" href="/">Retro Board</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-item nav-link {{ Request::is('display/*/0') ? 'active text-success' : ''}}" id="nav-wentwell-tab" href="/display/{{$bid}}/0" role="tab" aria-controls="nav-wentwell" aria-selected="true">Went well</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-item nav-link {{ Request::is('display/*/2') ? 'active text-danger' : ''}}" id="nav-needsimprovement-tab" href="/display/{{$bid}}/2" role="tab" aria-controls="nav-needsimprovement" aria-selected="false">Needs improvement</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-item nav-link {{ Request::is('display/*/1') ? 'active text-warning' : ''}}" id="nav-actionitem-tab" href="/display/{{$bid}}/1" role="tab" aria-controls="nav-actionitem" aria-selected="false">Action items</a>
+            </li>
+        </ul>
+        @if($protected)
+        <form class="form-inline my-2 mr-2 my-lg-0" method="GET" action="/lock">
+            <input type="hidden" name="bid" value="{{ $bid }}">
+            <button type="submit" class="btn btn-outline-warning" id="lockboard" title="Lock board" data-placement="left" data-content="You can lock the board after complete"><i class="fas fa-lock pr-2"></i>Lock board</button>
+        </form>
+        @endif
+        <form class="form-inline my-2 mr-2 my-lg-0">
+            <button type="button" class="btn btn-outline-success" id="addsingle" title="Add new sticky" data-placement="left" data-content="You can add new stickies to the board..." data-toggle="modal" data-target="#addStickyModal" data-bid="{{ $bid }}"><i class="fas fa-plus-circle pr-2"></i>Add item</button>
+        </form>
+        <form class="form-inline my-2 my-lg-0" action="{{ url('remove/') }}" method="POST">
+            <button type="button" class="btn btn-outline-danger" id="deleteall" title="Clear all stickies" data-placement="bottom" data-content="...or you can delete them alltogether." data-toggle="modal" data-target="#clearAllStickyModal" data-bid="{{ $bid }}"><i class="fas fa-trash-alt pr-2"></i>Clear board</button>
+        </form>
+    </div>
 </nav>
 
 <!-- Add Modal -->
@@ -77,12 +88,7 @@
         </div>
     </div>
 </div>
-<div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-    <a class="nav-item nav-link text-success" id="nav-wentwell-tab" href="/display/{{$bid}}/0" role="tab" aria-controls="nav-wentwell" aria-selected="true">Went well</a>
-    <a class="nav-item nav-link text-danger" id="nav-needsimprovement-tab" href="/display/{{$bid}}/2" role="tab" aria-controls="nav-needsimprovement" aria-selected="false">Needs improvement</a>
-    <a class="nav-item nav-link text-warning" id="nav-actionitem-tab" href="/display/{{$bid}}/1" role="tab" aria-controls="nav-actionitem" aria-selected="false">Action items</a>
-</div>
-<div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+<div class="tab-content py-3 px-3 px-sm-0 mt-5" id="nav-tabContent">
     <div class="tab-pane fade {{ $tab == '0' ? 'show active' : ''}}" id="nav-wentwell" role="tabpanel" aria-labelledby="nav-wentwell-tab">
         <div class="card-columns">
             @foreach ($stickies as $sticky)
