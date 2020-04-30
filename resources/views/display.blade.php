@@ -9,13 +9,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-item nav-link" id="nav-wentwell-tab" href="/display/{{$bid}}/0" role="tab" aria-controls="nav-wentwell" aria-selected="true">Went well</a>
+                <a class="nav-item nav-link {{ Request::is('display/*/0') ? 'active text-success' : ''}}" id="nav-wentwell-tab" href="/display/{{$bid}}/0" role="tab" aria-controls="nav-wentwell" aria-selected="true">Went well</a>
             </li>
             <li class="nav-item">
-                <a class="nav-item nav-link" id="nav-needsimprovement-tab" href="/display/{{$bid}}/2" role="tab" aria-controls="nav-needsimprovement" aria-selected="false">Needs improvement</a>
+                <a class="nav-item nav-link {{ Request::is('display/*/2') ? 'active text-danger' : ''}}" id="nav-needsimprovement-tab" href="/display/{{$bid}}/2" role="tab" aria-controls="nav-needsimprovement" aria-selected="false">Needs improvement</a>
             </li>
             <li class="nav-item">
-                <a class="nav-item nav-link" id="nav-actionitem-tab" href="/display/{{$bid}}/1" role="tab" aria-controls="nav-actionitem" aria-selected="false">Action items</a>
+                <a class="nav-item nav-link {{ Request::is('display/*/1') ? 'active text-warning' : ''}}" id="nav-actionitem-tab" href="/display/{{$bid}}/1" role="tab" aria-controls="nav-actionitem" aria-selected="false">Action items</a>
             </li>
         </ul>
         @if($protected)

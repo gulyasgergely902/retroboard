@@ -106,7 +106,7 @@ body {
 	font-size: 1em;
 }
 
-@media (min-width: 576px) and (max-width: 991px) {
+@media (min-width: 576px) and (max-width: 1520px) {
 	.card-columns {
     	column-count: 3 !important;
 	}
