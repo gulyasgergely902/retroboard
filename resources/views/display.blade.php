@@ -10,7 +10,7 @@
     </ul>
     @if($protected)
     <form class="form-inline my-2 mr-2 my-lg-0" method="GET" action="/lock">
-        <input type="hidden" name="bid" value="{{$bid}}">
+        <input type="hidden" name="bid" value="{{ $bid }}">
         <button type="submit" class="btn btn-outline-warning" id="lockboard" title="Lock board" data-placement="left" data-content="You can lock the board after complete"><i class="fas fa-lock pr-2"></i>Lock board</button>
     </form>
     @endif
@@ -70,7 +70,7 @@
                 <form class="remove-board-form" action="{{ url('remove/') }}" method="POST">
                     <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                     <input type="hidden" value="full" name="mode">
-                    <input class="hiddenBidBoxClearAllSticky" type="hidden" value="0" name="bid">
+                    <input type="hidden" name="bid" value="{{$bid}}">
                     <button type="submit" class="btn btn-danger">Clear</button>
                 </form>
             </div>

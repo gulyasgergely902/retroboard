@@ -46,10 +46,11 @@ class BoardController extends Controller
 		} elseif($mode == 'board') {
 			$board_name = $request->input('board_name');
 			$board_password = $request->input('board_password');
+			$secure_board = ($request->input('secure_board') == "on" ? 1 : 0);
 			if($board_name == ""){
 				return redirect('/');
 			}
-			\DB::table('boards')->insert(['board_name' => $board_name, 'board_password' => Hash::make($board_password)]);
+			\DB::table('boards')->insert(['board_name' => $board_name, 'secure' => $secure_board, 'board_password' => Hash::make($board_password)]);
 			return redirect('/');
 		}
 		return redirect('/');
@@ -60,12 +61,12 @@ class BoardController extends Controller
 		if($mode == 'full') {
 			$bid = $request->input('bid');
 			\DB::table('stickies')->where('bid', $bid)->delete();
-			return redirect('display/'.$bid);
+			return redirect('display/'.$bid.'/0');
 		} elseif($mode == 'single') {
 			$bid = $request->input('bid');
 			$sticky_id = $request->input('sticky_id');
 			\DB::table('stickies')->where('sticky_id', $sticky_id)->delete();
-			return redirect('display/'.$bid);
+			return redirect('display/'.$bid.'/0');
 		} elseif($mode == 'board'){
 			$bid = $request->input('bid');
 			\DB::table('stickies')->where('bid', $bid)->delete();
