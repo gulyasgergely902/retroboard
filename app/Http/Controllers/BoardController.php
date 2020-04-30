@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Hash;
 class BoardController extends Controller
 {
     public function displayBoard($bid, $tab){
-    	$board_password = \DB::table('boards')->select('board_password')->where('board_id', $bid)->pluck('board_password')[0];
+    	$secure = \DB::table('boards')->select('secure')->where('board_id', $bid)->pluck('secure')[0];
     	$stickies = \DB::table('stickies')->select('sticky_id', 'sticky_type', 'bid', 'sticky_content')->where('bid', '=', $bid)->get();
-    	if($board_password != ""){
+    	if($secure != 0){
     		if(\Cookie::get($bid . '-unlocked') == 1){
     			return view('display', [
 					'stickies' => $stickies,
