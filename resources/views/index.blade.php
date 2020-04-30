@@ -25,8 +25,12 @@
                         <input type="text" class="form-control" id="board_name" name="board_name" aria-describedby="board-name-help" placeholder="Board name">
                     </div>
                     <div class="form-group">
+                        <label for="secure">Secure board</label>
+                        <input type="checkbox" class="form-control" id="secure_board" name="secure_board" aria-describedby="secure-help" placeholder="Secure board">
+                    </div>
+                    <div class="form-group">
                         <label for="board-password">Board password</label>
-                        <input type="text" class="form-control" id="board_password" name="board_password" aria-describedby="board-password-help" placeholder="Board password">
+                        <input type="password" class="form-control" id="board_password" name="board_password" aria-describedby="board-password-help" placeholder="Board password">
                     </div>
             </div>
             <div class="modal-footer">
@@ -80,7 +84,7 @@
                     <input class="hiddenBidBoxUnlock" type="hidden" value="0" name="bid">
                     <div class="form-group">
                         <label for="board-password">Board password</label>
-                        <input type="text" class="form-control" id="password" name="password" aria-describedby="password-help" placeholder="Board password">
+                        <input type="password" class="form-control" id="password" name="password" aria-describedby="password-help" placeholder="Board password">
                     </div>
             </div>
             <div class="modal-footer">
@@ -100,7 +104,7 @@
         <a class="list-group-item list-group-item-action flex-column align-items-start">
             <div class="d-flex w-100 justify-content-between">
                 <h3>{{ $board->board_name }}</h3>
-                @if($board->board_password != "")
+                @if($board->secure != 0)
                     @if(\Cookie::get($board->board_id . '-unlocked') == 1)
                         <h3 class="faded"><i class="fas fa-unlock"></i></h3>
                     @else
@@ -108,7 +112,7 @@
                     @endif
                 @endif
             </div>
-            @if($board->board_password != "")
+            @if($board->secure != 0)
                 @if(\Cookie::get($board->board_id . '-unlocked') == 1)
                     <form class="board-form" action="display/{{ $board->board_id }}/0" method="GET">
                         <button class="btn btn-outline-warning btn-sm" type="submit" title="Open board">Open</button>

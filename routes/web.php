@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', function () {
-	$boards = \DB::table('boards')->select('board_id', 'board_name', 'board_password')->get();
+	$boards = \DB::table('boards')->select('board_id', 'board_name', 'secure', 'board_password')->get();
     return view('index', [
     	'boards' => $boards
     ]);
