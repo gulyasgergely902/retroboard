@@ -1,9 +1,11 @@
 @extends ('layout')
 
 @section ('content')
-<nav class="navbar  navbar-dark bg-dark text-light justfiy-content-between">
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark text-light justfiy-content-between">
     <a class="navbar-brand text-light" href="#">Retro Board</a>
+    <form class="form-inline my-2 mr-2 my-lg-0">
         <button type="button" id="addboard" class="btn btn-outline-success my-2 my-sm-0" data-toggle="modal" data-target="#addBoardModal" data-content="You can add a new board here to store your Stickies"><i class="fas fa-plus-circle"></i> Create</button>
+    </form>
 </nav>
 
 <!-- Add Modal -->
@@ -98,7 +100,6 @@
 
 <!-- Board list -->
 <div id="wrapper">
-    <h1>Active boards</h1>
     <ul class="list-group">
         @foreach ($boards as $board)
         <a class="list-group-item list-group-item-action flex-column align-items-start">
@@ -108,7 +109,7 @@
                     @if(\Cookie::get($board->board_id . '-unlocked') == 1)
                         <h3 class="faded"><i class="fas fa-unlock"></i></h3>
                     @else
-                        <h3 class="faded"><i class="fas fa-lock"></i></h3> 
+                        <h3 class="faded"><i class="fas fa-lock"></i></h3>
                     @endif
                 @endif
             </div>

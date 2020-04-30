@@ -35,7 +35,7 @@ body {
 	height: 50%;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 32px;
+	margin-top: 64px;
 }
 
 .board-form {
@@ -61,10 +61,8 @@ body {
 .note-base {
 	width: 300px !important;
 	height: auto;
-	/*min-height: 200px;*/
 	text-align: justify;  
 	color: #ffffff;
-	/*font-family: 'Indie Flower', cursive;*/
 	font-family: 'Sriracha', cursive;
 	font-size: 1.3em;
 	display: inline-block;
@@ -108,9 +106,13 @@ body {
 	font-size: 1em;
 }
 
-@media only screen and (max-width: 450px){
+@media (min-width: 576px) and (max-width: 991px) {
+	.card-columns {
+    	column-count: 3 !important;
+	}
+
 	.note-base {
-		width: 300px;
+		width: 200px !important;
 		-webkit-transform: none;
 		-moz-transform: none;
 		-o-transform: none;
@@ -126,9 +128,29 @@ body {
 		-ms-transform: none;
 		transform: none;
 	}
+}
 
-	.grid-container {
-		grid-template-columns: none;
+@media (min-width: 300px) and (max-width: 575px) {
+	.card-columns {
+    	column-count: 1 !important;
+	}
+
+	.note-base {
+		width: auto !important;
+		-webkit-transform: none;
+		-moz-transform: none;
+		-o-transform: none;
+		-ms-transform: none;
+		transform: none;
+		transition: none;
+	}
+
+	.note-base:hover {
+		-webkit-transform: none;
+		-moz-transform: none;
+		-o-transform: none;
+		-ms-transform: none;
+		transform: none;
 	}
 }
 
