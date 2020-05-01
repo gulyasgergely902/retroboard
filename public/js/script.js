@@ -77,3 +77,22 @@ $('#passwordModal').on('show.bs.modal', function (event) {
   modal.find('.hiddenBidBoxUnlock').val(bid);
 });
 
+$(document).ready(function(){
+	$('#hideStickyDiv').prop("checked", false);
+	$('#hideStickyDiv').change(function(){
+		if(this.checked)
+			$('#nav-tabContent').animate({
+				opacity: 1
+			}, 250, function() {
+
+			});
+			//$('#nav-tabContent').fadeIn('fast');
+		else
+			$('#nav-tabContent').animate({
+				opacity: 0
+			}, 250, function() {
+
+			});
+			//$('#nav-tabContent').fadeOut('slow');
+	});
+});
