@@ -88,7 +88,9 @@
         </div>
     </div>
 </div>
-<div class="tab-content py-3 px-3 px-sm-0 mt-5" id="nav-tabContent">
+
+<!-- Stickies list -->
+<div class="tab-content py-3 px-3 px-sm-0 mt-5 mb-5" id="nav-tabContent">
     <div class="tab-pane fade {{ $tab == '0' ? 'show active' : ''}}" id="nav-wentwell" role="tabpanel" aria-labelledby="nav-wentwell-tab">
         <div class="card-columns">
             @foreach ($stickies as $sticky)
