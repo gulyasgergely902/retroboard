@@ -7,6 +7,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- Tab selectors -->
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
                 <a class="nav-item nav-link {{ Request::is('display/*/0') ? 'active text-success' : ''}}" id="nav-wentwell-tab" href="/display/{{$bid}}/0" role="tab" aria-controls="nav-wentwell" aria-selected="true">Went well</a>
@@ -18,6 +19,15 @@
                 <a class="nav-item nav-link {{ Request::is('display/*/1') ? 'active text-warning' : ''}}" id="nav-actionitem-tab" href="/display/{{$bid}}/1" role="tab" aria-controls="nav-actionitem" aria-selected="false">Action items</a>
             </li>
         </ul>
+        <!-- Div toggle -->
+        <form class="form-inline my-2 mr-2 my-lg-0">
+            <label class="mr-2">Show stickies</label>
+            <label for="hideStickyDiv" class="switch">
+                <input class="ml-2" type="checkbox" name="hideStickyDiv" id="hideStickyDiv">
+                <span class="slider round"></span>
+            </label>
+        </form>
+        <!-- Buttons -->
         @if($protected)
         <form class="form-inline my-2 mr-2 my-lg-0" method="GET" action="/lock">
             <input type="hidden" name="bid" value="{{ $bid }}">
