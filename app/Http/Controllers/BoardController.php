@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Response;
 use Illuminate\Support\Facades\Hash;
+use App\Stickies;
 
 class BoardController extends Controller
 {
     public function displayBoard($bid, $tab){
     	$secure = \DB::table('boards')->select('secure')->where('board_id', $bid)->pluck('secure')[0];
-    	$stickies = \DB::table('stickies')->select('sticky_id', 'sticky_type', 'bid', 'sticky_content')->where('bid', '=', $bid)->get();
-    	if($secure != 0){
+    	//$stickies = \DB::table('stickies')->select('sticky_id', 'sticky_type', 'bid', 'sticky_content')->where('bid', $bid)->get();
+    	$stickies = Stickies::where('bid', $bid)->get();
+    	if($secure == 1){
     		if(\Cookie::get($bid . '-unlocked') == 1){
     			return view('display', [
 					'stickies' => $stickies,
@@ -77,8 +79,9 @@ class BoardController extends Controller
 
     public function export(Request $request){
     	$bid = $request->input('bid');
-		$stickies =  \DB::table('stickies')->where('bid', $bid)->get();
-		$filename = "output.csv";
+		//$stickies =  \DB::table('stickies')->where('bid', $bid)->get();
+		$stickies = Stickies::where('bid', $bid)->get();
+		/*$filename = "output.csv";
 		$handle = fopen($filename, "w+");
 		
 		$titles = array("sticky_type, sticky_content");
@@ -95,7 +98,9 @@ class BoardController extends Controller
 
 		fclose($handle);
 
-		return Response::download($filename, $filename, $headers);
+		return Response::download($filename, $filename, $headers);*/
+		$csvExporter = new \Laracsv\Export();
+		$csvExporter->build($stickies, ['sticky_type', 'sticky_content'])->download();
     }
 
     public function unlock(Request $request){
