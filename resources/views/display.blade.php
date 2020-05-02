@@ -61,7 +61,7 @@
                     <input type="hidden" name="sticky_type" value="{{ $tab }}">
                     <div class="form-group">
                         <label for="sticky-content">Sticky content</label>
-                        <input type="text" class="form-control" id="sticky-content" name="sticky_content" aria-describedby="sticky-content-help" placeholder="Sticky content">
+                        <textarea class="form-control" id="sticky-content" name="sticky_content" aria-describedby="sticky-content-help" placeholder="Sticky content"></textarea>
                     </div>
             </div>
             <div class="modal-footer">
@@ -116,7 +116,7 @@
                         </form>
                     </div>
                     <div class="note-base-content note{{$sticky->sticky_type}}-content">
-                        {{$sticky->sticky_content}}
+                        {{ $sticky->sticky_content }}
                     </div>
                 </div>
                 @endif
