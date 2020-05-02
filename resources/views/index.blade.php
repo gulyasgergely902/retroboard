@@ -4,7 +4,7 @@
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark text-light justfiy-content-between">
     <a class="navbar-brand text-light" href="#">Retro Board</a>
     <form class="form-inline my-2 mr-2 my-lg-0">
-        <button type="button" id="addboard" class="btn btn-outline-success my-2 my-sm-0" data-toggle="modal" data-target="#addBoardModal" data-content="You can add a new board here to store your Stickies"><i class="fas fa-plus-circle"></i> Create</button>
+        <button type="button" id="addboard" class="btn btn-outline-success my-2 my-sm-0" data-toggle="modal" data-target="#addBoardModal"><i class="fas fa-plus-circle"></i> Create</button>
     </form>
 </nav>
 
