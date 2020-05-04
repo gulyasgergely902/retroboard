@@ -13,13 +13,8 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
-	$boards = \DB::table('boards')->select('board_id', 'board_name', 'secure', 'board_password')->get();
-    return view('index', [
-    	'boards' => $boards
-    ]);
-});
 
+Route::get('/', 'BoardController@showBoards');
 Route::get('/display/{bid}/{tab}', 'BoardController@displayBoard');
 Route::post('/add', 'BoardController@add');
 Route::post('/remove', 'BoardController@remove');

@@ -29,6 +29,10 @@ body {
 	text-align: center;
 }
 
+.top {
+	z-index: 99999;
+}
+
 /* index.php */
 #wrapper {
 	width: 60%;
