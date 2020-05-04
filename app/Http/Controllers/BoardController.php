@@ -5,12 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Response;
 use Illuminate\Support\Facades\Hash;
+use App\Sticky;
+use App\Board;
 
 class BoardController extends Controller
 {
+	public function showBoards(){
+		$boards = Board::all();
+	    return view('index', [
+	    	'boards' => $boards
+	    ]);
+	}
+
     public function displayBoard($bid, $tab){
-    	$secure = \DB::table('boards')->select('secure')->where('board_id', $bid)->pluck('secure')[0];
-    	$stickies = \DB::table('stickies')->select('sticky_id', 'sticky_type', 'bid', 'sticky_content')->where('bid', '=', $bid)->get();
+    	$secure = Board::where('board_id', $bid)->pluck('secure')[0];
+    	$stickies = Sticky::where('bid', $bid)->get();
     	if($secure != 0){
     		if(\Cookie::get($bid . '-unlocked') == 1){
     			return view('display', [
@@ -41,7 +50,11 @@ class BoardController extends Controller
 			if($sticky_content == "") {
 				return redirect('/display/'.$bid.'/'.$sticky_type);
 			}
-			\DB::table('stickies')->insert(['sticky_type' => $sticky_type, 'bid' => $bid, 'sticky_content' => $sticky_content]);
+			$sticky = new Sticky;
+			$sticky->sticky_type = $sticky_type;
+			$sticky->bid = $bid;
+			$sticky->sticky_content = $sticky_content;
+			$sticky->save();
 			return redirect('/display/'.$bid.'/'.$sticky_type);
 		} elseif($mode == 'board') {
 			$board_name = $request->input('board_name');
@@ -50,7 +63,11 @@ class BoardController extends Controller
 			if($board_name == ""){
 				return redirect('/');
 			}
-			\DB::table('boards')->insert(['board_name' => $board_name, 'secure' => $secure_board, 'board_password' => Hash::make($board_password)]);
+			$board = new Board;
+			$board->board_name = $board_name;
+			$board->secure = $secure_board;
+			$board->board_password = Hash::make($board_password);
+			$board->save();
 			return redirect('/');
 		}
 		return redirect('/');
@@ -60,17 +77,17 @@ class BoardController extends Controller
     	$mode = $request->input('mode');
 		if($mode == 'full') {
 			$bid = $request->input('bid');
-			\DB::table('stickies')->where('bid', $bid)->delete();
+			Sticky::where('bid', $bid)->delete();
 			return redirect('display/'.$bid.'/0');
 		} elseif($mode == 'single') {
 			$bid = $request->input('bid');
 			$sticky_id = $request->input('sticky_id');
-			\DB::table('stickies')->where('sticky_id', $sticky_id)->delete();
+			Sticky::where('sticky_id', $sticky_id)->delete();
 			return redirect('display/'.$bid.'/0');
 		} elseif($mode == 'board'){
 			$bid = $request->input('bid');
-			\DB::table('stickies')->where('bid', $bid)->delete();
-			\DB::table('boards')->where('board_id', $bid)->delete();
+			Sticky::where('bid', $bid)->delete();
+			Board::where('board_id', $bid)->delete();
 			return redirect('/');
 		}
     }
