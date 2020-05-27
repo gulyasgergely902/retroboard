@@ -26,5 +26,6 @@
 		<script src="https://kit.fontawesome.com/1eaaf45e00.js" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.js"></script>
 		<script src="../../js/script.js"></script>
+		<script src="../../js/jquery.transit.min.js"></script>
     </body>
 </html>

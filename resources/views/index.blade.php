@@ -1,7 +1,7 @@
 @extends ('layout')
 
 @section ('content')
-<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark text-light justfiy-content-between">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark text-light justfiy-content-between">
     <a class="navbar-brand text-light" href="#">Retro Board</a>
     <form class="form-inline my-2 mr-2 my-lg-0">
         <button type="button" id="addboard" class="btn btn-outline-success my-2 my-sm-0" data-toggle="modal" data-target="#addBoardModal"><i class="fas fa-plus-circle"></i> Create</button>
@@ -99,7 +99,7 @@
 </div>
 
 <!-- Board list -->
-<div id="wrapper">
+<div id="wrapper" class="mt-3">
     <ul class="list-group">
         @foreach ($boards as $board)
         <a class="list-group-item list-group-item-action flex-column align-items-start">
@@ -116,20 +116,20 @@
             @if($board->secure != 0)
                 @if(\Cookie::get($board->board_id . '-unlocked') == 1)
                     <form class="board-form" action="display/{{ $board->board_id }}/0" method="GET">
-                        <button class="btn btn-outline-warning btn-sm" type="submit" title="Open board">Open</button>
+                        <button class="btn btn-warning btn-sm" type="submit" title="Open board">Open</button>
                     </form>
                 @else
                     <form class="board-form">
-                        <button type="button" class="btn btn-outline-warning btn-sm" data-toggle="modal" data-target="#passwordModal" data-bid="{{ $board->board_id }}">Unlock</button>
+                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#passwordModal" data-bid="{{ $board->board_id }}">Unlock</button>
                     </form>
                 @endif
             @else
                 <form class="board-form" action="display/{{ $board->board_id }}/0" method="GET">
-                    <button class="btn btn-outline-success btn-sm" type="submit" title="Open board">Open</button>
+                    <button class="btn btn-success btn-sm" type="submit" title="Open board">Open</button>
                 </form>
             @endif
             
-            <form class="board-form" action="{{ url('export/') }}" method="POST">
+            <form class="board-form" action="export/" method="POST">
                 <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                 <input type="hidden" value="{{ $board->board_id }}" name="bid">
                 <button class="btn btn-outline-warning btn-sm" type="submit" title="Export the contents of this board to .csv">Export</button>
