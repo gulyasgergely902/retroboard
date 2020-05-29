@@ -20,6 +20,8 @@ class BoardController extends Controller
 
     public function displayBoard($bid, $tab)
     {
+        $types = ['Went well', 'Action items', 'Needs improvement'];
+        $button_color = ['btn-success', 'btn-warning', 'btn-danger'];
         $secure = Board::where('board_id', $bid)->pluck('secure')[0];
         $stickies = Sticky::where('bid', $bid)->get();
         if ($secure != 0) {
@@ -28,6 +30,8 @@ class BoardController extends Controller
                     'stickies' => $stickies,
                     'bid' => $bid,
                     'tab' => $tab,
+                    'types' => $types,
+                    'button_color' => $button_color,
                     'protected' => 1
                 ]);
             } else {
@@ -38,6 +42,8 @@ class BoardController extends Controller
                 'stickies' => $stickies,
                 'bid' => $bid,
                 'tab' => $tab,
+                'types' => $types,
+                'button_color' => $button_color,
                 'protected' => 0
             ]);
         }
