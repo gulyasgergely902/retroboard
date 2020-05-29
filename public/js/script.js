@@ -18,18 +18,16 @@ $(document).ready(function(){
 	$('#hideStickyDiv').prop("checked", false);
 	$('#hideStickyDiv').change(function(){
 		if(this.checked)
-			$('#nav-tabContent').animate({
-				opacity: 1
-			}, 250, function() {
-
-			});
-			//$('#nav-tabContent').fadeIn('fast');
+			$('#nav-tabContent').transition({
+				"opacity": "1",
+				"filter": "blur(0)",
+				"-webkit-filter": "blur(0)"
+			}, 250, 'linear');
 		else
-			$('#nav-tabContent').animate({
-				opacity: 0
-			}, 250, function() {
-
-			});
-			//$('#nav-tabContent').fadeOut('slow');
+			$('#nav-tabContent').transition({
+				"opacity": "0",
+				"filter": "blur(10px)",
+				"-webkit-filter": "blur(10px)"
+			}, 250, 'in-out');
 	});
 });

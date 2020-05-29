@@ -100,12 +100,12 @@
 </div>
 
 <!-- Stickies list -->
-<div class="tab-content py-3 px-3 px-sm-0 mt-5 mb-5" id="nav-tabContent">
+<div class="tab-content py-3 px-5 mt-5 mb-5" id="nav-tabContent">
     <div class="tab-pane fade {{ $tab == '0' ? 'show active' : ''}}" id="nav-wentwell" role="tabpanel" aria-labelledby="nav-wentwell-tab">
         <div class="card-columns">
             @foreach ($stickies as $sticky)
                 @if($sticky->sticky_type==0)
-                <div class="note-base" id="note-base">
+                <div class="note-base mr-3 my-3" id="note-base">
                     <div class="note-base-actions note{{ $sticky->sticky_type }}-actions" id="note-base-header">
                         <form action="{{ url('remove/') }}" method="POST">
                             <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
@@ -127,7 +127,7 @@
         <div class="card-columns">
             @foreach ($stickies as $sticky)
                 @if($sticky->sticky_type==2)
-                <div class="note-base" id="note-base">
+                <div class="note-base mr-3 my-3" id="note-base">
                     <div class="note-base-actions note{{ $sticky->sticky_type }}-actions" id="note-base-header">
                         <form action="{{ url('remove/') }}" method="POST">
                             <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
@@ -149,7 +149,7 @@
         <div class="card-columns">
             @foreach ($stickies as $sticky)
                 @if($sticky->sticky_type==1)
-                <div class="card note-base" id="note-base">
+                <div class="note-base mr-3 my-3" id="note-base">
                     <div class="note-base-actions note{{ $sticky->sticky_type }}-actions" id="note-base-header">
                         <form action="{{ url('remove/') }}" method="POST">
                             <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
