@@ -35,7 +35,7 @@
         </form>
         @endif
         <form class="form-inline my-2 mr-2 my-lg-0">
-            <button type="button" class="btn btn-outline-success" id="addsingle" title="Add new sticky" data-toggle="modal" data-target="#addStickyModal" data-bid="{{ $bid }}"><i class="fas fa-plus-circle pr-2"></i>Add item</button>
+            <button type="button" class="btn btn-success" id="addsingle" title="Add new sticky" data-toggle="modal" data-target="#addStickyModal" data-bid="{{ $bid }}"><i class="fas fa-plus-circle pr-2"></i>Add item</button>
         </form>
         <form class="form-inline my-2 my-lg-0" action="{{ url('remove/') }}" method="POST">
             <button type="button" class="btn btn-outline-danger" id="deleteall" title="Clear all stickies" data-toggle="modal" data-target="#clearAllStickyModal" data-bid="{{ $bid }}"><i class="fas fa-trash-alt pr-2"></i>Clear board</button>
