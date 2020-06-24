@@ -135,6 +135,8 @@ class BoardController extends Controller
             $cookie_name = $bid . "-unlocked";
             \Cookie::queue($cookie_name, 1, 120);
             return redirect('/display/' . $bid . '/0');
+        } else {
+            return redirect('/')->with(['title' => 'Error', 'message' => 'Error: Wrong password!']);
         }
     }
 
