@@ -1,11 +1,17 @@
 @extends ('layout')
 
 @section ('content')
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark text-light justfiy-content-between">
-    <a class="navbar-brand text-light" href="#">Retro Board</a>
-    <form class="form-inline my-2 mr-2 my-lg-0">
-        <button type="button" id="addboard" class="btn btn-outline-success my-2 my-sm-0" data-toggle="modal" data-target="#addBoardModal"><i class="fas fa-plus-circle"></i> Create</button>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark text-light">
+  <a class="navbar-brand text-light" href="#">Retro Board</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+    <form class="form-inline my-2 mr-2 my-lg-0 float-right">
+        <button type="button" id="addboard" class="btn btn-success my-2 my-sm-0" data-toggle="modal" data-target="#addBoardModal"><i class="fas fa-plus-circle"></i> Create</button>
     </form>
+  </div>
 </nav>
 
 <!-- Add Modal -->
@@ -36,7 +42,7 @@
                     </div>
             </div>
             <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-success">Create board</button>
                 </form>
             </div>
@@ -58,7 +64,7 @@
                 This will delete {boardname}! Are you sure?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
                 <form class="remove-board-form" action="{{ url('remove/') }}" method="POST">
                     <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                     <input type="hidden" value="board" name="mode">
@@ -90,7 +96,7 @@
                     </div>
             </div>
             <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-success">Unlock board</button>
                 </form>
             </div>
@@ -132,7 +138,7 @@
             <form class="board-form" action="export/" method="POST">
                 <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                 <input type="hidden" value="{{ $board->board_id }}" name="bid">
-                <button class="btn btn-outline-warning btn-sm" type="submit" title="Export the contents of this board to .csv">Export</button>
+                <button class="btn btn-outline-secondary btn-sm" type="submit" title="Export the contents of this board to .csv">Export</button>
             </form>
             <form class="board-form">
                 <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#deleteModal" data-boardname="{{ $board->board_name }}" data-bid="{{ $board->board_id }}" title="Delete board">Delete</button>
