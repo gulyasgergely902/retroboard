@@ -15,7 +15,20 @@ $('#passwordModal').on('show.bs.modal', function (event) {
 });
 
 $(document).ready(function(){
-	$('#hideStickyDiv').prop("checked", false);
+	//$('#hideStickyDiv').prop("checked", false);
+    if($('#hideStickyDiv').is(":checked")) {
+        $('#nav-tabContent').transition({
+            "opacity": "1",
+            "filter": "blur(0)",
+            "-webkit-filter": "blur(0)"
+        }, 1, 'linear');
+    } else {
+        $('#nav-tabContent').transition({
+            "opacity": "0",
+            "filter": "blur(10px)",
+            "-webkit-filter": "blur(10px)"
+        }, 1, 'in-out');
+    }
 	$('#hideStickyDiv').change(function(){
 		if(this.checked)
 			$('#nav-tabContent').transition({
