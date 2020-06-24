@@ -23,16 +23,16 @@
         <form class="form-inline my-2 mr-2 my-lg-0">
             <label class="mr-2">Show stickies</label>
             <label for="hideStickyDiv" class="switch">
-                <input class="ml-2" type="checkbox" name="hideStickyDiv" id="hideStickyDiv">
+                <input class="ml-2" type="checkbox" name="hideStickyDiv" id="hideStickyDiv" {{ old('hideStickyDiv') }}>
                 <span class="slider round"></span>
             </label>
         </form>
         <!-- Buttons -->
         @if($protected)
-        <form class="form-inline my-2 mr-2 my-lg-0" method="GET" action="/lock">
-            <input type="hidden" name="bid" value="{{ $bid }}">
-            <button type="submit" class="btn btn-outline-warning" id="lockboard" title="Lock board"><i class="fas fa-lock pr-2"></i>Lock board</button>
-        </form>
+            <form class="form-inline my-2 mr-2 my-lg-0" method="GET" action="/lock">
+                <input type="hidden" name="bid" value="{{ $bid }}">
+                <button type="submit" class="btn btn-outline-warning" id="lockboard" title="Lock board"><i class="fas fa-lock pr-2"></i>Lock board</button>
+            </form>
         @endif
         <form class="form-inline my-2 mr-2 my-lg-0">
             <button type="button" class="btn btn-success" id="addsingle" title="Add new sticky" data-toggle="modal" data-target="#addStickyModal" data-bid="{{ $bid }}"><i class="fas fa-plus-circle pr-2"></i>Add item</button>
