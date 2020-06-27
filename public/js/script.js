@@ -44,3 +44,7 @@ $(document).ready(function(){
 			}, 250, 'in-out');
 	});
 });
+
+document.getElementById('sticky-content').onkeyup = function () {
+    document.getElementById('sticky-content-charcount').innerHTML = "Characters left: " + (500 - this.value.length);
+};
