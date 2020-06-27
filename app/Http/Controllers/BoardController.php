@@ -53,12 +53,14 @@ class BoardController extends Controller
     {
         $mode = $request->input('mode');
         if ($mode == 'item') {
+            $validateFormData = $request->validate([
+                'sticky_content' => 'required|max:500'
+            ]);
+
             $bid = $request->input('bid');
             $sticky_type = $request->input('sticky_type');
             $sticky_content = $request->input('sticky_content');
-            if ($sticky_content == "") {
-                return redirect('/display/' . $bid . '/' . $sticky_type);
-            }
+
             $sticky = new Sticky();
             $sticky->sticky_type = $sticky_type;
             $sticky->bid = $bid;
