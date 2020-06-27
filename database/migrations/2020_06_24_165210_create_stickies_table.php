@@ -14,8 +14,10 @@ class CreateStickiesTable extends Migration
     public function up()
     {
         Schema::create('stickies', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
+            $table->increments(sticky_id);
+            $table->integer('sticky_type', 11);
+            $table->integer('bid', 11);
+            $table->string('sticky_content', 512);
         });
     }
 
