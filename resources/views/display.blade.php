@@ -62,6 +62,7 @@
                     <div class="form-group">
                         <label for="sticky-content">Sticky content</label>
                         <textarea class="form-control" id="sticky-content" name="sticky_content" aria-describedby="sticky-content-help" placeholder="Sticky content"></textarea>
+                        <small id="sticky-content-charcount" class="form-text text-muted">Characters left: 500</small>
                     </div>
             </div>
             <div class="modal-footer">
