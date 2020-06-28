@@ -68,16 +68,21 @@ class BoardController extends Controller
             $sticky->save();
             return redirect('/display/' . $bid . '/' . $sticky_type);
         } elseif ($mode == 'board') {
+            $validateFormData = $request->validate([
+                'board_name' => 'required|max:60',
+                'board_password' => 'max:60'
+            ]);
+
             $board_name = $request->input('board_name');
-            $board_password = $request->input('board_password');
-            $secure_board = ($request->input('secure_board') == "on" ? 1 : 0);
+
             if ($board_name == "") {
                 return redirect('/');
             }
+
             $board = new Board();
             $board->board_name = $board_name;
-            $board->secure = $secure_board;
-            $board->board_password = Hash::make($board_password);
+            $board->secure = ($request->input('secure_board') == "on" ? 1 : 0);
+            $board->board_password = Hash::make($request->input('board_password'));
             $board->save();
             return redirect('/');
         }
@@ -127,6 +132,10 @@ class BoardController extends Controller
 
     public function unlock(Request $request)
     {
+        $validateFormData = $request->validate([
+            'board_password' => 'required|max:60'
+        ]);
+
         $bid = $request->input('bid');
         $board_password = \DB::table('boards')
             ->select('board_password')
