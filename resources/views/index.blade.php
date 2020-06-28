@@ -31,6 +31,7 @@
                     <div class="form-group">
                         <label for="board-name">Board name</label>
                         <input type="text" class="form-control" id="board_name" name="board_name" aria-describedby="board-name-help" placeholder="Board name">
+                        <small id="max-charcount" class="form-text text-muted">Max. 60 characters</small>
                     </div>
                     <div class="form-group">
                         <label for="secure">Secure board</label>
@@ -39,6 +40,7 @@
                     <div class="form-group">
                         <label for="board-password">Board password</label>
                         <input type="password" class="form-control" id="board_password" name="board_password" aria-describedby="board-password-help" placeholder="Board password">
+                        <small id="max-charcount" class="form-text text-muted">Max. 60 characters</small>
                     </div>
             </div>
             <div class="modal-footer">
@@ -93,6 +95,7 @@
                     <div class="form-group">
                         <label for="board-password">Board password</label>
                         <input type="password" class="form-control" id="password" name="password" aria-describedby="password-help" placeholder="Board password">
+                        <small id="max-charcount" class="form-text text-muted">Max. 60 characters</small>
                     </div>
             </div>
             <div class="modal-footer">
