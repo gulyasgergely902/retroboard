@@ -20,11 +20,11 @@ class BoardController extends Controller
 
     public function displayBoard($bid, $tab)
     {
+        $stickies = Sticky::where('bid', $bid)->get();
+        $secure = Board::where('board_id', $bid)->pluck('secure')[0];
         $types = ['Went well', 'Action items', 'Needs improvement'];
         $button_color = ['btn-success', 'btn-warning', 'btn-danger'];
-        $secure = Board::where('board_id', $bid)->pluck('secure')[0];
-        $stickies = Sticky::where('bid', $bid)->get();
-        if ($secure != 0) {
+        if ($secure == 1) {
             if (\Cookie::get($bid . '-unlocked') == 1) {
                 return view('display', [
                     'stickies' => $stickies,
@@ -59,12 +59,11 @@ class BoardController extends Controller
 
             $bid = $request->input('bid');
             $sticky_type = $request->input('sticky_type');
-            $sticky_content = $request->input('sticky_content');
 
             $sticky = new Sticky();
             $sticky->sticky_type = $sticky_type;
             $sticky->bid = $bid;
-            $sticky->sticky_content = $sticky_content;
+            $sticky->sticky_content = $request->input('sticky_content');
             $sticky->save();
             return redirect('/display/' . $bid . '/' . $sticky_type);
         } elseif ($mode == 'board') {
@@ -74,10 +73,6 @@ class BoardController extends Controller
             ]);
 
             $board_name = $request->input('board_name');
-
-            if ($board_name == "") {
-                return redirect('/');
-            }
 
             $board = new Board();
             $board->board_name = $board_name;
@@ -112,7 +107,7 @@ class BoardController extends Controller
     public function export(Request $request)
     {
         $bid = $request->input('bid');
-        $stickies =  \DB::table('stickies')->where('bid', $bid)->get();
+        $stickies = \DB::table('stickies')->where('bid', $bid)->get();
 
         $handle = fopen("output.csv", "w");
 
@@ -133,14 +128,10 @@ class BoardController extends Controller
     public function unlock(Request $request)
     {
         $validateFormData = $request->validate([
-            'board_password' => 'required|max:60'
+            'password' => 'required|max:60'
         ]);
-
         $bid = $request->input('bid');
-        $board_password = \DB::table('boards')
-            ->select('board_password')
-            ->where('board_id', $bid)
-            ->pluck('board_password')[0];
+        $board_password = Board::where('board_id', $bid)->pluck('board_password')[0];
         $current_password = $request->input('password');
         if (Hash::check($current_password, $board_password)) {
             $cookie_name = $bid . "-unlocked";
