@@ -147,10 +147,10 @@
         </div>
     </div>
     <div class="tab-pane fade {{ $tab == '1' ? 'show active' : ''}}" id="nav-actionitem" role="tabpanel" aria-labelledby="nav-actionitem-tab">
-        <div class="card-columns">
+        <div class="card-columns" id="sticky-container">
             @foreach ($stickies as $sticky)
                 @if($sticky->sticky_type==1)
-                <div class="note-base mr-3 my-3" id="note-base">
+                <div class="note-base mr-3 my-3 sortable" id="note-base">
                     <div class="note-base-actions note{{ $sticky->sticky_type }}-actions" id="note-base-header">
                         <form action="{{ url('remove/') }}" method="POST">
                             <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
