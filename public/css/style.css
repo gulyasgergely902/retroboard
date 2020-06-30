@@ -284,6 +284,23 @@ input:checked + .slider:before {
 	background-color: #e74c3c;
 }
 
+.width-1 {
+    width: 32px;
+}
+
+.width-2 {
+    width: 48px;
+}
+
+.btn-lock-board:after {
+    font-family: 'FontAwesome', sans-serif;
+    content: "\f3c1";
+}
+
+.btn-lock-board:hover:after {
+    content: "\f023";
+}
+
 /* add-stickies.php */
 
 .wrapper {

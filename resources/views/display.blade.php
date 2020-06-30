@@ -9,15 +9,11 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <!-- Tab selectors -->
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-item nav-link {{ Request::is('display/*/0') ? 'active text-success' : ''}}" id="nav-wentwell-tab" href="/display/{{$bid}}/0" role="tab" aria-controls="nav-wentwell" aria-selected="true">Went well</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-item nav-link {{ Request::is('display/*/2') ? 'active text-danger' : ''}}" id="nav-needsimprovement-tab" href="/display/{{$bid}}/2" role="tab" aria-controls="nav-needsimprovement" aria-selected="false">Needs improvement</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-item nav-link {{ Request::is('display/*/1') ? 'active text-warning' : ''}}" id="nav-actionitem-tab" href="/display/{{$bid}}/1" role="tab" aria-controls="nav-actionitem" aria-selected="false">Action items</a>
-            </li>
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <a class="nav-item nav-link {{ Request::is('display/*/0') ? 'active text-success' : ''}} width-1 btn btn-light" id="nav-wentwell-tab" href="/display/{{$bid}}/0" role="tab" aria-controls="nav-wentwell" aria-selected="true" title="Went Well"><i class="fas fa-thumbs-up"></i></a>
+                <a class="nav-item nav-link {{ Request::is('display/*/2') ? 'active text-danger' : ''}} width-1 btn btn-light" id="nav-needsimprovement-tab" href="/display/{{$bid}}/2" role="tab" aria-controls="nav-needsimprovement" aria-selected="false" title="Needs Improvement"><i class="fas fa-thumbs-down"></i></a>
+                <a class="nav-item nav-link {{ Request::is('display/*/1') ? 'active text-warning' : ''}} width-1 btn btn-light" id="nav-actionitem-tab" href="/display/{{$bid}}/1" role="tab" aria-controls="nav-actionitem" aria-selected="false" title="Action Item"><i class="fas fa-exclamation"></i></a>
+            </div>
         </ul>
         <!-- Div toggle -->
         <form class="form-inline my-2 mr-2 my-lg-0">
@@ -30,7 +26,7 @@
         @if($protected)
             <form class="form-inline my-2 mr-2 my-lg-0" method="GET" action="/lock">
                 <input type="hidden" name="bid" value="{{ $bid }}">
-                <button type="submit" class="btn btn-outline-warning" id="lockboard" title="Lock board"><i class="fas fa-lock pr-2"></i>Lock board</button>
+                <button type="submit" class="btn btn-outline-warning btn-lock-board width-2" id="lockboard" title="Lock board"></button>
             </form>
         @endif
         <form class="form-inline my-2 mr-2 my-lg-0">
