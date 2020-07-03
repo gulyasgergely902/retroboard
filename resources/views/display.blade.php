@@ -18,7 +18,7 @@
         <!-- Div toggle -->
         <form class="form-inline my-2 mr-2 my-lg-0">
             <label for="hideStickyDiv" class="switch">
-                <input class="ml-2" type="checkbox" name="hideStickyDiv" id="hideStickyDiv" {{ old('hideStickyDiv') }}>
+                <input class="ml-2" type="checkbox" name="hideStickyDiv" id="hideStickyDiv" title="Toggle sticky visibility" {{ old('hideStickyDiv') }}>
                 <span class="slider round"></span>
             </label>
         </form>
@@ -30,10 +30,10 @@
             </form>
         @endif
         <form class="form-inline my-2 mr-2 my-lg-0">
-            <button type="button" class="btn btn-success" id="addsingle" title="Add new sticky" data-toggle="modal" data-target="#addStickyModal" data-bid="{{ $bid }}"><i class="fas fa-plus-circle"></i></button>
+            <button type="button" class="btn btn-success" id="addsingle" title="Add new sticky" data-toggle="modal" data-target="#addStickyModal" data-bid="{{ $bid }}"><i class="fas fa-plus"></i></button>
         </form>
         <form class="form-inline my-2 my-lg-0" action="{{ url('remove/') }}" method="POST">
-            <button type="button" class="btn btn-outline-danger" id="deleteall" title="Clear all stickies" data-toggle="modal" data-target="#clearAllStickyModal" data-bid="{{ $bid }}"><i class="fas fa-trash-alt"></i></button>
+            <button type="button" class="btn btn-outline-danger" id="deleteall" title="Clear board" data-toggle="modal" data-target="#clearAllStickyModal" data-bid="{{ $bid }}"><i class="fas fa-calendar-minus"></i></button>
         </form>
     </div>
 </nav>
