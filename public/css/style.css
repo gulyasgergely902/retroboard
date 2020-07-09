@@ -58,7 +58,7 @@ body {
   position: relative;
   display: inline-block;
   width: 60px;
-  height: 34px;
+  height: 38px;
 }
 
 /* Hide default HTML checkbox */
@@ -76,44 +76,54 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #1d2024;
+  background-color: rgba(22, 22, 22, 0.1);
   -webkit-transition: .4s;
   transition: .4s;
 }
 
+.slider:hover {
+  background-color: rgba(22, 22, 22, 0.2);
+}
+
 .slider:before {
   position: absolute;
-  content: "";
-  height: 26px;
+  content: "\f070";
+  height: 30px;
   width: 26px;
   left: 4px;
   bottom: 4px;
   background-color: white;
   -webkit-transition: .4s;
   transition: .4s;
+  font-family: 'FontAwesome', sans-serif;
+  padding-left: 6px;
+  padding-top: 4px;
+  font-size: 14px;
+  color: #666666;
 }
 
 input:checked + .slider {
-  background-color: #5cb85c;
+  background-color: #28A745;
 }
 
-input:focus + .slider {
-  box-shadow: 0 0 1px  #444c54;
+input:checked + .slider:hover {
+  background-color: #218838;
 }
 
 input:checked + .slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
+  content: "\f06e";
 }
 
 /* Rounded sliders */
 .slider.round {
-  border-radius: 34px;
+  border-radius: 5px;
 }
 
 .slider.round:before {
-  border-radius: 50%;
+  border-radius: 10%;
 } 
 
 .grid-container {
@@ -190,67 +200,13 @@ input:checked + .slider:before {
 	}
 }
 
-@media (min-width: 1366px) and (max-width: 1500px) {
-	.card-columns {
-    	column-count: 4 !important;
-	}
-
-	.note-base {
-		width: 300px !important;
-		-webkit-box-shadow: 0 1px 1px #222;
-		-moz-box-shadow: 0 1px 1px #222;
-		box-shadow: 0 1px 1px #222;
-		-webkit-transform: none;
-		-moz-transform: none;
-		-o-transform: none;
-		-ms-transform: none;
-		transform: none;
-		transition: all 0.3s;
-	}
-
-	.note-base:hover {
-		-webkit-box-shadow: 10px 20px 15px rgba(0, 0, 0, 0.45);
-		-moz-box-shadow: 10px 20px 15px rgba(0, 0, 0, 0.45);
-		box-shadow: 10px 20px 15px rgba(0, 0, 0, 0.45);
-		-webkit-transform: scale(1.1);
-		-moz-transform: scale(1.1);
-		-o-transform: scale(1.1);
-		-ms-transform: scale(1.1);
-		transform: scale(1.1);
-	}
-}
-
-@media (min-width: 1000px) and (max-width: 1365px) {
+@media (min-width: 1100px) and (max-width: 1500px) {
 	.card-columns {
     	column-count: 3 !important;
 	}
-
-	.note-base {
-		width: 300px !important;
-		-webkit-box-shadow: 0 1px 1px #222;
-		-moz-box-shadow: 0 1px 1px #222;
-		box-shadow: 0 1px 1px #222;
-		-webkit-transform: none;
-		-moz-transform: none;
-		-o-transform: none;
-		-ms-transform: none;
-		transform: none;
-		transition: all 0.3s;
-	}
-
-	.note-base:hover {
-		-webkit-box-shadow: 10px 20px 15px rgba(0, 0, 0, 0.45);
-		-moz-box-shadow: 10px 20px 15px rgba(0, 0, 0, 0.45);
-		box-shadow: 10px 20px 15px rgba(0, 0, 0, 0.45);
-		-webkit-transform: scale(1.1);
-		-moz-transform: scale(1.1);
-		-o-transform: scale(1.1);
-		-ms-transform: scale(1.1);
-		transform: scale(1.1);
-	}
 }
 
-@media (min-width: 700px) and (max-width: 999px) {
+@media (min-width: 750px) and (max-width: 1100px) {
 	.card-columns {
     	column-count: 2 !important;
 	}
@@ -277,13 +233,13 @@ input:checked + .slider:before {
 	}
 }
 
-@media (min-width: 300px) and (max-width: 699px) {
+@media (min-width: 300px) and (max-width: 750px) {
 	.card-columns {
     	column-count: 1 !important;
 	}
 
 	.note-base {
-		width: auto !important;
+		width: 300px !important;
 		-webkit-transform: none;
 		-moz-transform: none;
 		-o-transform: none;
@@ -326,6 +282,23 @@ input:checked + .slider:before {
 
 .note2-content {
 	background-color: #e74c3c;
+}
+
+.width-1 {
+    width: 32px;
+}
+
+.width-2 {
+    width: 48px;
+}
+
+.btn-lock-board:after {
+    font-family: 'FontAwesome', sans-serif;
+    content: "\f3c1";
+}
+
+.btn-lock-board:hover:after {
+    content: "\f023";
 }
 
 /* add-stickies.php */

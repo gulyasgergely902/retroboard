@@ -1,7 +1,7 @@
 @extends ('layout')
 
 @section ('content')
-<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark text-light">
+<nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
     <a class="navbar-brand" href="/">Retro Board</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -9,21 +9,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <!-- Tab selectors -->
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-item nav-link {{ Request::is('display/*/0') ? 'active text-success' : ''}}" id="nav-wentwell-tab" href="/display/{{$bid}}/0" role="tab" aria-controls="nav-wentwell" aria-selected="true">Went well</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-item nav-link {{ Request::is('display/*/2') ? 'active text-danger' : ''}}" id="nav-needsimprovement-tab" href="/display/{{$bid}}/2" role="tab" aria-controls="nav-needsimprovement" aria-selected="false">Needs improvement</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-item nav-link {{ Request::is('display/*/1') ? 'active text-warning' : ''}}" id="nav-actionitem-tab" href="/display/{{$bid}}/1" role="tab" aria-controls="nav-actionitem" aria-selected="false">Action items</a>
-            </li>
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <a class="nav-item nav-link {{ Request::is('display/*/0') ? 'active text-success' : ''}} width-1 btn btn-light" id="nav-wentwell-tab" href="/display/{{$bid}}/0" role="tab" aria-controls="nav-wentwell" aria-selected="true" title="Went Well"><i class="fas fa-thumbs-up"></i></a>
+                <a class="nav-item nav-link {{ Request::is('display/*/2') ? 'active text-danger' : ''}} width-1 btn btn-light" id="nav-needsimprovement-tab" href="/display/{{$bid}}/2" role="tab" aria-controls="nav-needsimprovement" aria-selected="false" title="Needs Improvement"><i class="fas fa-thumbs-down"></i></a>
+                <a class="nav-item nav-link {{ Request::is('display/*/1') ? 'active text-warning' : ''}} width-1 btn btn-light" id="nav-actionitem-tab" href="/display/{{$bid}}/1" role="tab" aria-controls="nav-actionitem" aria-selected="false" title="Action Item"><i class="fas fa-exclamation"></i></a>
+            </div>
         </ul>
         <!-- Div toggle -->
         <form class="form-inline my-2 mr-2 my-lg-0">
-            <label class="mr-2">Show stickies</label>
             <label for="hideStickyDiv" class="switch">
-                <input class="ml-2" type="checkbox" name="hideStickyDiv" id="hideStickyDiv" {{ old('hideStickyDiv') }}>
+                <input class="ml-2" type="checkbox" name="hideStickyDiv" id="hideStickyDiv" title="Toggle sticky visibility" {{ old('hideStickyDiv') }}>
                 <span class="slider round"></span>
             </label>
         </form>
@@ -31,14 +26,14 @@
         @if($protected)
             <form class="form-inline my-2 mr-2 my-lg-0" method="GET" action="/lock">
                 <input type="hidden" name="bid" value="{{ $bid }}">
-                <button type="submit" class="btn btn-outline-warning" id="lockboard" title="Lock board"><i class="fas fa-lock pr-2"></i>Lock board</button>
+                <button type="submit" class="btn btn-outline-warning btn-lock-board width-2" id="lockboard" title="Lock board"></button>
             </form>
         @endif
         <form class="form-inline my-2 mr-2 my-lg-0">
-            <button type="button" class="btn btn-success" id="addsingle" title="Add new sticky" data-toggle="modal" data-target="#addStickyModal" data-bid="{{ $bid }}"><i class="fas fa-plus-circle pr-2"></i>Add item</button>
+            <button type="button" class="btn btn-success" id="addsingle" title="Add new sticky" data-toggle="modal" data-target="#addStickyModal" data-bid="{{ $bid }}"><i class="fas fa-plus"></i></button>
         </form>
         <form class="form-inline my-2 my-lg-0" action="{{ url('remove/') }}" method="POST">
-            <button type="button" class="btn btn-outline-danger" id="deleteall" title="Clear all stickies" data-toggle="modal" data-target="#clearAllStickyModal" data-bid="{{ $bid }}"><i class="fas fa-trash-alt pr-2"></i>Clear board</button>
+            <button type="button" class="btn btn-outline-danger" id="deleteall" title="Clear board" data-toggle="modal" data-target="#clearAllStickyModal" data-bid="{{ $bid }}"><i class="fas fa-calendar-minus"></i></button>
         </form>
     </div>
 </nav>
