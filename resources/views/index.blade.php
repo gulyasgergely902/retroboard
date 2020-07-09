@@ -107,47 +107,48 @@
     </div>
 </div>
 
-<!-- Board list -->
-<div id="wrapper" class="mt-3">
-    <ul class="list-group">
-        @foreach ($boards as $board)
-        <a class="list-group-item list-group-item-action flex-column align-items-start">
-            <div class="d-flex w-100 justify-content-between">
-                <h3>{{ $board->board_name }}</h3>
-                @if($board->secure == 1)
-                    @if(\Cookie::get($board->board_id . '-unlocked') == 1)
-                        <h3 class="faded"><i class="fas fa-unlock"></i></h3>
+<!-- Board grid -->
+<h1 class="mx-3 my-3">Active boards</h1>
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 mx-3 my-3">
+    @foreach ($boards as $board)
+        <div class="col mb-4">
+            <div class="card">
+                <div class="card-body">
+                    @if($board->secure == 1)
+                        @if(\Cookie::get($board->board_id . '-unlocked') == 1)
+                            <h5 class="card-title"><i class="fas fa-unlock"></i> {{ $board->board_name }}</h5>
+                        @else
+                            <h5 class="card-title"><i class="fas fa-lock"></i> {{ $board->board_name }}</h5>
+                        @endif
                     @else
-                        <h3 class="faded"><i class="fas fa-lock"></i></h3>
+                        <h5 class="card-title">{{ $board->board_name }}</h5>
                     @endif
-                @endif
-            </div>
-            @if($board->secure == 1)
-                @if(\Cookie::get($board->board_id . '-unlocked') == 1)
-                    <form class="board-form" action="display/{{ $board->board_id }}/0" method="GET">
-                        <button class="btn btn-warning btn-sm" type="submit" title="Open board">Open</button>
+                    @if($board->secure == 1)
+                        @if(\Cookie::get($board->board_id . '-unlocked') == 1)
+                            <form class="board-form" action="display/{{ $board->board_id }}/0" method="GET">
+                                <button class="btn btn-warning btn-sm" type="submit" title="Open board">Open</button>
+                            </form>
+                        @else
+                            <form class="board-form">
+                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#passwordModal" data-bid="{{ $board->board_id }}">Unlock</button>
+                            </form>
+                        @endif
+                    @else
+                        <form class="board-form" action="display/{{ $board->board_id }}/0" method="GET">
+                            <button class="btn btn-success btn-sm" type="submit" title="Open board">Open</button>
+                        </form>
+                    @endif
+                    <form class="board-form" action="export/" method="POST">
+                        <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+                        <input type="hidden" value="{{ $board->board_id }}" name="bid">
+                        <button class="btn btn-outline-secondary btn-sm" type="submit" title="Export the contents of this board to .csv">Export</button>
                     </form>
-                @else
                     <form class="board-form">
-                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#passwordModal" data-bid="{{ $board->board_id }}">Unlock</button>
+                        <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#deleteModal" data-boardname="{{ $board->board_name }}" data-bid="{{ $board->board_id }}" title="Delete board">Delete</button>
                     </form>
-                @endif
-            @else
-                <form class="board-form" action="display/{{ $board->board_id }}/0" method="GET">
-                    <button class="btn btn-success btn-sm" type="submit" title="Open board">Open</button>
-                </form>
-            @endif
-            
-            <form class="board-form" action="export/" method="POST">
-                <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
-                <input type="hidden" value="{{ $board->board_id }}" name="bid">
-                <button class="btn btn-outline-secondary btn-sm" type="submit" title="Export the contents of this board to .csv">Export</button>
-            </form>
-            <form class="board-form">
-                <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#deleteModal" data-boardname="{{ $board->board_name }}" data-bid="{{ $board->board_id }}" title="Delete board">Delete</button>
-            </form>
-        </a>
-        @endforeach
-    </ul>
+                </div>
+            </div>
+        </div>
+    @endforeach
 </div>
 @endsection

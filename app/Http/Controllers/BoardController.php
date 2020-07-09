@@ -21,6 +21,7 @@ class BoardController extends Controller
     public function displayBoard($bid, $tab)
     {
         $stickies = Sticky::where('bid', $bid)->inRandomOrder()->get();
+        $stickies_count = count($stickies);
         $secure = Board::where('board_id', $bid)->pluck('secure')[0];
         $types = ['Went well', 'Action items', 'Needs improvement'];
         $button_color = ['btn-success', 'btn-warning', 'btn-danger'];
