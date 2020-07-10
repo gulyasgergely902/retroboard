@@ -1,53 +1,24 @@
-@import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Sriracha&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
 
 /* global */
 body {
-	/*background-color: #1e272e;*/
-	/*background-color: #ffffff;*/
-}
-
-.center-all {
-	width: 40%;
-	height: 10%;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-}
-
-.big {
-	font-size: 6em;
-}
-
-.faded {
-	color: rgba(0, 0, 0, 0.3);
-}
-
-.centered {
-	text-align: center;
-}
-
-.top {
-	z-index: 99999;
+    font-family: 'Open Sans', sans-serif !important;
 }
 
 /* index.php */
-#wrapper {
-	width: 60%;
-	height: 50%;
-	margin-left: auto;
-	margin-right: auto;
-}
-
 .board-form {
 	float: left;
 	padding: 5px;
 }
 
+.grid-card {
+    width: 256px;
+}
+
 /* display.php */
-.tab-content{
+.tab-content {
 	opacity: 0;
 	filter: blur(10px);
 	-webkit-filter: blur(10px);
@@ -158,7 +129,6 @@ input:checked + .slider:before {
 .card-columns {
     column-count: 5 !important;
 }
-
 
 .note-base {
 	width: 300px !important;
@@ -302,7 +272,6 @@ input:checked + .slider:before {
 }
 
 /* add-stickies.php */
-
 .wrapper {
 	position: absolute !important;
 	top: 50%;
