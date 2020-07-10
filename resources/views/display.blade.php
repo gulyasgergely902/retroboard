@@ -103,13 +103,16 @@
                 @if($sticky->sticky_type==0)
                 <div class="note-base mr-3 my-3" id="note-base">
                     <div class="note-base-actions note{{ $sticky->sticky_type }}-actions" id="note-base-header">
-                        <form action="{{ url('remove/') }}" method="POST">
-                            <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
-                            <input type="hidden" value="single" name="mode">
-                            <input type="hidden" value="{{$sticky->sticky_id}}" name="sticky_id">
-                            <input type="hidden" value="{{ $bid }}" name="bid">
-                            <button type="submit" id="delete-single" class="btn btn-outline-light"><i class="fas fa-trash-alt"></i></button>
-                        </form>
+                        <div class="btn-group" role="group" aria-label="Sticky actions">
+                            <div class="btn-group" role="group">
+                                    <button id="btnGroupDrop1" type="button" class="btn btn-outline-light dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Groups</button>
+                                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                        <a class="dropdown-item" href="#">Group 1</a>
+                                        <a class="dropdown-item" href="#">Group 2</a>
+                                    </div>
+                            </div>
+                            <button type="button" id="new-group" class="btn btn-outline-light btn-sm"><i class="fas fa-plus"></i></button>
+                        </div>
                     </div>
                     <div class="note-base-content note{{$sticky->sticky_type}}-content">
                         {{ $sticky->sticky_content }}
@@ -130,7 +133,7 @@
                             <input type="hidden" value="single" name="mode">
                             <input type="hidden" value="{{$sticky->sticky_id}}" name="sticky_id">
                             <input type="hidden" value="{{ $bid }}" name="bid">
-                            <button type="submit" id="delete-single" class="btn btn-outline-light"><i class="fas fa-trash-alt"></i></button>
+                            <button type="submit" id="delete-single" class="btn btn-outline-light btn-sm"><i class="fas fa-trash-alt"></i></button>
                         </form>
                     </div>
                     <div class="note-base-content note{{$sticky->sticky_type}}-content">
@@ -152,7 +155,7 @@
                             <input type="hidden" value="single" name="mode">
                             <input type="hidden" value="{{$sticky->sticky_id}}" name="sticky_id">
                             <input type="hidden" value="{{ $bid }}" name="bid">
-                            <button type="submit" id="delete-single" class="btn btn-outline-light"><i class="fas fa-trash-alt"></i></button>
+                            <button type="submit" id="delete-single" class="btn btn-outline-light btn-sm"><i class="fas fa-trash-alt"></i></button>
                         </form>
                     </div>
                     <div class="note-base-content note{{$sticky->sticky_type}}-content">
