@@ -7,6 +7,7 @@ use Response;
 use Illuminate\Support\Facades\Hash;
 use App\Sticky;
 use App\Board;
+use App\Group;
 
 class BoardController extends Controller
 {
@@ -20,11 +21,25 @@ class BoardController extends Controller
 
     public function displayBoard($bid, $tab)
     {
-        $stickies = Sticky::where('bid', $bid)->inRandomOrder()->get();
-        $stickies_count = count($stickies);
+        $match_green = ['bid' => $bid, 'sticky_type' => 0];
+        $match_red = ['bid' => $bid, 'sticky_type' => 2];
+        $match_yellow = ['bid' => $bid, 'sticky_type' => 1];
+
+        if ($tab == 0) {
+            $stickies = Sticky::where($match_green)->inRandomOrder()->get();
+        } elseif ($tab == 2) {
+            $stickies = Sticky::where($match_red)->inRandomOrder()->get();
+        } else {
+            $stickies = Sticky::where($match_yellow)->inRandomOrder()->get();
+        }
+
+        $groups = Group::where('board_id', $bid)->get();
+
         $secure = Board::where('board_id', $bid)->pluck('secure')[0];
+
         $types = ['Went well', 'Action items', 'Needs improvement'];
         $button_color = ['btn-success', 'btn-warning', 'btn-danger'];
+
         if ($secure == 1) {
             if (\Cookie::get($bid . '-unlocked') == 1) {
                 return view('display', [
@@ -33,7 +48,8 @@ class BoardController extends Controller
                     'tab' => $tab,
                     'types' => $types,
                     'button_color' => $button_color,
-                    'protected' => 1
+                    'protected' => 1,
+                    'groups' => $groups
                 ]);
             } else {
                 return redirect('/');
@@ -45,7 +61,8 @@ class BoardController extends Controller
                 'tab' => $tab,
                 'types' => $types,
                 'button_color' => $button_color,
-                'protected' => 0
+                'protected' => 0,
+                'groups' => $groups
             ]);
         }
     }
@@ -91,6 +108,7 @@ class BoardController extends Controller
         if ($mode == 'full') {
             $bid = $request->input('bid');
             Sticky::where('bid', $bid)->delete();
+            Group::where('board_id', $bid)->delete();
             return redirect('display/' . $bid . '/0');
         } elseif ($mode == 'single') {
             $bid = $request->input('bid');
@@ -149,5 +167,27 @@ class BoardController extends Controller
         $cookie_name = $bid . "-unlocked";
         \Cookie::queue(\Cookie::forget($cookie_name));
         return redirect('/');
+    }
+
+    public function groupCreate(Request $request)
+    {
+        $sticky_type = $request->input('sticky_type');
+        $bid = $request->input('bid');
+        $group = new Group();
+        $group->group_name = $request->input('group_name');
+        $group->board_id = $bid;
+        $group->save();
+        return redirect('/display/' . $bid . '/' . $sticky_type);
+    }
+
+    public function groupAdd($sticky_id, $group_id)
+    {
+        $sticky = \App\Sticky::find($sticky_id);
+        $bid = $sticky->bid;
+        $sticky_type = $sticky->sticky_type;
+
+        $sticky->group_id = $group_id;
+        $sticky->save();
+        return redirect('/display/' . $bid . '/' . $sticky_type);
     }
 }

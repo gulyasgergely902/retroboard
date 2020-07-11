@@ -95,76 +95,60 @@
     </div>
 </div>
 
+<!-- Create Group Modal -->
+<div class="modal fade" id="createGroupModal" tabindex="-1" role="dialog" aria-labelledby="createGroupLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createGroupLabel">Create new group</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ url('group/create/') }}" method="POST">
+                    <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+                    <input type="hidden" name="bid" value="{{ $bid }}">
+                    <input type="hidden" name="sticky_type" value="{{ $tab }}">
+                    <div class="form-group">
+                        <label for="sticky-content">Group name</label>
+                        <input type="text" class="form-control" id="group-name" name="group_name" aria-describedby="group-name-help" placeholder="Group name">
+                        <small class="form-text text-muted">Max. length: 60 characters</small>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn {{ $button_color[$tab] }}">Create group</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Stickies list -->
 <div class="tab-content py-3 px-5 mt-5 mb-5" id="nav-tabContent">
-    <div class="tab-pane fade {{ $tab == '0' ? 'show active' : ''}}" id="nav-wentwell" role="tabpanel" aria-labelledby="nav-wentwell-tab">
-        <div class="card-columns">
-            @foreach ($stickies as $sticky)
-                @if($sticky->sticky_type==0)
-                <div class="note-base mr-3 my-3" id="note-base">
-                    <div class="note-base-actions note{{ $sticky->sticky_type }}-actions" id="note-base-header">
-                        <div class="btn-group" role="group" aria-label="Sticky actions">
-                            <div class="btn-group" role="group">
-                                    <button id="btnGroupDrop1" type="button" class="btn btn-outline-light dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Groups</button>
-                                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                        <a class="dropdown-item" href="#">Group 1</a>
-                                        <a class="dropdown-item" href="#">Group 2</a>
-                                    </div>
-                            </div>
-                            <button type="button" id="new-group" class="btn btn-outline-light btn-sm"><i class="fas fa-plus"></i></button>
+    <div class="card-columns">
+        @foreach ($stickies as $sticky)
+            <div class="note-base mr-3 my-3" id="note-base">
+                <div class="note-base-actions note{{ $sticky->sticky_type }}-actions" id="note-base-header">
+                    <div class="btn-group" role="group" aria-label="Sticky actions">
+                        <div class="btn-group" role="group">
+                                <button id="btnGroupDrop1" type="button" class="btn btn-outline-light dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Groups</button>
+                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                    @foreach ($groups as $group)
+                                        <a class="dropdown-item" href="/group/add/{{ $sticky->sticky_id }}/{{ $group->group_id }}">{{ $group->group_name }}</a>
+                                    @endforeach
+                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#createGroupModal" data-bid="{{ $bid }}"><i>Create new group...</i></a>
+                                </div>
                         </div>
-                    </div>
-                    <div class="note-base-content note{{$sticky->sticky_type}}-content">
-                        {{ $sticky->sticky_content }}
+                        <button type="button" id="new-group" class="btn btn-outline-light btn-sm" title="Add to group"><i class="fas fa-plus"></i></button>
                     </div>
                 </div>
-                @endif
-            @endforeach
-        </div>
-    </div>
-    <div class="tab-pane fade {{ $tab == '2' ? 'show active' : ''}}" id="nav-needsimprovement" role="tabpanel" aria-labelledby="nav-needsimprovement-tab">
-        <div class="card-columns">
-            @foreach ($stickies as $sticky)
-                @if($sticky->sticky_type==2)
-                <div class="note-base mr-3 my-3" id="note-base">
-                    <div class="note-base-actions note{{ $sticky->sticky_type }}-actions" id="note-base-header">
-                        <form action="{{ url('remove/') }}" method="POST">
-                            <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
-                            <input type="hidden" value="single" name="mode">
-                            <input type="hidden" value="{{$sticky->sticky_id}}" name="sticky_id">
-                            <input type="hidden" value="{{ $bid }}" name="bid">
-                            <button type="submit" id="delete-single" class="btn btn-outline-light btn-sm"><i class="fas fa-trash-alt"></i></button>
-                        </form>
-                    </div>
-                    <div class="note-base-content note{{$sticky->sticky_type}}-content">
-                        {{$sticky->sticky_content}}
-                    </div>
+                <div class="note-base-content note{{$sticky->sticky_type}}-content">
+                    {{ $sticky->sticky_content }}
                 </div>
-                @endif
-            @endforeach
-        </div>
-    </div>
-    <div class="tab-pane fade {{ $tab == '1' ? 'show active' : ''}}" id="nav-actionitem" role="tabpanel" aria-labelledby="nav-actionitem-tab">
-        <div class="card-columns">
-            @foreach ($stickies as $sticky)
-                @if($sticky->sticky_type==1)
-                <div class="note-base mr-3 my-3" id="note-base">
-                    <div class="note-base-actions note{{ $sticky->sticky_type }}-actions" id="note-base-header">
-                        <form action="{{ url('remove/') }}" method="POST">
-                            <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
-                            <input type="hidden" value="single" name="mode">
-                            <input type="hidden" value="{{$sticky->sticky_id}}" name="sticky_id">
-                            <input type="hidden" value="{{ $bid }}" name="bid">
-                            <button type="submit" id="delete-single" class="btn btn-outline-light btn-sm"><i class="fas fa-trash-alt"></i></button>
-                        </form>
-                    </div>
-                    <div class="note-base-content note{{$sticky->sticky_type}}-content">
-                        {{$sticky->sticky_content}}
-                    </div>
-                </div>
-                @endif
-            @endforeach
-        </div>
+            </div>
+        @endforeach
     </div>
 </div>
 @endsection
