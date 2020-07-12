@@ -176,6 +176,7 @@ class BoardController extends Controller
         $group = new Group();
         $group->group_name = $request->input('group_name');
         $group->board_id = $bid;
+        $group->sticky_type = $sticky_type;
         $group->save();
         return redirect('/display/' . $bid . '/' . $sticky_type);
     }
@@ -187,6 +188,17 @@ class BoardController extends Controller
         $sticky_type = $sticky->sticky_type;
 
         $sticky->group_id = $group_id;
+        $sticky->save();
+        return redirect('/display/' . $bid . '/' . $sticky_type);
+    }
+
+    public function groupRemove($sticky_id)
+    {
+        $sticky = \App\Sticky::find($sticky_id);
+        $bid = $sticky->bid;
+        $sticky_type = $sticky->sticky_type;
+
+        $sticky->group_id = -1;
         $sticky->save();
         return redirect('/display/' . $bid . '/' . $sticky_type);
     }
