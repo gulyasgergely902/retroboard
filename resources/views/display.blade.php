@@ -33,7 +33,7 @@
             <button type="button" class="btn btn-success" id="addsingle" title="Add new sticky" data-toggle="modal" data-target="#addStickyModal" data-bid="{{ $bid }}"><i class="fas fa-plus"></i></button>
         </form>
         <form class="form-inline my-2 my-lg-0" action="{{ url('remove/') }}" method="POST">
-            <button type="button" class="btn btn-outline-danger" id="deleteall" title="Clear board" data-toggle="modal" data-target="#clearAllStickyModal" data-bid="{{ $bid }}"><i class="fas fa-calendar-minus"></i></button>
+            <button type="button" class="btn btn-outline-danger" id="deleteall" title="Clear board" data-toggle="modal" data-target="#clearAllStickyModal" data-bid="{{ $bid }}"><i class="fas fa-trash-alt"></i></button>
         </form>
     </div>
 </nav>
@@ -149,7 +149,7 @@
                                                 <a class="dropdown-item" href="/group/remove/{{ $sticky->sticky_id }}"><i>Remove from group</i></a>
                                             </div>
                                     </div>
-                                    <button type="button" id="new-group" class="btn btn-outline-light btn-sm" title="Add to group"><i class="fas fa-plus"></i></button>
+                                    <button type="button" id="new-group" class="btn btn-outline-light btn-sm" title="Delete"><i class="fas fa-trash-alt"></i></button>
                                 </div>
                             </div>
                             <div class="note-base-content note{{$sticky->sticky_type}}-content">
@@ -180,7 +180,7 @@
                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#createGroupModal" data-bid="{{ $bid }}"><i>Create new group...</i></a>
                                     </div>
                             </div>
-                            <button type="button" id="new-group" class="btn btn-outline-light btn-sm" title="Add to group"><i class="fas fa-plus"></i></button>
+                            <button type="button" id="new-group" class="btn btn-outline-light btn-sm" title="Delete"><i class="fas fa-trash-alt"></i></button>
                         </div>
                     </div>
                     <div class="note-base-content note{{$sticky->sticky_type}}-content">
