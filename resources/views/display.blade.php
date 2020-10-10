@@ -29,11 +29,8 @@
                 <button type="submit" class="btn btn-outline-warning btn-lock-board width-2" id="lockboard" title="Lock board"></button>
             </form>
         @endif
-        <form class="form-inline my-2 mr-2 my-lg-0">
-            <button type="button" class="btn btn-success" id="addsingle" title="Add new sticky" data-toggle="modal" data-target="#addStickyModal" data-bid="{{ $bid }}"><i class="fas fa-plus"></i></button>
-        </form>
         <form class="form-inline my-2 my-lg-0" action="{{ url('remove/') }}" method="POST">
-            <button type="button" class="btn btn-outline-danger" id="deleteall" title="Clear board" data-toggle="modal" data-target="#clearAllStickyModal" data-bid="{{ $bid }}"><i class="fas fa-trash-alt"></i></button>
+            <button type="button" class="btn btn-outline-danger" id="deleteall" title="Clear board" data-toggle="modal" data-target="#clearAllStickyModal" data-bid="{{ $bid }}"><i class="fas fa-quidditch"></i></button>
         </form>
     </div>
 </nav>
@@ -124,6 +121,10 @@
         </div>
     </div>
 </div>
+
+<div class="fab_wrapper">
+    <button class="fab_btn" title="Add new sticky" data-toggle="modal" data-target="#addStickyModal" data-bid="{{ $bid }}"><i class="fas fa-plus"></i></button>
+</div>  
 
 <!-- Stickies list -->
 <div class="tab-content py-3 px-5 mt-5 mb-5" id="nav-tabContent">
