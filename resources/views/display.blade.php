@@ -29,9 +29,14 @@
                 <button type="submit" class="btn btn-outline-warning btn-lock-board width-2" id="lockboard" title="Lock board"></button>
             </form>
         @endif
-        <form class="form-inline my-2 my-lg-0" action="{{ url('remove/') }}" method="POST">
-            <button type="button" class="btn btn-outline-danger" id="deleteall" title="Clear board" data-toggle="modal" data-target="#clearAllStickyModal" data-bid="{{ $bid }}"><i class="fas fa-quidditch"></i></button>
-        </form>
+        <ul class="nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-secondary" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
+                <div class="dropdown-menu">
+                    <button type="button" class="btn btn-link text-danger" id="deleteall" title="Clear board" data-toggle="modal" data-target="#clearAllStickyModal" data-bid="{{ $bid }}"><i class="fas fa-quidditch"></i></button>
+                </div>
+            </li>
+        </ul>
     </div>
 </nav>
 
