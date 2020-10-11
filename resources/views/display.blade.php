@@ -138,22 +138,8 @@
                     @if ($sticky->group_id == $group->group_id)
                         <div class="note-base mr-3 my-3" id="note-base">
                             <div class="note-base-actions note{{ $sticky->sticky_type }}-actions" id="note-base-header">
-                                <div class="btn-group" role="group" aria-label="Sticky actions">
-                                    <div class="btn-group" role="group">
-                                            <button id="btnGroupDrop1" type="button" class="btn btn-outline-light dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Groups</button>
-                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                                @foreach ($groups as $group_a)
-                                                    @if ($group_a->sticky_type == $tab)
-                                                        <a class="dropdown-item" href="/group/add/{{ $sticky->sticky_id }}/{{ $group_a->group_id }}">{{ $group_a->group_name }}</a>
-                                                    @endif
-                                                @endforeach
-                                                <hr>
-                                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#createGroupModal" data-bid="{{ $bid }}"><i>Create new group...</i></a>
-                                                <a class="dropdown-item" href="/group/remove/{{ $sticky->sticky_id }}"><i>Remove from group</i></a>
-                                            </div>
-                                    </div>
-                                    <button type="button" id="new-group" class="btn btn-outline-light btn-sm" title="Delete"><i class="fas fa-trash-alt"></i></button>
-                                </div>
+                                <input type="checkbox" id="selectStickyToAddGroup" name="selectStickyToAddGroup" aria-describedby="selectStickyToAddGroup-help" placeholder="Select Sticky">
+                                <!-- <button type="button" id="new-group" class="btn btn-outline-light btn-sm" title="Delete"><i class="fas fa-trash-alt"></i></button> -->
                             </div>
                             <div class="note-base-content note{{$sticky->sticky_type}}-content">
                                 {{ $sticky->sticky_content }}
@@ -171,20 +157,11 @@
             @if ($sticky->group_id == -1)
                 <div class="note-base mr-3 my-3" id="note-base">
                     <div class="note-base-actions note{{ $sticky->sticky_type }}-actions" id="note-base-header">
-                        <div class="btn-group" role="group" aria-label="Sticky actions">
-                            <div class="btn-group" role="group">
-                                    <button id="btnGroupDrop1" type="button" class="btn btn-outline-light dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Groups</button>
-                                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                        @foreach ($groups as $group)
-                                            @if ($group->sticky_type == $tab)
-                                                <a class="dropdown-item" href="/group/add/{{ $sticky->sticky_id }}/{{ $group->group_id }}">{{ $group->group_name }}</a>
-                                            @endif
-                                        @endforeach
-                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#createGroupModal" data-bid="{{ $bid }}"><i>Create new group...</i></a>
-                                    </div>
-                            </div>
-                            <button type="button" id="new-group" class="btn btn-outline-light btn-sm" title="Delete"><i class="fas fa-trash-alt"></i></button>
-                        </div>
+                        <label class="selectStickyLabel">
+                            <input type="checkbox">
+                            <span class="checkbox-custom"></span>
+                        </label>
+                        <!-- <button type="button" id="new-group" class="btn btn-outline-light btn-sm" title="Delete"><i class="fas fa-trash-alt"></i></button> -->
                     </div>
                     <div class="note-base-content note{{$sticky->sticky_type}}-content">
                         {{ $sticky->sticky_content }}
