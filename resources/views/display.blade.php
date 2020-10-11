@@ -2,19 +2,19 @@
 
 @section ('content')
 <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
-    <a class="navbar-brand" href="/">Retro Board</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <!-- Tab selectors -->
-        <ul class="navbar-nav mr-auto">
-            <div class="btn-group" role="group" aria-label="Basic example">
+        <ul class="navbar-nav">
+            <div class="btn-group" role="group" aria-label="Sticky categories">
                 <a class="nav-item nav-link {{ Request::is('display/*/0') ? 'active text-success' : ''}} width-1 btn btn-light" id="nav-wentwell-tab" href="/display/{{$bid}}/0" role="tab" aria-controls="nav-wentwell" aria-selected="true" title="Went Well"><i class="fas fa-thumbs-up"></i></a>
                 <a class="nav-item nav-link {{ Request::is('display/*/2') ? 'active text-danger' : ''}} width-1 btn btn-light" id="nav-needsimprovement-tab" href="/display/{{$bid}}/2" role="tab" aria-controls="nav-needsimprovement" aria-selected="false" title="Needs Improvement"><i class="fas fa-thumbs-down"></i></a>
                 <a class="nav-item nav-link {{ Request::is('display/*/1') ? 'active text-warning' : ''}} width-1 btn btn-light" id="nav-actionitem-tab" href="/display/{{$bid}}/1" role="tab" aria-controls="nav-actionitem" aria-selected="false" title="Action Item"><i class="fas fa-exclamation"></i></a>
             </div>
         </ul>
+        <a class="navbar-brand mx-auto" href="/">Retro Board</a>
         <!-- Div toggle -->
         <form class="form-inline my-2 mr-2 my-lg-0">
             <label for="hideStickyDiv" class="switch">
@@ -32,8 +32,8 @@
         <ul class="nav">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-secondary" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
-                <div class="dropdown-menu">
-                    <button type="button" class="btn btn-link text-danger" id="deleteall" title="Clear board" data-toggle="modal" data-target="#clearAllStickyModal" data-bid="{{ $bid }}"><i class="fas fa-quidditch"></i></button>
+                <div class="dropdown-menu dropdown-menu-lg-right">
+                    <button type="button" class="btn btn-link text-danger" id="deleteall" title="Clear board" data-toggle="modal" data-target="#clearAllStickyModal" data-bid="{{ $bid }}"><i class="fas fa-quidditch mr-2"></i>Clear board</button>
                 </div>
             </li>
         </ul>
