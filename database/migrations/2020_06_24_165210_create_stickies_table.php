@@ -6,26 +6,17 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateStickiesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('stickies', function (Blueprint $table) {
-            $table->increments(sticky_id);
+            $table->increments('sticky_id');
             $table->integer('sticky_type', 11);
             $table->integer('bid', 11);
             $table->string('sticky_content', 512);
+            $table->integer('group_id', 11)->default(-1);
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('stickies');
