@@ -1,13 +1,8 @@
 @extends ('layout')
 
 @section ('content')
-<nav class="navbar navbar-expand-sm navbar-light bg-light">
-    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-        <a class="navbar-brand mx-auto" href="#">Retro Board</a>
-    </div>
-    <form class="form-inline my-2 mr-2 my-lg-0 float-right">
-        <button type="button" id="addboard" class="btn btn-success my-2 my-sm-0" title="Create new board" data-toggle="modal" data-target="#addBoardModal"><i class="fas fa-calendar-plus"></i></button>
-    </form>
+<nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand mx-auto" href="#">Retro Board</a>
 </nav>
 
 <!-- Add Modal -->
@@ -101,6 +96,10 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="fab_wrapper">
+    <button class="fab_btn" id="addboard" title="Add new sticky" data-toggle="modal" data-target="#addBoardModal""><i class="fas fa-plus"></i></button>
 </div>
 
 <!-- Board grid -->
