@@ -1,17 +1,13 @@
 @extends ('layout')
 
 @section ('content')
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Retro Board</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <a class="navbar-brand mx-auto" href="#">Retro Board</a>
+    </div>
     <form class="form-inline my-2 mr-2 my-lg-0 float-right">
         <button type="button" id="addboard" class="btn btn-success my-2 my-sm-0" title="Create new board" data-toggle="modal" data-target="#addBoardModal"><i class="fas fa-calendar-plus"></i></button>
     </form>
-  </div>
 </nav>
 
 <!-- Add Modal -->
