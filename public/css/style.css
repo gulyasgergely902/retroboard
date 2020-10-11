@@ -198,7 +198,7 @@ input:checked + .slider:before {
 	}
 }
 
-@media (min-width: 750px) and (max-width: 1100px) {
+@media (min-width: 750px) and (max-width: 1099px) {
 	.card-columns {
     	column-count: 2 !important;
 	}
@@ -208,7 +208,7 @@ input:checked + .slider:before {
 	}
 }
 
-@media (min-width: 300px) and (max-width: 750px) {
+@media (min-width: 100px) and (max-width: 749px) {
 	.card-columns {
     	column-count: 1 !important;
 	}
