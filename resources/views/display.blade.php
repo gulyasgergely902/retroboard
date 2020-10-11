@@ -126,7 +126,7 @@
 
 <div class="fab_wrapper">
     <button class="fab_btn" title="Add new sticky" data-toggle="modal" data-target="#addStickyModal" data-bid="{{ $bid }}"><i class="fas fa-plus"></i></button>
-</div>  
+</div>
 
 <!-- Stickies list -->
 <div class="tab-content py-3 px-5 mt-5 mb-5" id="nav-tabContent">
