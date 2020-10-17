@@ -105,12 +105,12 @@ class BoardController extends Controller
     public function remove(Request $request)
     {
         $mode = $request->input('mode');
-        if ($mode == 'full') {
+        if ($mode == 'allsticky') {
             $bid = $request->input('bid');
             Sticky::where('bid', $bid)->delete();
             Group::where('board_id', $bid)->delete();
             return redirect('display/' . $bid . '/0');
-        } elseif ($mode == 'single') {
+        } elseif ($mode == 'singlesticky') {
             $bid = $request->input('bid');
             $sticky_id = $request->input('sticky_id');
             Sticky::where('sticky_id', $sticky_id)->delete();
@@ -118,6 +118,7 @@ class BoardController extends Controller
         } elseif ($mode == 'board') {
             $bid = $request->input('bid');
             Sticky::where('bid', $bid)->delete();
+            Group::where('board_id', $bid)->delete();
             Board::where('board_id', $bid)->delete();
             return redirect('/');
         }
