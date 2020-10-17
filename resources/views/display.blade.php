@@ -79,13 +79,13 @@
                 </button>
             </div>
             <div class="modal-body">
-                This will clear the board! All stickies will be gone!
+                This will clear the board including the stickies and the groups you've created!
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <form class="remove-board-form" action="{{ url('remove/') }}" method="POST">
                     <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
-                    <input type="hidden" value="full" name="mode">
+                    <input type="hidden" value="allsticky" name="mode">
                     <input type="hidden" name="bid" value="{{$bid}}">
                     <button type="submit" class="btn btn-danger">Clear</button>
                 </form>

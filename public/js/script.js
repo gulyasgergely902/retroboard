@@ -43,8 +43,8 @@ $(document).ready(function(){
 				"-webkit-filter": "blur(10px)"
 			}, 250, 'in-out');
 	});
-});
 
-document.getElementById('sticky-content').onkeyup = function () {
-    document.getElementById('sticky-content-charcount').innerHTML = "Characters left: " + (500 - this.value.length);
-};
+  $('#sticky-content').keyup(function(){
+    $('#sticky-content-charcount').html("Characters left: " + (500 - this.value.length));
+  });
+});
