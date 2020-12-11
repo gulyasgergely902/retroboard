@@ -14,8 +14,8 @@ use Illuminate\Http\Request;
 */
 
 
-Route::get('/', 'BoardController@showBoards');
-Route::get('/display/{bid}/{tab}', 'BoardController@displayBoard');
+Route::view('/', 'index');
+Route::view('/display', 'display');
 Route::post('/add', 'BoardController@add');
 Route::post('/remove', 'BoardController@remove');
 Route::post('/export', 'BoardController@export');
