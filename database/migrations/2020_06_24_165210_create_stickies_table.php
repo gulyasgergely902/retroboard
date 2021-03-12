@@ -10,10 +10,10 @@ class CreateStickiesTable extends Migration
     {
         Schema::create('stickies', function (Blueprint $table) {
             $table->increments('sticky_id');
-            $table->integer('sticky_type', 11);
-            $table->integer('bid', 11);
+            $table->integer('sticky_type');
+            $table->integer('bid');
             $table->string('sticky_content', 512);
-            $table->integer('group_id', 11)->default(-1);
+            $table->integer('group_id')->default(-1);
         });
     }
 

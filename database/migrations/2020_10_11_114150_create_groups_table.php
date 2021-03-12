@@ -11,8 +11,8 @@ class CreateGroupsTable extends Migration
         Schema::create('groups', function (Blueprint $table) {
             $table->increments('group_id');
             $table->string('group_name', 64);
-            $table->integer('board_id', 11);
-            $table->integer('sticky_type', 11)->default(-1);
+            $table->integer('board_id');
+            $table->integer('sticky_type')->default(-1);
         });
     }
 
