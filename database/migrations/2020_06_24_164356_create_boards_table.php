@@ -11,7 +11,7 @@ class CreateBoardsTable extends Migration
         Schema::create('boards', function (Blueprint $table) {
             $table->increments('board_id');
             $table->string('board_name', 64);
-            $table->integer('secure', 11)->default('0');
+            $table->integer('secure')->default(0);
             $table->string('board_password', 64)->nullable()->default('NULL');
         });
     }
