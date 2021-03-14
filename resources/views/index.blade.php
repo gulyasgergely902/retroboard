@@ -1,8 +1,6 @@
 @extends ('layout')
 
 @section ('content')
-<p class="top-logo">[RB]</p>
-
 <!-- Add Modal -->
 <div class="modal fade" id="addBoardModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">

@@ -133,79 +133,6 @@ body {
 	-webkit-filter: blur(10px);
 }
 
- /* The switch - the box around the slider */
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 38px;
-}
-
-/* Hide default HTML checkbox */
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-/* The slider */
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(22, 22, 22, 0.1);
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-.slider:hover {
-  background-color: rgba(22, 22, 22, 0.2);
-}
-
-.slider:before {
-  position: absolute;
-  content: "\f070";
-  height: 30px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-  font-family: 'FontAwesome', sans-serif;
-  padding-left: 6px;
-  padding-top: 4px;
-  font-size: 14px;
-  color: #666666;
-}
-
-input:checked + .slider {
-  background-color: #28A745;
-}
-
-input:checked + .slider:hover {
-  background-color: #218838;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-  content: "\f06e";
-}
-
-/* Rounded sliders */
-.slider.round {
-  border-radius: 5px;
-}
-
-.slider.round:before {
-  border-radius: 10%;
-} 
-
 .grid-container {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, 280px);
@@ -216,47 +143,126 @@ input:checked + .slider:before {
 	color: #ffffff;
 }
 
+.header-buttons .rounded-button {
+  display: inline-block;
+  border-radius: 30px;
+  text-align: center;
+  width: 60px;
+  height: 30px;
+  color: white;
+}
+
+.header-buttons .form-toggle-visibility {
+  display: inline-block;
+}
+
+.header-buttons .form-toggle-visibility .switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+}
+
+.header-buttons .form-toggle-visibility .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.header-buttons .form-toggle-visibility .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgb(109, 207, 246);
+  background: linear-gradient(165deg, rgba(109, 207, 246, 1) 0%, rgba(13, 170, 237, 1) 35%, rgba(7, 126, 199, 1) 60%, rgba(1, 45, 120, 1) 100%);
+}
+
+.header-buttons .form-toggle-visibility .slider:before {
+  position: absolute;
+  content: "\f070";
+  height: 26px;
+  width: 26px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  line-height: 1.42857;
+  -webkit-transition: .4s;
+  transition: .4s;
+  font-family: 'FontAwesome', sans-serif;
+  padding-left: 4px;
+  padding-top: 4px;
+  font-size: 14px;
+  color: #666666;
+}
+
+input:checked + .header-buttons .form-toggle-visibility .slider {
+  background-color: #28A745;
+}
+
+input:checked + .header-buttons .form-toggle-visibility .slider:hover {
+  background-color: #218838;
+}
+
+input:checked + .header-buttons .form-toggle-visibility .slider:before {
+  -webkit-transform: translateX(40px);
+  -ms-transform: translateX(40px);
+  transform: translateX(40px);
+  content: "\f06e";
+}
+
+.header-buttons .form-toggle-visibility .slider.round {
+  border-radius: 30px;
+}
+
+.header-buttons .form-toggle-visibility .slider.round:before {
+  border-radius: 15px;
+}
+
 /* Notes */
 .note-base {
     width: 300px !important;
     height: auto;
-    text-align: justify;  
-    color: #ffffff;
-    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
-    font-size: 1.3em;
+    min-height: 100px;
     display: inline-block;
+    padding: 16px;
+    position: relative;
+    font-family: 'Sriracha', cursive;
+    color: #ffffff;
+    text-align: justify;
+    font-size: 1.25em;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
     -webkit-box-shadow: 0px 1px 1px #222;
     -moz-box-shadow: 0px 1px 1px #222;
     box-shadow: 0px 1px 1px #222;
     transition: all 0.1s;
-    z-index: 0;
-    border-radius: 10px;
+    border-radius: 30px;
+    background: rgb(109, 207, 246);
+    background: linear-gradient(0deg, rgba(109, 207, 246, 1) 0%, rgba(13, 170, 237, 1) 35%, rgba(7, 126, 199, 1) 60%, rgba(1, 45, 120, 1) 100%);
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+.note-base .circle {
+  z-index: 5;
+  width: 100px;
+  height: 100px;
+  background: rgb(109, 207, 246);
+  background: linear-gradient(165deg, rgba(109, 207, 246, 1) 0%, rgba(13, 170, 237, 1) 35%, rgba(7, 126, 199, 1) 60%, rgba(1, 45, 120, 1) 100%);
+  border-radius: 100px;
+  -moz-border-radius: 100px 100px 0 0;
+  opacity: 0.4;
+  position: absolute;
+  top: 40%;
+  left: 250px;
 }
 
 .note-base:hover {
     -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.75);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.75);
-}
-
-.note-base-actions {
-	padding: 6px;
-	height: auto;
-	width: 100%;
-	border-top-right-radius: 10px;
-	border-top-left-radius: 10px;
-}
-
-.note-base-content {
-	padding: 6px;
-	height: 85%;
-	width: 100%;
-    font-family: 'Sriracha', cursive;
-	overflow: hidden;
-	word-wrap: break-word;
-	font-size: 1em;
-	border-bottom-left-radius: 10px;
-	border-bottom-right-radius: 10px;
 }
 
 .card-columns {
@@ -295,28 +301,34 @@ input:checked + .slider:before {
 	}
 }
 
-.note0-actions {
-	background-color: #27ae60;
+.note0 {
+	background: rgb(46,197,71);
+  background: linear-gradient(0deg, rgba(46,197,71,1) 0%, rgba(31,181,55,1) 35%, rgba(20,162,44,1) 60%, rgba(11,136,31,1) 100%);
 }
 
-.note0-content {
-	background-color: #2ecc71;
+.note1 {
+  background: rgb(255,198,0);
+  background: linear-gradient(0deg, rgba(255,198,0,1) 0%, rgba(228,129,0,1) 100%);
 }
 
-.note1-actions {
-	background-color: #f39c12;
+.note2 {
+  background: rgb(255,72,0);
+  background: linear-gradient(0deg, rgba(255,72,0,1) 0%, rgba(228,0,0,1) 100%);
 }
 
-.note1-content {
-	background-color: #f1c40f;
+.fab0 {
+  background: rgb(46,197,71);
+  background: linear-gradient(165deg, rgba(46,197,71,1) 0%, rgba(31,181,55,1) 35%, rgba(20,162,44,1) 60%, rgba(11,136,31,1) 100%);
 }
 
-.note2-actions {
-	background-color: #c0392b;
+.fab1 {
+  background: rgb(255,198,0);
+  background: linear-gradient(165deg, rgba(255,198,0,1) 0%, rgba(228,129,0,1) 100%);
 }
 
-.note2-content {
-	background-color: #e74c3c;
+.fab2 {
+  background: rgb(255,72,0);
+  background: linear-gradient(165deg, rgba(255,72,0,1) 0%, rgba(228,0,0,1) 100%);
 }
 
 .width-1 {
