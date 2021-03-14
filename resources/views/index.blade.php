@@ -54,7 +54,7 @@
 
 <!-- FAB -->
 <div class="fab_wrapper">
-    <button class="fab_btn" id="addboard" title="Add new sticky" data-toggle="modal" data-target="#addBoardModal""><i class="fas fa-plus"></i></button>
+    <button class="fab_btn" id="addboard" title="Add new sticky" data-toggle="modal" data-target="#addBoardModal"><i class="fas fa-plus"></i></button>
 </div>
 
 <!-- Board grid -->
