@@ -9,9 +9,6 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="addModalLabel">Create new board</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
             </div>
             <div class="modal-body">
                 <form action="{{ url('add/') }}" method="POST">
@@ -22,19 +19,10 @@
                         <input type="text" class="form-control" id="board_name" name="board_name" aria-describedby="board-name-help" placeholder="Board name">
                         <small id="max-charcount" class="form-text text-muted">Max. 60 characters</small>
                     </div>
-                    <div class="form-group">
-                        <label for="secure">Secure board</label>
-                        <input type="checkbox" class="form-control" id="secure_board" name="secure_board" aria-describedby="secure-help" placeholder="Secure board">
-                    </div>
-                    <div class="form-group">
-                        <label for="board-password">Board password</label>
-                        <input type="password" class="form-control" id="board_password" name="board_password" aria-describedby="board-password-help" placeholder="Board password">
-                        <small id="max-charcount" class="form-text text-muted">Max. 60 characters</small>
-                    </div>
             </div>
             <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Create board</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Create board</button>
                 </form>
             </div>
         </div>
@@ -47,15 +35,12 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="deleteModalLabel">Confirm</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
             </div>
             <div class="modal-body">
                 This will delete {boardname}! Are you sure?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <form class="remove-board-form" action="{{ url('remove/') }}" method="POST">
                     <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                     <input type="hidden" value="board" name="mode">
@@ -67,41 +52,13 @@
     </div>
 </div>
 
-<!-- Password Modal -->
-<div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="passwordModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="passwordModalLabel">Enter password</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="{{ url('unlock/') }}" method="POST">
-                    <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
-                    <input class="hiddenBidBoxUnlock" type="hidden" value="0" name="bid">
-                    <div class="form-group">
-                        <label for="board-password">Board password</label>
-                        <input type="password" class="form-control" id="password" name="password" aria-describedby="password-help" placeholder="Board password">
-                        <small id="max-charcount" class="form-text text-muted">Max. 60 characters</small>
-                    </div>
-            </div>
-            <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Unlock board</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
+<!-- FAB -->
 <div class="fab_wrapper">
     <button class="fab_btn" id="addboard" title="Add new sticky" data-toggle="modal" data-target="#addBoardModal""><i class="fas fa-plus"></i></button>
 </div>
 
 <!-- Board grid -->
-<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 mx-3 my-3">
+<div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-2 row-cols-xl-3 row-cols-xxl-4 mx-3 my-3">
     @foreach ($boards as $board)
         <div class="col mb-4">
             <div class="rb-card">
