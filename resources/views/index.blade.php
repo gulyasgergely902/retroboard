@@ -70,10 +70,10 @@
                     <form class="board-form form-export" action="export/" method="POST">
                         <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                         <input type="hidden" value="{{ $board->board_id }}" name="bid">
-                        <button class="btn btn-outline-light btn-rounded" type="submit" disabled title="Export the contents of this board to .csv"><i class="fas fa-file-export"></i></button>
+                        <button class="btn btn-light btn-rounded" type="submit" disabled title="Export the contents of this board to .csv"><i class="fas fa-file-export"></i></button>
                     </form>
                     <form class="board-form form-delete">
-                        <button type="button" class="btn btn-outline-light btn-rounded" data-toggle="modal" data-target="#deleteModal" data-boardname="{{ $board->board_name }}" data-bid="{{ $board->board_id }}" title="Delete board"><i class="fas fa-trash-alt"></i></button>
+                        <button type="button" class="btn btn-light btn-rounded" data-toggle="modal" data-target="#deleteModal" data-boardname="{{ $board->board_name }}" data-bid="{{ $board->board_id }}" title="Delete board"><i class="fas fa-trash-alt"></i></button>
                     </form>
                 </div>
                 <div class="circle"></div>

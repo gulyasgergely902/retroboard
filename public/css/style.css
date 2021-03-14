@@ -107,8 +107,23 @@ body {
   left: 180px;
 }
 
-.btn-rounded {
-  border-radius: 32px !important;
+.board-form .btn-rounded {
+  width: 40px;
+  height: 40px;
+  padding: 6px 0px;
+  border-radius: 20px;
+  text-align: center;
+  font-size: 16px;
+  line-height: 1.42857;
+  background-color: #ceebf5;
+  border-color: #ceebf5;
+  color: #055bb0;
+}
+
+.board-form .btn-rounded[disabled] {
+  background-color: #c5e1ea;
+  border-color: #c5e1ea;
+  color: #3d76af;
 }
 
 /* display.php */
