@@ -6,9 +6,6 @@
 
 		<title>Retro Board</title>
 
-		<!-- Fonts -->
-		<link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
 		<!-- Styles -->
 		<link rel="stylesheet" href="../../css/style.css">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">

@@ -1,9 +1,7 @@
 @extends ('layout')
 
 @section ('content')
-<nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand mx-auto" href="#">Retro Board</a>
-</nav>
+<p class="top-logo">[RB]</p>
 
 <!-- Add Modal -->
 <div class="modal fade" id="addBoardModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
@@ -103,45 +101,25 @@
 </div>
 
 <!-- Board grid -->
-<h1 class="mx-3 my-3">Active boards</h1>
 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 mx-3 my-3">
     @foreach ($boards as $board)
         <div class="col mb-4">
-            <div class="card">
-                <div class="card-body">
-                    @if($board->secure == 1)
-                        @if(\Cookie::get($board->board_id . '-unlocked') == 1)
-                            <h5 class="card-title"><i class="fas fa-unlock"></i> {{ $board->board_name }}</h5>
-                        @else
-                            <h5 class="card-title"><i class="fas fa-lock"></i> {{ $board->board_name }}</h5>
-                        @endif
-                    @else
-                        <h5 class="card-title">{{ $board->board_name }}</h5>
-                    @endif
-                    @if($board->secure == 1)
-                        @if(\Cookie::get($board->board_id . '-unlocked') == 1)
-                            <form class="board-form" action="display/{{ $board->board_id }}/0" method="GET">
-                                <button class="btn btn-warning btn-sm" type="submit" title="Open board">Open</button>
-                            </form>
-                        @else
-                            <form class="board-form">
-                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#passwordModal" data-bid="{{ $board->board_id }}">Unlock</button>
-                            </form>
-                        @endif
-                    @else
-                        <form class="board-form" action="display/{{ $board->board_id }}/0" method="GET">
-                            <button class="btn btn-success btn-sm" type="submit" title="Open board">Open</button>
-                        </form>
-                    @endif
-                    <form class="board-form" action="export/" method="POST">
+            <div class="rb-card">
+                <div class="rb-card-body">
+                    <h5 class="card-title">{{ $board->board_name }}</h5>
+                    <form class="board-form form-open" action="display/{{ $board->board_id }}/0" method="GET">
+                        <button class="btn btn-light btn-rounded" type="submit" title="Open board"><i class="fas fa-sign-in-alt"></i></button>
+                    </form>
+                    <form class="board-form form-export" action="export/" method="POST">
                         <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                         <input type="hidden" value="{{ $board->board_id }}" name="bid">
-                        <button class="btn btn-outline-secondary btn-sm" type="submit" title="Export the contents of this board to .csv">Export</button>
+                        <button class="btn btn-outline-light btn-rounded" type="submit" disabled title="Export the contents of this board to .csv"><i class="fas fa-file-export"></i></button>
                     </form>
-                    <form class="board-form">
-                        <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#deleteModal" data-boardname="{{ $board->board_name }}" data-bid="{{ $board->board_id }}" title="Delete board">Delete</button>
+                    <form class="board-form form-delete">
+                        <button type="button" class="btn btn-outline-light btn-rounded" data-toggle="modal" data-target="#deleteModal" data-boardname="{{ $board->board_name }}" data-bid="{{ $board->board_id }}" title="Delete board"><i class="fas fa-trash-alt"></i></button>
                     </form>
                 </div>
+                <div class="circle"></div>
             </div>
         </div>
     @endforeach

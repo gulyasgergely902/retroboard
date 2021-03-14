@@ -1,20 +1,114 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Sriracha&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap');
 
 /* global */
 body {
     font-family: 'Open Sans', sans-serif !important;
 }
 
-/* index.php */
-.board-form {
-	float: left;
-	padding: 5px;
+.fab_wrapper{
+  z-index: 9999;
+  width:100%;
+  height:240px;
+  position:fixed;
+  right:0px;
+  bottom:0px;
+  pointer-events:none;
 }
 
-.grid-card {
-    width: 256px;
+.fab_btn{
+  width:60px;
+  height:60px;
+  border-radius:100%;
+  background: rgb(109,207,246);
+  background: linear-gradient(165deg, rgba(109,207,246,1) 0%, rgba(13,170,237,1) 35%, rgba(7,126,199,1) 60%, rgba(1,45,120,1) 100%);
+  right:16px;
+  bottom:64px;
+  position:absolute;
+  margin-right:0;
+  margin-bottom:0;
+  padding:0;
+  border:none;
+  outline:none;
+  color:#FFF;
+  font-size:24px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  transition:.3s;  
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  pointer-events:all;
+}
+
+/* index.php */
+.top-logo {
+  font-family: 'Raleway', sans-serif;
+  font-size: 32px;
+  padding-left: 8px;
+}
+
+.rb-card {
+  background: rgb(109, 207, 246);
+  background: linear-gradient(0deg, rgba(109, 207, 246, 1) 0%, rgba(13, 170, 237, 1) 35%, rgba(7, 126, 199, 1) 60%, rgba(1, 45, 120, 1) 100%);
+  width: 350px;
+  height: 200px;
+  border-radius: 30px;
+  -moz-border-radius: 30px 30px 0 0;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.3);
+  -webkit-box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.3);
+}
+
+.rb-card .rb-card-body {
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+}
+
+.rb-card .rb-card-body .card-title {
+  padding-top: 32px;
+  padding-left: 16px;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.rb-card .circle {
+  z-index: 5;
+  width: 200px;
+  height: 200px;
+  background: rgb(109, 207, 246);
+  background: linear-gradient(165deg, rgba(109, 207, 246, 1) 0%, rgba(13, 170, 237, 1) 35%, rgba(7, 126, 199, 1) 60%, rgba(1, 45, 120, 1) 100%);
+  border-radius: 100px;
+  -moz-border-radius: 100px 100px 0 0;
+  opacity: 0.4;
+  position: absolute;
+  top: 60px;
+  left: 180px;
+}
+
+.board-form {
+  position: absolute;
+}
+
+.form-open {
+  top: 150px;
+  left: 300px;
+}
+
+.form-delete {
+  top: 150px;
+  left: 250px;
+}
+
+.form-export {
+  top: 150px;
+  left: 200px;
+}
+
+.btn-rounded {
+  border-radius: 32px !important;
 }
 
 /* display.php */
@@ -105,38 +199,6 @@ input:checked + .slider:before {
 
 .trashcan {
 	color: #ffffff;
-}
-
-/* FAB */
-.fab_wrapper{
-  z-index: 9999;
-  width:100%;
-  height:240px;
-  position:fixed;
-  right:0px;
-  bottom:0px;
-  pointer-events:none;
-}
-
-.fab_btn{
-  width:60px;
-  height:60px;
-  border-radius:100%;
-  background:#28A745;
-  right:16px;
-  bottom:64px;
-  position:absolute;
-  margin-right:0;
-  margin-bottom:0;
-  padding:0;
-  border:none;
-  outline:none;
-  color:#FFF;
-  font-size:24px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-  transition:.3s;  
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
-  pointer-events:all;
 }
 
 /* Notes */
