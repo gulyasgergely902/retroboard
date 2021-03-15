@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Sriracha&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
 
 /* global */
 body {
@@ -125,7 +125,8 @@ body {
   color: #055bb0;
 }
 
-.board-form .btn-rounded[disabled] {
+.board-form .btn-rounded@import url('https://fonts.googleapis.com/css?family=Sriracha&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@700&display=swap');[disabled] {
   background-color: #c5e1ea;
   border-color: #c5e1ea;
   color: #3d76af;
@@ -269,9 +270,9 @@ input:checked + .slider:before {
 }
 
 .note-base:hover {
-    box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.6);
-    -webkit-box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.6);
-    -moz-box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.6);
+  box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.6);
+  -webkit-box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.6);
+  -moz-box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.6);
 }
 
 .note-base .upper-shadow {
@@ -324,10 +325,10 @@ input:checked + .slider:before {
   padding: 16px;
   overflow: hidden;
   word-wrap: break-word;
-  font-family: 'Sriracha', cursive;
+  font-family: 'Patrick Hand', cursive;
   color: #ffffff;
   text-align: justify;
-  font-size: 1.25em;
+  font-size: 1.35em;
   text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
 }
 
