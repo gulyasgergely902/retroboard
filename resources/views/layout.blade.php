@@ -11,7 +11,7 @@
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 	</head>
 	<body>
-		<p class="top-logo mx-3 my-3"><a class="top-logo-a" href="/">[RB]</a></p>
+		<p class="top-logo mx-3 my-3"><a class="top-logo-a" href="/"><img class="header-img" src="../../imgs/web-logo.png"></a></p>
 		<!-- Content -->
 		@yield ('content')
 		<!-- End of Content -->

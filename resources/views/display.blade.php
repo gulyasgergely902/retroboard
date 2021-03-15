@@ -88,7 +88,7 @@
 </div>
 
 <!-- Header buttons -->
-<div class="header-buttons px-5 pt-5">
+<div class="header-buttons mx-5 mt-5">
     <a class="rounded-button {{ Request::is('display/*/0') ? 'active note0' : 'text-dark'}}" id="nav-wentwell-tab" href="/display/{{$bid}}/0" aria-controls="nav-wentwell" aria-selected="true" title="Went Well"><i class="fas fa-thumbs-up"></i></a>
     <a class="rounded-button {{ Request::is('display/*/2') ? 'active note2 ' : 'text-dark'}}" id="nav-needsimprovement-tab" href="/display/{{$bid}}/2" aria-controls="nav-needsimprovement" aria-selected="false" title="Needs Improvement"><i class="fas fa-thumbs-down"></i></a>
     <a class="rounded-button {{ Request::is('display/*/1') ? 'active note1 ' : 'text-dark'}}" id="nav-actionitem-tab" href="/display/{{$bid}}/1" aria-controls="nav-actionitem" aria-selected="false" title="Action Item"><i class="fas fa-exclamation"></i></a>
@@ -114,7 +114,7 @@
                         <input type="hidden" name="mode" value="singlesticky">
                         <input type="hidden" name="sticky_id" value="{{ $sticky->sticky_id }}">
                         <input type="hidden" name="bid" value="{{ $bid }}">
-                        <button type="submit" id="new-group" class="btn btn-light btn-sm delete-sticky-button" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                        <button type="submit" id="new-group" class="btn btn-light btn-sm delete-sticky-button btn-circle btn-color-{{ $sticky->sticky_type }}" title="Delete"><i class="fas fa-trash-alt"></i></button>
                     </form>
                 </div>
                 <div class="note-base-content">
