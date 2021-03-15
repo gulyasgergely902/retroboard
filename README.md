@@ -1,4 +1,4 @@
-# Retro Board
+![retroboard header image](https://github.com/gulyasgergely902/retroboard/blob/master/images/retroboard-header.png?raw=true)
 
 ### About
 Retro Board is an essential tool for teams using Scrum. It makes easier to give feedback on the last sprint without the influence of the other team members.
