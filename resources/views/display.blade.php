@@ -99,7 +99,26 @@
             <span class="slider round"></span>
         </label>
     </form>
-    <button type="button" class="btn btn-link rounded-button danger-button float-end" id="deleteall" title="Clear board" data-toggle="modal" data-target="#clearAllStickyModal" data-bid="{{ $bid }}"><span><i class="fas fa-quidditch mr-2"></i></span></button>
+    <button type="button" class="btn btn-link rounded-button danger-button float-sm-end" id="deleteall" title="Clear board" data-toggle="modal" data-target="#clearAllStickyModal" data-bid="{{ $bid }}"><span><i class="fas fa-quidditch mr-2"></i></span></button>
+    <button type="button" class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Open menu">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+</div>
+
+<div class="mobile-menu" id="mobile-menu">
+    <a class="mobile-menu-button {{ Request::is('display/*/0') ? 'active note0' : 'text-dark'}}" id="nav-wentwell-tab" href="/display/{{$bid}}/0" aria-controls="nav-wentwell" aria-selected="true" title="Went Well"><i class="fas fa-thumbs-up"></i></a>
+    <a class="mobile-menu-button {{ Request::is('display/*/2') ? 'active note2 ' : 'text-dark'}}" id="nav-needsimprovement-tab" href="/display/{{$bid}}/2" aria-controls="nav-needsimprovement" aria-selected="false" title="Needs Improvement"><i class="fas fa-thumbs-down"></i></a>
+    <a class="mobile-menu-button {{ Request::is('display/*/1') ? 'active note1 ' : 'text-dark'}}" id="nav-actionitem-tab" href="/display/{{$bid}}/1" aria-controls="nav-actionitem" aria-selected="false" title="Action Item"><i class="fas fa-exclamation"></i></a>
+    <hr>
+    <form class="form-toggle-visibility my-lg-0 mobile-menu-button">
+        <label for="hideStickyDiv" class="switch">
+            <input class="ml-2" type="checkbox" name="hideStickyDiv" id="hideStickyDiv" title="Toggle sticky visibility" {{ old('hideStickyDiv') }}>
+            <span class="slider round"></span>
+        </label>
+    </form>
+    <button type="button" class="btn btn-link mobile-menu-button danger-button float-sm-end" id="deleteall" title="Clear board" data-toggle="modal" data-target="#clearAllStickyModal" data-bid="{{ $bid }}"><span><i class="fas fa-quidditch mr-2"></i></span></button>
 </div>
 
 <!-- Stickies list -->

@@ -47,4 +47,26 @@ $(document).ready(function(){
   $('#sticky-content').keyup(function(){
     $('#sticky-content-charcount').html("Characters left: " + (500 - this.value.length));
   });
+
+  const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
+  const mobileMenu = document.getElementById("mobile-menu");
+
+  function openMobileNavbar() {
+    mobileMenu.classList.add("opened");
+    mobileMenuToggle.setAttribute("aria-label", "Close menu.");
+  }
+  
+  function closeMobileNavbar() {
+    mobileMenu.classList.remove("opened");
+    mobileMenuToggle.setAttribute("aria-label", "Open menu.");
+  }
+
+  mobileMenuToggle.addEventListener("click", () => {
+    if (mobileMenu.classList.contains("opened")) {
+      closeMobileNavbar();
+    } else {
+      openMobileNavbar();
+    }
+  });
+
 });

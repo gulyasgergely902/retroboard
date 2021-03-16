@@ -150,14 +150,20 @@ body {
 }
 
 .header-buttons .header-spacer {
-  display: inline-block;
-  margin-left: 12px;
-  margin-right: 12px;
-  color: #EEEEEE;
+  display: none;
+}
+
+@media (min-width: 576px) {
+  .header-buttons .header-spacer {
+    display: inline-block;
+    margin-left: 12px;
+    margin-right: 12px;
+    color: #EEEEEE;
+  }
 }
 
 .header-buttons .rounded-button {
-  display: inline-block;
+  display: block;
   border-radius: 30px;
   text-align: center;
   width: 60px;
@@ -166,6 +172,21 @@ body {
   background-color: #F6F6F6;
   transition: .4s;
   -webkit-transition: .4s;
+  margin-bottom: 8px;
+}
+
+@media (min-width: 576px) {
+  .header-buttons .rounded-button {
+    display: inline-block;
+    border-radius: 30px;
+    text-align: center;
+    width: 60px;
+    height: 30px;
+    color: white;
+    background-color: #F6F6F6;
+    transition: .4s;
+    -webkit-transition: .4s;
+  }
 }
 
 .header-buttons .rounded-button:hover {
@@ -253,8 +274,67 @@ input:checked + .slider:before {
   border-radius: 15px;
 }
 
+.mobile-menu-toggle {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.mobile-menu-toggle .icon-bar {
+  display: block;
+  width: 25px;
+  height: 4px;
+  margin: 2px;
+  transition: background-color 0.2s ease-in-out,
+              transform 0.2s ease-in-out,
+              opacity 0.2s ease-in-out;
+  background-color: #000000;
+  border-radius: 2px;
+}
+
+.mobile-menu-toggle:focus .icon-bar,
+.mobile-menu-toggle:hover .icon-bar {
+    background-color: #ff0000;
+}
+
+.mobile-menu {
+  display: none;
+  position: absolute;
+  left: calc(50vw - (80vw / 2));
+  width: 80vw;
+  height: 260px;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.5);
+  -webkit-box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.5);
+  -moz-box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.5);
+  border-radius: 12px;
+  z-index: 10;
+  padding: 16px;
+}
+
+.mobile-menu.opened {
+  display: inline-block;
+}
+
+.mobile-menu-button {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 30px;
+  text-align: center;
+  border-radius: 15px;
+  padding: 7px 0;
+  background-color: #F6F6F6;
+  margin-bottom: 12px;
+}
+
 .note-base {
-    width: 300px !important;
     height: auto;
     min-height: 100px;
     display: inline-block;
@@ -332,41 +412,68 @@ input:checked + .slider:before {
   text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
 }
 
-.card-columns {
-    column-count: 5 !important;
+
+.tab-content .card-columns {
+  column-count: 1;
 }
 
-@media (min-width: 1501px) and (max-width: 1870px) {
-	.card-columns {
-    	column-count: 4 !important;
-	}
+.tab-content .card-columns .note-base {
+  width: 78vw;
 }
 
-@media (min-width: 1100px) and (max-width: 1500px) {
-	.card-columns {
-    	column-count: 3 !important;
-	}
+@media (min-width: 576px) {
+  .tab-content .card-columns {
+      column-count: 2;
+  }
+
+  .tab-content .card-columns .note-base {
+    width: 40vw;
+  }
 }
 
-@media (min-width: 750px) and (max-width: 1099px) {
-	.card-columns {
-    	column-count: 2 !important;
-	}
+@media (min-width: 768px) {
+  .tab-content .card-columns {
+      column-count: 3;
+  }
 
-	.note-base {
-		width: 300px !important;
-	}
+  .tab-content .card-columns .note-base {
+    width: 28vw;
+  }
 }
 
-@media (min-width: 100px) and (max-width: 749px) {
-	.card-columns {
-    	column-count: 1 !important;
-	}
+@media (min-width: 992px) {
+  .tab-content .card-columns {
+      column-count: 4;
+  }
 
-	.note-base {
-		width: 100% !important;
-	}
+  .tab-content .card-columns .note-base {
+    width: 22vw;
+  }
 }
+
+@media (min-width: 1200px) {
+  .tab-content .card-columns {
+      column-count: 5;
+  }
+
+  .tab-content .card-columns .note-base {
+    width: 18vw;
+  }
+}
+
+@media (min-width: 1400px) {
+  .tab-content .card-columns {
+      column-count: 6;
+  }
+
+  .tab-content .card-columns .note-base {
+    width: 14vw;
+  }
+}
+
+
+
+
 
 .note0 {
 	background: rgb(46,197,71);
