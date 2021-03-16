@@ -15,7 +15,6 @@ $('#passwordModal').on('show.bs.modal', function (event) {
 });
 
 $(document).ready(function(){
-	//$('#hideStickyDiv').prop("checked", false);
     if($('#hideStickyDiv').is(":checked")) {
         $('#nav-tabContent').transition({
             "opacity": "1",
@@ -68,5 +67,4 @@ $(document).ready(function(){
       openMobileNavbar();
     }
   });
-
 });
