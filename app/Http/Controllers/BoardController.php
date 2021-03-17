@@ -126,23 +126,7 @@ class BoardController extends Controller
 
     public function export(Request $request)
     {
-        $bid = $request->input('bid');
-        $stickies = \DB::table('stickies')->where('bid', $bid)->get();
-
-        $handle = fopen("output.csv", "w");
-
-        $headers = array("sticky_type, sticky_content");
-
-        fputcsv($handle, $headers);
-
-        foreach ($stickies as $sticky) {
-            $line = array($sticky->sticky_type, $sticky->sticky_content);
-            fputcsv($handle, $line);
-        }
-
-        fclose($handle);
-
-        return Response::download("output.csv");
+        //TODO
     }
 
     public function unlock(Request $request)

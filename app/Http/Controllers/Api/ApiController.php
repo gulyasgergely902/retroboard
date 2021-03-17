@@ -16,7 +16,7 @@ class ApiController extends Controller
     }
 
     function addBoard(Request $request) {
-        $validateFormData = $request->validate([
+        $validateFormData = $request->validate([ // eslint-disable-line no-eval
             'board_name' => 'required|max:60',
             'board_password' => 'max:60'
         ]);
@@ -42,7 +42,7 @@ class ApiController extends Controller
     }
 
     function addSticky(Request $request) {
-        $validateFormData = $request->validate([
+        $validateFormData = $request->validate([ // eslint-disable-line no-eval
             'sticky_content' => 'required|max:500'
         ]);
     
