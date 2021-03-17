@@ -22,18 +22,19 @@ $(document).ready(function(){
         }, 1, "in-out");
     }
 	$("#hideStickyDiv").change(function(){
-		if(this.checked)
+		if(this.checked) {
 			$("#nav-tabContent").transition({
 				"opacity": "1",
 				"filter": "blur(0)",
 				"-webkit-filter": "blur(0)"
-			}, 250, "linear");
-		else
+      }, 250, "linear");
+    } else {
 			$("#nav-tabContent").transition({
 				"opacity": "0",
 				"filter": "blur(10px)",
 				"-webkit-filter": "blur(10px)"
-			}, 250, "in-out");
+      }, 250, "in-out");
+    }
 	});
 
   $("#sticky-content").keyup(function(){
