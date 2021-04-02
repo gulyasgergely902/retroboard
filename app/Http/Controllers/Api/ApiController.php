@@ -29,16 +29,19 @@ class ApiController extends Controller
         return response("New board added", 201)->header('Content-Type', 'text/plain');
     }
 
-    function deleteBoard(Request $request) {
-        $bid = $request->input('bid');
+    function deleteBoard($bid) {
         Sticky::where('bid', $bid)->delete();
         Group::where('board_id', $bid)->delete();
         Board::where('board_id', $bid)->delete();
-        return response("Board deleted", 200)->header('Content-Type', 'text/plain');
+        return response(200);
     }
 
     function getStickies() {
         return Sticky::all();
+    }
+
+    function getBoardStickies($bid, $type) {
+        return Sticky::where("bid", $bid)->where("sticky_type", $type)->get();
     }
 
     function addSticky(Request $request) {
@@ -51,13 +54,27 @@ class ApiController extends Controller
         $sticky->bid = $request->input('bid');
         $sticky->sticky_content = $request->input('sticky_content');
         $sticky->save();
-        return response("New sticky added", 201)->header('Content-Type', 'text/plain');
+        return response(201);
     }
 
-    function deleteSticky(Request $request) {
-        $sticky_id = $request->input('sticky_id');
-        Sticky::where('sticky_id', $sticky_id)->delete();
-        return response("Sticky deleted", 200)->header('Content-Type', 'text/plain');
+    function moveSticky(Request $request) {
+        $validateFormData = $request->validate([
+            'to' => 'required',
+            'which' => 'required'
+        ]);
+
+        Sticky::where('sticky_id', $request->input('which'))->update(array('sticky_type' => $request->input('to')));
+        return response(200);
+    }
+
+    function deleteSticky($id) {
+        Sticky::where('sticky_id', $id)->delete();
+        return response(200);
+    }
+
+    function deleteAllSticky($bid) {
+        Sticky::where('bid', $bid)->delete();
+        return response(200);
     }
 
     function getGroups() {
@@ -70,13 +87,13 @@ class ApiController extends Controller
         $group->board_id = $request->input('bid');
         $group->sticky_type = $request->input('sticky_type');
         $group->save();
-        return response("New group added", 201)->header('Content-Type', 'text/plain');
+        return response(201);
     }
 
     function deleteGroup(Request $request) {
         $group_id = $request->input('group_id');
         Sticky::where('group_id', $group_id)->delete();
         Group::where('group_id', $group_id)->delete();
-        return response("Group deleted", 200)->header('Content-Type', 'text/plain');
+        return response(200);
     }
 }

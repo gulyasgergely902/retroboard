@@ -13,8 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::any('/{any}', 'FrontendController@app')->where('any', '^(?!api).*$');
 
-Route::get('/', 'BoardController@showBoards');
+/*Route::get('/', 'BoardController@showBoards');
 Route::get('/display/{bid}/{tab}', 'BoardController@displayBoard');
 Route::post('/add', 'BoardController@add');
 Route::post('/remove', 'BoardController@remove');
@@ -23,4 +24,4 @@ Route::post('/unlock', 'BoardController@unlock');
 Route::get('/lock', 'BoardController@lock');
 Route::get('/group/add/{sticky_id}/{group_id}', 'BoardController@groupAdd');
 Route::post('/group/create/', 'BoardController@groupCreate');
-Route::get('/group/remove/{sticky_id}', 'BoardController@groupRemove');
+Route::get('/group/remove/{sticky_id}', 'BoardController@groupRemove');*/
