@@ -14,11 +14,15 @@
                 </b-form-group>
             </form>
         </b-modal>
-        <transition name="fade" mode="out-in">
-            <p v-if="loading" class="center">
-                <b-spinner label="Loading..."></b-spinner>
-            </p>
-            <div v-else class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-3 row-cols-xxl-4 mx-3 my-3">
+        <b-skeleton-wrapper :loading="loading">
+            <template #loading>
+                <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-3 row-cols-xxl-4 mx-3 my-3">
+                    <div class="col mb-4" v-for="n in 6" :key="n">
+                        <b-skeleton width="330px" height="200px" class="load-skeleton mb-4"></b-skeleton>
+                    </div>
+                </div>
+            </template>
+            <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-3 row-cols-xxl-4 mx-3 my-3">
                 <div class="col mb-4" v-for="(board, index) in boards" :key="index">
                     <div class="rb-card" @click="openBoard(board.board_id)">
                         <div class="rb-card-body">
@@ -29,7 +33,7 @@
                     </div>
                 </div>
             </div>
-        </transition>
+        </b-skeleton-wrapper>
         <vue-fab
             :bg-color="'#077dc7'"
             :z-index="50"
