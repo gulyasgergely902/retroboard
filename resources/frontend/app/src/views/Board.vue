@@ -14,6 +14,20 @@
                 </b-form-group>
             </form>
         </b-modal>
+        <b-modal id="addLinkedActionItemModal" title="Create linked action item" ok-title="Create" @ok="handleLinkOk">
+            <form ref="form" @submit.stop.prevent="handleLinkActionItemSubmit">
+                <b-form-group
+                label="Sticky content"
+                label-for="action-item-content-input"
+                >
+                <b-form-input
+                    id="action-item-content-input"
+                    v-model="linked_action_item_content"
+                    required
+                ></b-form-input>
+                </b-form-group>
+            </form>
+        </b-modal>
         <b-modal id="moveStickyModal" title="Move sticky to .." ok-title="Move" @ok="handleMoveOk">
             <form ref="form" @submit.stop.prevent="handleMoveSubmit">
                 <b-form-group
@@ -60,8 +74,12 @@
                     <div @click="editSticky()" v-for="(sticky, index) in stickies" :key="index" :class="'note' + sticky.sticky_type" class="note-base mr-3 my-3">
                         <div class="upper-shadow hover-display"></div>
                         <div class="delete-sticky-form hover-display">
+                            <button v-on:click.stop v-b-modal.addLinkedActionItemModal @click="setCurrentStickyID(sticky.sticky_id);setCurrentStickyContent(sticky.sticky_content)" v-if="sticky.sticky_type == 0 || sticky.sticky_type == 2" title="Create linked action item" class="btn btn-light btn-sm btn-circle" :class="'btn-color-' + sticky.sticky_type"><font-awesome-icon icon="link"/></button>
                             <button v-on:click.stop v-b-modal.moveStickyModal @click="setCurrentStickyID(sticky.sticky_id)" title="Move to other type" class="btn btn-light btn-sm btn-circle" :class="'btn-color-' + sticky.sticky_type"><font-awesome-icon icon="dolly"/></button>
                             <button v-on:click.stop @click="confirmDeleteSticky(sticky.sticky_id)" title="Delete" class="btn btn-light btn-sm delete-sticky-button btn-circle" :class="'btn-color-' + sticky.sticky_type"><font-awesome-icon icon="trash-alt"/></button>
+                        </div>
+                        <div v-if="sticky.linked_sticky != 0 && sticky.sticky_type == 1" class="linked-sticky-reference">
+                            {{sticky.linked_content}}
                         </div>
                         <div class="note-base-content">
                             {{sticky.sticky_content}}
@@ -96,6 +114,8 @@ export default class Board extends Vue {
     sticky_content = '';
     sticky_types = [{text: 'Went well', value: 0}, {text: 'Needs improvement', value: 2}, {text: 'Action item', value: 1}];
     sticky_target = '';
+    linked_action_item_content = '';
+    current_sticky_content = '';
 
     async created() {
         await this.fetchStickyData(0);
@@ -116,6 +136,10 @@ export default class Board extends Vue {
 
     setCurrentStickyID(id: number) {
         this.current_sticky_id = id;
+    }
+
+    setCurrentStickyContent(content: string) {
+        this.current_sticky_content = "\"" + content.substring(0, 60) + "...\"";
     }
 
     setFabColor(sticky_type: number){
@@ -239,6 +263,29 @@ export default class Board extends Vue {
 
     editSticky() {
         console.log("Would you like an edit feature to be implemented? Report it on github!");
+    }
+
+    handleLinkOk(bvModalEvt) {
+        bvModalEvt.preventDefault();
+        this.handleLinkActionItemSubmit();
+    }
+
+    async handleLinkActionItemSubmit() {
+        try{
+            await axios.post(`/api/stickies/link`, {
+                sticky_content: this.linked_action_item_content,
+                bid: this.$route.params.id,
+                sticky_type: 1,
+                linked_sticky: this.current_sticky_id,
+                linked_content: this.current_sticky_content
+            });
+        } catch (error) {
+            console.log(error);
+        }
+        this.fetchStickyData(this.current_sticky_type);
+        this.$nextTick(() => {
+            this.$bvModal.hide('addLinkedActionItemModal')
+        });
     }
 }
 </script>

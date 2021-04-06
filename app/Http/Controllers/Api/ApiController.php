@@ -67,6 +67,21 @@ class ApiController extends Controller
         return response(200);
     }
 
+    function linkSticky(Request $request) {
+        $validateFormData = $request->validate([
+            'sticky_content' => 'required|max:500'
+        ]);
+    
+        $sticky = new Sticky();
+        $sticky->sticky_type = $request->input('sticky_type');
+        $sticky->bid = $request->input('bid');
+        $sticky->sticky_content = $request->input('sticky_content');
+        $sticky->linked_sticky = $request->input('linked_sticky');
+        $sticky->linked_content = $request->input('linked_content');
+        $sticky->save();
+        return response(201);
+    }
+
     function deleteSticky($id) {
         Sticky::where('sticky_id', $id)->delete();
         return response(200);
