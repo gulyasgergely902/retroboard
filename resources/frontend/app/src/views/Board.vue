@@ -232,6 +232,7 @@ export default class Board extends Vue {
                 bid: this.$route.params.id,
                 sticky_type: this.current_sticky_type
             });
+            this.sticky_content = "";
         } catch (error) {
             console.log(error);
         }
