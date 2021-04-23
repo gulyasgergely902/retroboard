@@ -6,11 +6,11 @@
                 label="Sticky content"
                 label-for="sticky-content-input"
                 >
-                <b-form-input
+                <b-form-textarea
                     id="sticky-content-input"
                     v-model="sticky_content"
                     required
-                ></b-form-input>
+                ></b-form-textarea>
                 </b-form-group>
             </form>
         </b-modal>
