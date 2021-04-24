@@ -22,10 +22,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/boards', 'Api\ApiController@getBoards');
 Route::post('/boards', 'Api\ApiController@addBoard');
-Route::delete('/boards', 'Api\ApiController@deleteBoard');
+Route::delete('/boards/{bid}', 'Api\ApiController@deleteBoard');
 Route::get('/stickies', 'Api\ApiController@getStickies');
+Route::get('/stickies/{bid}/{type}', 'Api\ApiController@getBoardStickies');
 Route::post('/stickies', 'Api\ApiController@addSticky');
-Route::delete('/stickies', 'Api\ApiController@deleteSticky');
+Route::post('/stickies/move', 'Api\ApiController@moveSticky');
+Route::post('/stickies/link', 'Api\ApiController@linkSticky');
+Route::delete('/stickies/{id}', 'Api\ApiController@deleteSticky');
+Route::delete('/stickies/board/{bid}', 'Api\ApiController@deleteAllSticky');
 Route::get('/groups', 'Api\ApiController@getGroups');
 Route::post('/groups', 'Api\ApiController@addGroup');
 Route::delete('/groups', 'Api\ApiController@deleteGroup');
