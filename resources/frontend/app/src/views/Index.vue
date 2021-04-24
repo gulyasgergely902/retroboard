@@ -54,6 +54,7 @@ export default class Home extends Vue {
     board_name = '';
 
     async created() {
+        document.title = "Home | RetroBoard";
         await this.fetchBoardsData();
     }
 

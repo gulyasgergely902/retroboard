@@ -118,6 +118,7 @@ export default class Board extends Vue {
     current_sticky_content = '';
 
     async created() {
+        document.title = "Board | RetroBoard";
         await this.fetchStickyData(0);
     }
 
