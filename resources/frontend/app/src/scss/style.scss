@@ -38,13 +38,6 @@
 }
 
 /* index.php */
-.center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 200px;
-}
-
 .load-skeleton {
     border-radius: 20px;
 }
@@ -172,20 +165,6 @@
 }
 
 /* Board */
-.loading-overlay {
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 120px;
-    color: #ddd;
-}
-
-.trashcan {
-    color: #fff;
-}
-
 @media (max-width: 576px) {
     .header-buttons {
         display: none;
@@ -288,13 +267,13 @@
     overflow: hidden;
     cursor: text;
 }
-  
+
 .note-base:hover {
     box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.6);
     -webkit-box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.6);
     -moz-box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.6);
 }
-  
+
   .note-base .upper-shadow {
     width: 100%;
     transform: translateY(-50px);
@@ -303,7 +282,7 @@
     position: absolute;
     transition: all 0.2s ease-in-out;
 }
-  
+
 .note-base .delete-sticky-form {
     transform: translateY(-50px);
     position: absolute;
@@ -311,11 +290,11 @@
     top: 10px;
     transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-  
+
 .note-base:hover > .hover-display {
     transform: translateY(0px);
 }
-  
+
 .delete-sticky-form .btn-circle {
     width: 30px;
     height: 30px;
@@ -335,11 +314,11 @@
     background-color: #ddd;
     transform: translateY(5px);
 }
-  
+
 .delete-sticky-form .btn-color-0 {
     color: rgba(31, 181, 55, 1);
 }
-  
+
 .delete-sticky-form .btn-color-2 {
     color: #e40000;
 }
@@ -377,95 +356,19 @@
     font-size: 1.35em;
     text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
 }
-  
-.card-list .card-columns {
-    column-count: 1;
-}
-  
-.card-list .card-columns .note-base {
-    width: 100%;
-}
-  
-@media (min-width: 576px) {
-    .card-list .card-columns {
-        column-count: 2;
-    }
-
-    .card-list .card-columns .note-base {
-        width: 40vw;
-    }
-}
-  
-@media (min-width: 768px) {
-    .card-list .card-columns {
-      column-count: 3;
-    }
-  
-    .card-list .card-columns .note-base {
-      width: 28vw;
-    }
-}
-  
-@media (min-width: 992px) {
-    .card-list .card-columns {
-      column-count: 4;
-    }
-  
-    .card-list .card-columns .note-base {
-      width: 22vw;
-    }
-}
-  
-@media (min-width: 1200px) {
-    .card-list .card-columns {
-      column-count: 5;
-    }
-  
-    .card-list .card-columns .note-base {
-      width: 18vw;
-    }
-}
-  
-@media (min-width: 1400px) {
-    .card-list .card-columns {
-      column-count: 6;
-    }
-  
-    .card-list .card-columns .note-base {
-      width: 14vw;
-    }
-}
 
 .note0 {
     background: rgb(46, 197, 71);
     background: linear-gradient(0deg, rgba(46, 197, 71, 1) 0%, rgba(31, 181, 55, 1) 35%, rgba(20, 162, 44, 1) 60%, rgba(11, 136, 31, 1) 100%);
 }
-  
+
 .note1 {
     background: rgb(255, 198, 0);
     background: linear-gradient(0deg, rgba(255, 198, 0, 1) 0%, rgba(228, 129, 0, 1) 100%);
 }
-  
+
 .note2 {
     background: #f85032;
     background: -webkit-linear-gradient(180deg, #e73827, #f1583d);
     background: linear-gradient(180deg, #e73827, #f1583d);
-}
-
-.btn-ok-green {
-    color: #fff;
-    background-color: #14a22c;
-    border-color: #14a22c;
-}
-
-.btn-ok-yellow {
-    color: #fff;
-    background-color: #ffc600;
-    border-color: #ffc600;
-}
-
-.btn-ok-red {
-    color: #fff;
-    background-color:#ff4800;
-    border-color:#ff4800;
 }
