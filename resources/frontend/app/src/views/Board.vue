@@ -77,6 +77,7 @@
                             <button v-on:click.stop v-b-modal.addLinkedActionItemModal @click="setCurrentStickyID(sticky.sticky_id);setCurrentStickyContent(sticky.sticky_content)" v-if="sticky.sticky_type == 0 || sticky.sticky_type == 2" title="Create linked action item" class="btn btn-light btn-sm btn-circle" :class="'btn-color-' + sticky.sticky_type"><font-awesome-icon icon="link"/></button>
                             <button v-on:click.stop v-b-modal.moveStickyModal @click="setCurrentStickyID(sticky.sticky_id)" title="Move to other type" class="btn btn-light btn-sm btn-circle" :class="'btn-color-' + sticky.sticky_type"><font-awesome-icon icon="dolly"/></button>
                             <button v-on:click.stop @click="confirmDeleteSticky(sticky.sticky_id)" title="Delete" class="btn btn-light btn-sm delete-sticky-button btn-circle" :class="'btn-color-' + sticky.sticky_type"><font-awesome-icon icon="trash-alt"/></button>
+                            <button v-on:click.stop @click="console.log('grouping')" title="Add to group" class="btn btn-light btn-sm btn-circle" :class="'btn-color-' + sticky.sticky_type"><font-awesome-icon icon="layer-group"/></button>
                         </div>
                         <div v-if="sticky.linked_sticky != 0 && sticky.sticky_type == 1" class="linked-sticky-reference">
                             {{sticky.linked_content}}
