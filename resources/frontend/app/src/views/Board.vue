@@ -43,10 +43,10 @@
                 </b-form-group>
             </form>
         </b-modal>
-        <b-modal id="groupStickyModal" title="Group a Sticky" ok-title="Add" @ok="handleGroupOk">
+        <b-modal id="groupStickyModal" title="Groups" ok-title="Add" @ok="handleGroupOk">
             <form ref="form" @submit.stop.prevent="handleGroupSubmit">
                 <b-form-group
-                label="Group"
+                label="Assign a group.."
                 label-for="sticky-group-input"
                 >
                 <b-form-select
@@ -105,11 +105,11 @@
                     :gutter="15">
                     <div @click="editSticky()" v-for="(sticky, index) in stickies" :key="index" :class="'note' + sticky.sticky_type" class="note-base mr-3 my-3">
                         <div class="upper-shadow hover-display"></div>
-                        <div class="delete-sticky-form hover-display">
+                        <div class="sticky-menu hover-display">
                             <button v-on:click.stop v-b-modal.addLinkedActionItemModal @click="setCurrentStickyID(sticky.sticky_id);setCurrentStickyContent(sticky.sticky_content)" v-if="sticky.sticky_type == 0 || sticky.sticky_type == 2" title="Create linked action item" class="btn btn-light btn-sm btn-circle" :class="'btn-color-' + sticky.sticky_type"><font-awesome-icon icon="link"/></button>
                             <button v-on:click.stop v-b-modal.moveStickyModal @click="setCurrentStickyID(sticky.sticky_id)" title="Move to other type" class="btn btn-light btn-sm btn-circle" :class="'btn-color-' + sticky.sticky_type"><font-awesome-icon icon="dolly"/></button>
-                            <button v-on:click.stop @click="confirmDeleteSticky(sticky.sticky_id)" title="Delete" class="btn btn-light btn-sm delete-sticky-button btn-circle" :class="'btn-color-' + sticky.sticky_type"><font-awesome-icon icon="trash-alt"/></button>
                             <button v-on:click.stop v-b-modal.groupStickyModal @click="setCurrentStickyID(sticky.sticky_id)" title="Add to group" class="btn btn-light btn-sm btn-circle" :class="'btn-color-' + sticky.sticky_type"><font-awesome-icon icon="layer-group"/></button>
+                            <button v-on:click.stop @click="confirmDeleteSticky(sticky.sticky_id)" title="Delete" class="btn btn-light btn-sm delete-sticky-button btn-circle" :class="'btn-color-' + sticky.sticky_type"><font-awesome-icon icon="trash-alt"/></button>
                         </div>
                         <div v-if="sticky.linked_sticky != 0 && sticky.sticky_type == 1" class="linked-sticky-reference">
                             {{sticky.linked_content}}

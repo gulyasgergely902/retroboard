@@ -283,7 +283,7 @@
     transition: all 0.2s ease-in-out;
 }
 
-.note-base .delete-sticky-form {
+.note-base .sticky-menu {
     transform: translateY(-50px);
     position: absolute;
     left: 20px;
@@ -301,7 +301,7 @@
     color: #fff;
 }
 
-.delete-sticky-form .btn-circle {
+.sticky-menu .btn-circle {
     width: 30px;
     height: 30px;
     padding: 2px 0px;
@@ -316,20 +316,20 @@
     transition: all 0.2s;
 }
 
-.delete-sticky-form .btn-circle:hover {
+.sticky-menu .btn-circle:hover {
     background-color: #ddd;
     transform: translateY(5px);
 }
 
-.delete-sticky-form .btn-color-0 {
+.sticky-menu .btn-color-0 {
     color: rgba(31, 181, 55, 1);
 }
 
-.delete-sticky-form .btn-color-2 {
+.sticky-menu .btn-color-2 {
     color: #e40000;
 }
   
-.delete-sticky-form .btn-color-1 {
+.sticky-menu .btn-color-1 {
     color: #e48100;
 }
 
