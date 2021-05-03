@@ -44,6 +44,10 @@ class ApiController extends Controller
         return Sticky::where("bid", $bid)->where("sticky_type", $type)->get();
     }
 
+    function getBoardStickiesByGroup($bid, $type, $group) {
+        return Sticky::where("bid", $bid)->where("sticky_type", $type)->where("group_id", $group)->get();
+    }
+
     function addSticky(Request $request) {
         $validateFormData = $request->validate([
             'sticky_content' => 'required|max:500'

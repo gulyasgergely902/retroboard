@@ -25,6 +25,7 @@ Route::post('/boards', 'Api\ApiController@addBoard');
 Route::delete('/boards/{bid}', 'Api\ApiController@deleteBoard');
 Route::get('/stickies', 'Api\ApiController@getStickies');
 Route::get('/stickies/{bid}/{type}', 'Api\ApiController@getBoardStickies');
+Route::get('/stickies/{bid}/{type}/{group}', 'Api\ApiController@getBoardStickiesByGroup');
 Route::post('/stickies', 'Api\ApiController@addSticky');
 Route::post('/stickies/move', 'Api\ApiController@moveSticky');
 Route::post('/stickies/link', 'Api\ApiController@linkSticky');

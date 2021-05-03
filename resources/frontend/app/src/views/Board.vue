@@ -98,6 +98,12 @@
                 <a @click="confirmClearBoard()" class="rounded-button mobile-menu-button danger-button" title="Delete All"><font-awesome-icon icon="trash-alt"/></a>
             </div>
         </transition>
+        <div class="tagline mx-3">
+            <span class="tag" @click="fetchStickyData(current_sticky_type)">#All</span>
+            <span class="tag" @click="fetchGroupStickies(current_sticky_type, groupItem.group_id)" v-for="(groupItem, index) in groups" :key="index">
+                #{{groupItem.group_name}}
+            </span>
+        </div>
         <transition name="fade" mode="out-in">
             <div v-if="visibility" class="py-3 px-5 mt-2 mb-5">
                 <masonry
@@ -141,6 +147,7 @@ import { Component, Inject, InjectReactive, Vue } from "vue-property-decorator"
 @Component({})
 export default class Board extends Vue {
     stickies: Array<any> = [];
+    filtered_stickies: Array<any> = [];
     groups: Array<any> = [];
     current_sticky_type = 0;
     current_sticky_id = 0;
@@ -170,7 +177,19 @@ export default class Board extends Vue {
             this.stickies = data;
             this.setFabColor(sticky_type);
             this.current_sticky_type = sticky_type;
-            console.log(this.getGroupNameForId(27))
+        } catch(error) {
+            console.log(error);
+        }
+    }
+
+    async fetchGroupStickies(sticky_type: number, group: number) {
+        try {
+            this.loading = 1;
+            const {data} = await axios.get(`/api/stickies/${this.$route.params.id}/${sticky_type}/${group}`);
+            this.loading = 0;
+            this.stickies = data;
+            this.setFabColor(sticky_type);
+            this.current_sticky_type = sticky_type;
         } catch(error) {
             console.log(error);
         }
@@ -183,6 +202,10 @@ export default class Board extends Vue {
         } catch(error) {
             console.log(error);
         }
+    }
+
+    setGroupId(id: number) {
+        this.selected_group_id = id;
     }
 
     setCurrentStickyID(id: number) {

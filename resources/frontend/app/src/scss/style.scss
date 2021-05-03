@@ -187,8 +187,8 @@
     color: #aaa;
     background-color: #f6f6f6;
     margin-right: 8px;
-    transition: 0.4s;
-    -webkit-transition: 0.4s;
+    transition: 0.2s;
+    -webkit-transition: 0.2s;
 }
 
 .rounded-button-selected {
@@ -241,6 +241,23 @@
     border-radius: 15px;
     padding: 7px 0;
     margin-bottom: 12px;
+}
+
+.tagline .tag {
+    display: inline-block;
+    border-radius: 30px;
+    text-align: center;
+    height: 28px;
+    color: #666;
+    background-color: #f6f6f6;
+    margin-right: 8px;
+    padding: 0px 10px;
+    transition: 0.2s;
+    -webkit-transition: 0.2s;
+}
+
+.tagline .tag:hover {
+    background-color: #ddd;
 }
 
 .nothing-visible-icon {
