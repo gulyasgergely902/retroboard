@@ -43,6 +43,38 @@
                 </b-form-group>
             </form>
         </b-modal>
+        <b-modal id="groupStickyModal" title="Group a Sticky" ok-title="Add" @ok="handleGroupOk">
+            <form ref="form" @submit.stop.prevent="handleGroupSubmit">
+                <b-form-group
+                label="Group"
+                label-for="sticky-group-input"
+                >
+                <b-form-select
+                    id="sticky-group-input"
+                    v-model="sticky_group_target"
+                    :options="groups"
+                    value-field="group_id"
+                    text-field="group_name"
+                    required
+                ></b-form-select>
+                </b-form-group>
+            </form>
+            <button v-on:click.stop v-b-modal.addGroupModal class="btn btn-primary btn-sm btn-circle">Create new group</button>
+        </b-modal>
+        <b-modal id="addGroupModal" title="Create new Group" ok-title="Create" @ok="handleCreateGroupOk">
+            <form ref="form" @submit.stop.prevent="handleAddSubmit">
+                <b-form-group
+                label="Group name"
+                label-for="group-name-input"
+                >
+                <b-form-input
+                    id="group-name-input"
+                    v-model="group_name"
+                    required
+                ></b-form-input>
+                </b-form-group>
+            </form>
+        </b-modal>
         <div class="header-buttons mx-3 mt-5 clearfix">
             <a @click="fetchStickyData(0)" class="rounded-button" :class="current_sticky_type == 0 ? 'note0 rounded-button-selected' : '' " title="Went Well"><font-awesome-icon icon="thumbs-up"/></a>
             <a @click="fetchStickyData(2)" class="rounded-button" :class="current_sticky_type == 2 ? 'note2 rounded-button-selected' : '' " title="Needs Improvement"><font-awesome-icon icon="thumbs-down"/></a>
@@ -77,13 +109,16 @@
                             <button v-on:click.stop v-b-modal.addLinkedActionItemModal @click="setCurrentStickyID(sticky.sticky_id);setCurrentStickyContent(sticky.sticky_content)" v-if="sticky.sticky_type == 0 || sticky.sticky_type == 2" title="Create linked action item" class="btn btn-light btn-sm btn-circle" :class="'btn-color-' + sticky.sticky_type"><font-awesome-icon icon="link"/></button>
                             <button v-on:click.stop v-b-modal.moveStickyModal @click="setCurrentStickyID(sticky.sticky_id)" title="Move to other type" class="btn btn-light btn-sm btn-circle" :class="'btn-color-' + sticky.sticky_type"><font-awesome-icon icon="dolly"/></button>
                             <button v-on:click.stop @click="confirmDeleteSticky(sticky.sticky_id)" title="Delete" class="btn btn-light btn-sm delete-sticky-button btn-circle" :class="'btn-color-' + sticky.sticky_type"><font-awesome-icon icon="trash-alt"/></button>
-                            <button v-on:click.stop @click="console.log('grouping')" title="Add to group" class="btn btn-light btn-sm btn-circle" :class="'btn-color-' + sticky.sticky_type"><font-awesome-icon icon="layer-group"/></button>
+                            <button v-on:click.stop v-b-modal.groupStickyModal @click="setCurrentStickyID(sticky.sticky_id)" title="Add to group" class="btn btn-light btn-sm btn-circle" :class="'btn-color-' + sticky.sticky_type"><font-awesome-icon icon="layer-group"/></button>
                         </div>
                         <div v-if="sticky.linked_sticky != 0 && sticky.sticky_type == 1" class="linked-sticky-reference">
                             {{sticky.linked_content}}
                         </div>
                         <div class="note-base-content">
                             {{sticky.sticky_content}}
+                        </div>
+                        <div v-if="sticky.group_id > 0" class="group-tag">
+                            #{{ getGroupNameForId(sticky.group_id) }}
                         </div>
                     </div>
                 </masonry>
@@ -106,6 +141,7 @@ import { Component, Inject, InjectReactive, Vue } from "vue-property-decorator"
 @Component({})
 export default class Board extends Vue {
     stickies: Array<any> = [];
+    groups: Array<any> = [];
     current_sticky_type = 0;
     current_sticky_id = 0;
     visibility = 0;
@@ -115,11 +151,14 @@ export default class Board extends Vue {
     sticky_content = '';
     sticky_types = [{text: 'Went well', value: 0}, {text: 'Needs improvement', value: 2}, {text: 'Action item', value: 1}];
     sticky_target = '';
+    sticky_group_target = 0;
     linked_action_item_content = '';
     current_sticky_content = '';
+    group_name = '';
 
     async created() {
         document.title = "Board | RetroBoard";
+        await this.fetchGroupData();
         await this.fetchStickyData(0);
     }
 
@@ -131,6 +170,16 @@ export default class Board extends Vue {
             this.stickies = data;
             this.setFabColor(sticky_type);
             this.current_sticky_type = sticky_type;
+            console.log(this.getGroupNameForId(27))
+        } catch(error) {
+            console.log(error);
+        }
+    }
+
+    async fetchGroupData() {
+        try {
+            const {data} = await axios.get(`/api/groups/${this.$route.params.id}`);
+            this.groups = data;
         } catch(error) {
             console.log(error);
         }
@@ -289,6 +338,59 @@ export default class Board extends Vue {
         this.$nextTick(() => {
             this.$bvModal.hide('addLinkedActionItemModal')
         });
+    }
+
+    handleGroupOk(bvModalEvt) {
+        bvModalEvt.preventDefault();
+        this.handleGroupSubmit();
+    }
+
+    async handleGroupSubmit() {
+        try {
+            await axios.post(`/api/stickies/assignToGroup`, {
+                to: this.sticky_group_target,
+                which: this.current_sticky_id
+            });
+            this.fetchStickyData(this.current_sticky_type);
+        } catch (error) {
+            console.log(error);
+        }
+        this.$nextTick(() => {
+            this.$bvModal.hide('groupStickyModal')
+        });
+    }
+
+    handleCreateGroupOk(bvModalEvt) {
+        bvModalEvt.preventDefault();
+        this.handleCreateGroupSubmit();
+    }
+
+    async handleCreateGroupSubmit() {
+        try{
+            await axios.post(`/api/groups`, {
+                group_name: this.group_name,
+                bid: this.$route.params.id,
+                sticky_type: this.current_sticky_type
+            });
+            this.group_name = "";
+        } catch (error) {
+            console.log(error);
+        }
+        this.fetchGroupData();
+        this.$nextTick(() => {
+            this.$bvModal.hide('addGroupModal')
+        });
+    }
+
+    getGroupNameForId(id: number): string {
+        let gn = "";
+        Array.from(this.groups).forEach(groupItem => {
+            if(groupItem.group_id == id) {
+                gn = groupItem.group_name;
+            }
+        })
+
+        return gn;
     }
 }
 </script>
