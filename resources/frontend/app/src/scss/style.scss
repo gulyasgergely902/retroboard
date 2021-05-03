@@ -250,10 +250,11 @@
     height: 28px;
     color: #666;
     background-color: #f6f6f6;
-    margin-right: 8px;
+    margin: 8px 8px 0px 0px;
     padding: 0px 10px;
     transition: 0.2s;
     -webkit-transition: 0.2s;
+    cursor: pointer;
 }
 
 .tagline .tag:hover {
