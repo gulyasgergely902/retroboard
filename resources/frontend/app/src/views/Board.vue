@@ -204,10 +204,6 @@ export default class Board extends Vue {
         }
     }
 
-    setGroupId(id: number) {
-        this.selected_group_id = id;
-    }
-
     setCurrentStickyID(id: number) {
         this.current_sticky_id = id;
     }
