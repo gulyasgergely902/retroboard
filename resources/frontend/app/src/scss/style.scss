@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css');
 
@@ -187,8 +188,8 @@
     color: #aaa;
     background-color: #f6f6f6;
     margin-right: 8px;
-    transition: 0.4s;
-    -webkit-transition: 0.4s;
+    transition: 0.2s;
+    -webkit-transition: 0.2s;
 }
 
 .rounded-button-selected {
@@ -243,6 +244,24 @@
     margin-bottom: 12px;
 }
 
+.tagline .tag {
+    display: inline-block;
+    border-radius: 30px;
+    text-align: center;
+    height: 28px;
+    color: #666;
+    background-color: #f6f6f6;
+    margin: 8px 8px 0px 0px;
+    padding: 0px 10px;
+    transition: 0.2s;
+    -webkit-transition: 0.2s;
+    cursor: pointer;
+}
+
+.tagline .tag:hover {
+    background-color: #ddd;
+}
+
 .nothing-visible-icon {
     margin: 0;
     position: absolute;
@@ -283,7 +302,7 @@
     transition: all 0.2s ease-in-out;
 }
 
-.note-base .delete-sticky-form {
+.note-base .sticky-menu {
     transform: translateY(-50px);
     position: absolute;
     left: 20px;
@@ -295,7 +314,13 @@
     transform: translateY(0px);
 }
 
-.delete-sticky-form .btn-circle {
+.group-tag {
+    margin-left: 16px;
+    margin-bottom: 8px;
+    color: #fff;
+}
+
+.sticky-menu .btn-circle {
     width: 30px;
     height: 30px;
     padding: 2px 0px;
@@ -310,50 +335,51 @@
     transition: all 0.2s;
 }
 
-.delete-sticky-form .btn-circle:hover {
+.sticky-menu .btn-circle:hover {
     background-color: #ddd;
     transform: translateY(5px);
 }
 
-.delete-sticky-form .btn-color-0 {
+.sticky-menu .btn-color-0 {
     color: rgba(31, 181, 55, 1);
 }
 
-.delete-sticky-form .btn-color-2 {
+.sticky-menu .btn-color-2 {
     color: #e40000;
 }
   
-.delete-sticky-form .btn-color-1 {
+.sticky-menu .btn-color-1 {
     color: #e48100;
 }
 
 .note-base .linked-sticky-reference {
-    padding-top: 16px;
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-top: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
     padding-bottom: 4px;
+    margin: 8px;
     overflow: hidden;
     word-wrap: break-word;
-    font-family: 'Patrick Hand', cursive;
+    font-family: 'Nunito', sans-serif;
     color: rgba(255, 255, 255, 0.8);
     text-align: justify;
     font-size: 1.1em;
     text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
-    background-color: rgba(0, 0, 0, 0.2);
-    width: 100%;
+    background-color: rgba(0, 0, 0, 0.15);
+    width: auto;
     height: auto;
     min-height: 60px;
-    border-radius: 0px 0px 30px 30px;
+    border-radius: 22px;
 }
 
 .note-base .note-base-content {
     padding: 16px;
     overflow: hidden;
     word-wrap: break-word;
-    font-family: 'Patrick Hand', cursive;
+    font-family: 'Nunito', sans-serif;
     color: #fff;
     text-align: justify;
-    font-size: 1.35em;
+    font-size: 1.2em;
     text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
 }
 

@@ -44,6 +44,10 @@ class ApiController extends Controller
         return Sticky::where("bid", $bid)->where("sticky_type", $type)->get();
     }
 
+    function getBoardStickiesByGroup($bid, $type, $group) {
+        return Sticky::where("bid", $bid)->where("sticky_type", $type)->where("group_id", $group)->get();
+    }
+
     function addSticky(Request $request) {
         $validateFormData = $request->validate([
             'sticky_content' => 'required|max:500'
@@ -82,6 +86,16 @@ class ApiController extends Controller
         return response(201);
     }
 
+    function assignToGroup(Request $request) {
+        $validateFormData = $request->validate([
+            'to' => 'required',
+            'which' => 'required'
+        ]);
+
+        Sticky::where('sticky_id', $request->input('which'))->update(array('group_id' => $request->input('to')));
+        return response(200);
+    }
+
     function deleteSticky($id) {
         Sticky::where('sticky_id', $id)->delete();
         return response(200);
@@ -94,6 +108,10 @@ class ApiController extends Controller
 
     function getGroups() {
         return Group::all();
+    }
+
+    function getBoardGroups($bid) {
+        return Group::where("board_id", $bid)->get();
     }
 
     function addGroup(Request $request) {

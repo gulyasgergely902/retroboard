@@ -12,10 +12,10 @@ Vue.use(BootstrapVue)
 
 //FontAwesome
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faThumbsUp, faThumbsDown, faExclamation, faEye, faEyeSlash, faTrashAlt, faBars, faCheckCircle, faDolly, faLink } from '@fortawesome/free-solid-svg-icons'
+import { faThumbsUp, faThumbsDown, faExclamation, faEye, faEyeSlash, faTrashAlt, faBars, faCheckCircle, faDolly, faLink, faLayerGroup } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(faThumbsUp, faThumbsDown, faExclamation, faEye, faEyeSlash, faTrashAlt, faBars, faCheckCircle, faDolly, faLink)
+library.add(faThumbsUp, faThumbsDown, faExclamation, faEye, faEyeSlash, faTrashAlt, faBars, faCheckCircle, faDolly, faLink, faLayerGroup)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 //Vue Masonry Layout
