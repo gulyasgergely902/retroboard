@@ -124,8 +124,9 @@
                         <div class="note-base-content">
                             {{sticky.sticky_content}}
                         </div>
-                        <div v-if="sticky.group_id > 0" class="group-tag">
-                            #{{ getGroupNameForId(sticky.group_id) }}
+                        <div v-if="sticky.group_id > 0" class="group-tag-container">
+                            <span class="group-tag">#{{ getGroupNameForId(sticky.group_id) }}</span>
+                            <font-awesome-icon icon="trash-alt" class="button-icon white-text ml-2" @click="removeStickyFromGroup(sticky.sticky_id, sticky.group_id)"/>
                         </div>
                     </div>
                 </masonry>
@@ -365,7 +366,7 @@ export default class Board extends Vue {
         this.handleGroupSubmit();
     }
 
-    async handleGroupSubmit() {
+    async handleGroupSubmit(func: any = 0) {
         try {
             await axios.post(`/api/stickies/assignToGroup`, {
                 to: this.sticky_group_target,
@@ -375,9 +376,12 @@ export default class Board extends Vue {
         } catch (error) {
             console.log(error);
         }
-        this.$nextTick(() => {
-            this.$bvModal.hide('groupStickyModal')
-        });
+        if(func == 0) {
+            this.$nextTick(() => {
+                this.$bvModal.hide('groupStickyModal')
+            });
+        }
+        
     }
 
     handleCreateGroupOk(bvModalEvt) {
@@ -411,6 +415,12 @@ export default class Board extends Vue {
         })
 
         return gn;
+    }
+
+    removeStickyFromGroup(sticky_id: number) {
+        this.sticky_group_target = -1;
+        this.current_sticky_id = sticky_id;
+        this.handleGroupSubmit(1);
     }
 }
 </script>
