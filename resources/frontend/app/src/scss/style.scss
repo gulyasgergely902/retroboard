@@ -314,10 +314,14 @@
     transform: translateY(0px);
 }
 
-.group-tag {
+.group-tag-container {
     margin-left: 16px;
     margin-bottom: 8px;
+}
+
+.group-tag {
     color: #fff;
+    text-decoration: none;
 }
 
 .sticky-menu .btn-circle {
@@ -397,4 +401,14 @@
     background: #f85032;
     background: -webkit-linear-gradient(180deg, #e73827, #f1583d);
     background: linear-gradient(180deg, #e73827, #f1583d);
+}
+
+//Helpers
+
+.white-text {
+    color: white;
+}
+
+.button-icon {
+    cursor: pointer;
 }
