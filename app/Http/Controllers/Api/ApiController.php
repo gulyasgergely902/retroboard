@@ -129,4 +129,9 @@ class ApiController extends Controller
         Group::where('group_id', $group_id)->delete();
         return response(200);
     }
+
+    function deleteBoardGroups($bid) {
+        Group::where('board_id', $bid)->delete();
+        return response(200);
+    }
 }

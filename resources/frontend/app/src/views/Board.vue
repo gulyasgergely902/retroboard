@@ -261,8 +261,10 @@ export default class Board extends Vue {
 
     async clearBoard() {
         try {
+            await axios.delete(`/api/groups/board/${this.$route.params.id}`);
             await axios.delete(`/api/stickies/board/${this.$route.params.id}`);
             this.fetchStickyData(this.current_sticky_type);
+            this.fetchGroupData();
         } catch (error) {
             console.log(error);
         }

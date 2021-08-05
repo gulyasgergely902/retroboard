@@ -36,3 +36,4 @@ Route::get('/groups', 'Api\ApiController@getGroups');
 Route::get('/groups/{bid}', 'Api\ApiController@getBoardGroups');
 Route::post('/groups', 'Api\ApiController@addGroup');
 Route::delete('/groups', 'Api\ApiController@deleteGroup');
+Route::delete('/groups/board/{bid}', 'Api\ApiController@deleteBoardGroups');
