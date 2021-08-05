@@ -98,6 +98,7 @@ class ApiController extends Controller
 
     function deleteSticky($id) {
         Sticky::where('sticky_id', $id)->delete();
+        Sticky::where('linked_sticky', $id)->delete();
         return response(200);
     }
 
