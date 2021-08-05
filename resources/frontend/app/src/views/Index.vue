@@ -113,6 +113,7 @@ export default class Home extends Vue {
 
     async deleteBoard(board_id: number) {
         try {
+            await axios.delete(`/api/groups/board/${board_id}`);
             await axios.delete(`/api/boards/${board_id}`);
             this.fetchBoardsData();
         } catch (error) {
