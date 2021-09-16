@@ -52,11 +52,15 @@ class ApiController extends Controller
         $validateFormData = $request->validate([
             'sticky_content' => 'required|max:500'
         ]);
-    
+
         $sticky = new Sticky();
         $sticky->sticky_type = $request->input('sticky_type');
         $sticky->bid = $request->input('bid');
         $sticky->sticky_content = $request->input('sticky_content');
+        if($request->has('sticky_group'))
+        {
+            $sticky->group_id = $request->input('sticky_group');
+        }
         $sticky->save();
         return response(201);
     }
