@@ -23,7 +23,9 @@
                         :options="groups"
                         value-field="group_id"
                         text-field="group_name"
-                    ></b-form-select>
+                    >
+                        <option value=-1>Ungrouped</option>
+                    </b-form-select>
                 </b-form-group>
             </form>
         </b-modal>
