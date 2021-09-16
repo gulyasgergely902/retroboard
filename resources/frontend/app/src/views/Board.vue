@@ -6,11 +6,26 @@
                 label="Sticky content"
                 label-for="sticky-content-input"
                 >
-                <b-form-textarea
-                    id="sticky-content-input"
-                    v-model="sticky_content"
-                    required
-                ></b-form-textarea>
+                    <b-form-textarea
+                        id="sticky-content-input"
+                        v-model="sticky_content"
+                        required
+                    ></b-form-textarea>
+                </b-form-group>
+                <hr>
+                <b-form-group
+                label="Sticky group"
+                label-for="sticky-group-input"
+                >
+                    <b-form-select
+                        id="sticky-group-input"
+                        v-model="sticky_group"
+                        :options="groups"
+                        value-field="group_id"
+                        text-field="group_name"
+                    >
+                        <option value=-1>Ungrouped</option>
+                    </b-form-select>
                 </b-form-group>
             </form>
         </b-modal>
@@ -104,6 +119,7 @@
             <span class="tag" @click="fetchGroupStickies(current_sticky_type, groupItem.group_id)" v-for="(groupItem, index) in groups" :key="index">
                 #{{groupItem.group_name}}
             </span>
+            <span class="tag" v-b-modal.addGroupModal><font-awesome-icon icon="plus"/></span>
         </div>
         <transition name="fade" mode="out-in">
             <div v-if="visibility" class="py-3 px-5 mt-2 mb-5">
@@ -158,6 +174,7 @@ export default class Board extends Vue {
     loading = 0;
     fab_color="#14a22c";
     sticky_content = '';
+    sticky_group = -1;
     sticky_types = [{text: 'Went well', value: 0}, {text: 'Needs improvement', value: 2}, {text: 'Action item', value: 1}];
     sticky_target = '';
     sticky_group_target = 0;
@@ -304,9 +321,11 @@ export default class Board extends Vue {
             await axios.post(`/api/stickies`, {
                 sticky_content: this.sticky_content,
                 bid: this.$route.params.id,
-                sticky_type: this.current_sticky_type
+                sticky_type: this.current_sticky_type,
+                sticky_group: this.sticky_group
             });
             this.sticky_content = "";
+            this.sticky_group = -1;
         } catch (error) {
             console.log(error);
         }
