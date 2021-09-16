@@ -104,6 +104,7 @@
             <span class="tag" @click="fetchGroupStickies(current_sticky_type, groupItem.group_id)" v-for="(groupItem, index) in groups" :key="index">
                 #{{groupItem.group_name}}
             </span>
+            <span class="tag" v-b-modal.addGroupModal><font-awesome-icon icon="plus"/></span>
         </div>
         <transition name="fade" mode="out-in">
             <div v-if="visibility" class="py-3 px-5 mt-2 mb-5">
