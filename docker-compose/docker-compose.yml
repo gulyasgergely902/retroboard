@@ -1,0 +1,28 @@
+version: '3.3'
+
+services:
+  db:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    restart: on-failure
+    environment:
+      MYSQL_DATABASE: 'retroboard'
+      MYSQL_USER: 'retroboard_user'
+      MYSQL_PASSWORD: 'jHZThdnUJW'
+      MYSQL_ROOT_PASSWORD: 'MDoiwjf28Dj3'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d
+
+  app:
+    image: gulyasgergely/retroboard:1
+    restart: on-failure
+    ports:
+      - '80:80'
+    expose:
+      - '80'
+    depends_on:
+      - 'db'
