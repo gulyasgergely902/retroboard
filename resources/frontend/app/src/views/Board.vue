@@ -114,8 +114,12 @@
             </div>
         </transition>
         <div class="tagline mx-3">
-            <span class="tag" @click="fetchStickyData(current_sticky_type)">#All</span>
-            <span class="tag" @click="fetchGroupStickies(current_sticky_type, -1)">#Ungrouped</span>
+            <span class="tag" @click="fetchStickyData(current_sticky_type)">
+                #All
+            </span>
+            <span class="tag" @click="fetchGroupStickies(current_sticky_type, -1)">
+                #Ungrouped
+            </span>
             <span class="tag" @click="fetchGroupStickies(current_sticky_type, groupItem.group_id)" v-for="(groupItem, index) in groups" :key="index">
                 #{{groupItem.group_name}}
             </span>
@@ -142,7 +146,7 @@
                         </div>
                         <div v-if="sticky.group_id > 0" class="group-tag-container">
                             <span class="group-tag">#{{ getGroupNameForId(sticky.group_id) }}</span>
-                            <font-awesome-icon icon="trash-alt" class="button-icon white-text ml-2" @click="removeStickyFromGroup(sticky.sticky_id, sticky.group_id)"/>
+                            <font-awesome-icon icon="trash-alt" class="button-icon ml-2" @click="removeStickyFromGroup(sticky.sticky_id, sticky.group_id)"/>
                         </div>
                     </div>
                 </masonry>

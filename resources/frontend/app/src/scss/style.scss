@@ -197,11 +197,11 @@
 }
 
 .rounded-button:hover {
-    background-color: #ddd;
+    filter: brightness(90%);
 }
 
 .danger-button:hover {
-    background-color: #c00;
+    background-color: rgb(235, 47, 6);
     color: #fff;
 }
 
@@ -320,7 +320,7 @@
 }
 
 .group-tag {
-    color: #fff;
+    color: #222;
     text-decoration: none;
 }
 
@@ -345,15 +345,15 @@
 }
 
 .sticky-menu .btn-color-0 {
-    color: rgba(31, 181, 55, 1);
+    color: rgb(128, 217, 65);
 }
 
 .sticky-menu .btn-color-2 {
-    color: #e40000;
+    color: rgb(229, 90, 69);
 }
   
 .sticky-menu .btn-color-1 {
-    color: #e48100;
+    color: rgb(250, 186, 75);
 }
 
 .note-base .linked-sticky-reference {
@@ -381,26 +381,21 @@
     overflow: hidden;
     word-wrap: break-word;
     font-family: 'Nunito', sans-serif;
-    color: #fff;
+    color: #222;
     text-align: justify;
     font-size: 1.2em;
-    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
 }
 
 .note0 {
-    background: rgb(46, 197, 71);
-    background: linear-gradient(0deg, rgba(46, 197, 71, 1) 0%, rgba(31, 181, 55, 1) 35%, rgba(20, 162, 44, 1) 60%, rgba(11, 136, 31, 1) 100%);
+    background: rgb(184, 233, 148);
 }
 
 .note1 {
-    background: rgb(255, 198, 0);
-    background: linear-gradient(0deg, rgba(255, 198, 0, 1) 0%, rgba(228, 129, 0, 1) 100%);
+    background: rgb(250, 211, 144);
 }
 
 .note2 {
-    background: #f85032;
-    background: -webkit-linear-gradient(180deg, #e73827, #f1583d);
-    background: linear-gradient(180deg, #e73827, #f1583d);
+    background: rgb(229, 140, 126);
 }
 
 //Helpers
@@ -411,4 +406,5 @@
 
 .button-icon {
     cursor: pointer;
+    color: #222;
 }
