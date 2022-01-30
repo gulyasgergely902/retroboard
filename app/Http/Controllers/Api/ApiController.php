@@ -36,10 +36,6 @@ class ApiController extends Controller
         return response(200);
     }
 
-    function getStickies() {
-        return Sticky::all();
-    }
-
     function getBoardStickies($bid, $type) {
         return Sticky::where("bid", $bid)->where("sticky_type", $type)->get();
     }
@@ -109,10 +105,6 @@ class ApiController extends Controller
     function deleteAllSticky($bid) {
         Sticky::where('bid', $bid)->delete();
         return response(200);
-    }
-
-    function getGroups() {
-        return Group::all();
     }
 
     function getBoardGroups($bid) {
