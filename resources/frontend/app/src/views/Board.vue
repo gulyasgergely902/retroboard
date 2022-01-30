@@ -114,8 +114,12 @@
             </div>
         </transition>
         <div class="tagline mx-3">
-            <span class="tag" @click="fetchStickyData(current_sticky_type)">#All</span>
-            <span class="tag" @click="fetchGroupStickies(current_sticky_type, -1)">#Ungrouped</span>
+            <span class="tag" @click="fetchStickyData(current_sticky_type)">
+                #All
+            </span>
+            <span class="tag" @click="fetchGroupStickies(current_sticky_type, -1)">
+                #Ungrouped
+            </span>
             <span class="tag" @click="fetchGroupStickies(current_sticky_type, groupItem.group_id)" v-for="(groupItem, index) in groups" :key="index">
                 #{{groupItem.group_name}}
             </span>
