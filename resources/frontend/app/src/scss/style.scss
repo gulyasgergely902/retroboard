@@ -293,7 +293,7 @@
     -moz-box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.6);
 }
 
-  .note-base .upper-shadow {
+.note-base .upper-shadow {
     width: 100%;
     transform: translateY(-50px);
     height: 50px;
@@ -400,7 +400,10 @@
 
 // New design
 
-// Stickies page
+.main {
+    background-color: #eeeeee;
+    height: 100vh;
+}
 
 .rb-container {
     display: grid;
@@ -410,28 +413,150 @@
     padding-block: 2rem;
     width: 95%;
     margin-inline: auto;
+    height: 100%;
 }
 
-.rb-container .rb-sidebar {
-    height: 200px;
-    background-color: #aaa;
+.rb-sidebar {
+    height: 100%;
+    background-color: #ffffff;
 }
 
-.rb-container .rb-content {
-    height: 200px;
-    background-color: #ddd;
+.rb-content {
+    height: 100%;
 }
 
-.rb-container .rb-content .rb-groups {
+.rb-groups {
+    height: 60px;
+    display: inline-block;
+    margin-top: 20px;
+    width: 65%;
+}
+
+.rb-search {
+    float: right;
+    width: 35%;
+}
+
+.rb-search-input {
+    height: 40px;
     width: 100%;
-    height: 50px;
-    background-color: aquamarine;
+    border-radius: 16px;
+    border: none;
+    padding: 8px 0px 8px 16px;
+    font-size: 0.9em;
 }
 
-.rb-container .rb-content .rb-stickies {
+.rb-search-input:focus,
+.rb-search-input:hover {
+    border: 0px;
+    outline-style: none;
+}
+
+.rb-group-label {
+    display: inline-block;
+    text-align: center;
+    line-height: 1.1;
+    background-color: #1e5eff;
+    color: #ffffff;
+    font-weight: 600;
+    min-width: 50px;
+    height: 30px;
+    padding: 6px;
+    border-radius: 16px;
+    margin-right: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    cursor: pointer;
+}
+
+.rb-stickies {
     width: 100%;
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding-left: 16px;
+}
+
+.rb-sticky-note {
+    position: relative;
+    overflow: hidden;
+    height: auto;
+    cursor: text;
+    border-radius: 16px;
+    min-height: 100px;
+}
+
+.rb-sticky-note .upper-shadow {
+    width: 100%;
+    transform: translateY(-50px);
     height: 50px;
-    background-color: burlywood;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 100%);
+    position: absolute;
+    transition: all 0.2s ease-in-out;
+}
+
+.rb-sticky-note .sticky-menu {
+    transform: translateY(-50px);
+    position: absolute;
+    left: 20px;
+    top: 10px;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.rb-sticky-note:hover > .hover-display {
+    transform: translateY(0px);
+}
+
+.rb-sticky-note-content {
+    padding: 16px;
+    overflow: hidden;
+    word-wrap: break-word;
+    font-family: 'Nunito', sans-serif;
+    color: #222;
+    text-align: justify;
+    font-size: 1.2em;
+}
+
+.rb-sticky-note-group-container {
+    margin-left: 16px;
+    margin-bottom: 8px;
+    width: fit-content;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.rb-sticky-note-group-tag {
+    display: block;
+    height: 20px;
+    line-height: 1.1;
+    font-weight: 600;
+    background-color: #ffffff;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 16px;
+    color: #222;
+    text-decoration: none;
+    transition: 0.2s all;
+}
+
+.rb-sticky-note-group-tag-overlay {
+    position: absolute;
+    display: block;
+    width: fit-content;
+    font-size: 13px;
+    color: #ffffff;
+    font-weight: 600;
+    transform: translateY(-20px);
+    padding: 2px;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.rb-sticky-note-group-container:hover > .rb-sticky-note-group-tag-overlay {
+    transform: translateY(0px);
+}
+
+.rb-sticky-note-group-container:hover > .rb-sticky-note-group-tag {
+    background-color: #f00;
+    color: #f00;
 }
 
 //Helpers

@@ -90,46 +90,51 @@
                 </b-form-group>
             </form>
         </b-modal>
-        <div class=rb-container>
-            <div class=rb-sidebar>
-
-            </div>
+        <transition name="fade" mode="out-in">
             <div class=rb-content>
                 <div class="rb-groups">
-
+                    <span class="rb-group-label" @click="fetchStickyData(current_sticky_type)">
+                        All
+                    </span>
+                    <span class="rb-group-label" @click="fetchStickyData(current_sticky_type)">
+                        Ungrouped
+                    </span>
+                    <span class="rb-group-label" @click="fetchGroupStickies(current_sticky_type, groupItem.group_id)" v-for="(groupItem, index) in groups" :key="index">
+                        {{groupItem.group_name}}
+                    </span>
+                </div>
+                <div class="rb-search">
+                    <input placeholder="Search stickies" class="rb-search-input" type=text>
                 </div>
                 <div class="rb-stickies">
-                    <transition name="fade" mode="out-in">
-                        <div v-if="visibility" class="py-3 px-5 mt-2 mb-5">
-                            <masonry
-                                :cols="{default: 6, 1200: 5, 992: 4, 768: 3, 576: 2, 450: 1}"
-                                :gutter="15">
-                                <div @click="editSticky()" v-for="(sticky, index) in stickies" :key="index" :class="'note' + sticky.sticky_type" class="note-base mr-3 my-3">
-                                    <div class="upper-shadow hover-display"></div>
-                                    <div class="sticky-menu hover-display">
-                                        <button v-on:click.stop v-b-modal.addLinkedActionItemModal @click="setCurrentStickyID(sticky.sticky_id);setCurrentStickyContent(sticky.sticky_content)" v-if="sticky.sticky_type == 0 || sticky.sticky_type == 2" title="Create linked action item" class="btn btn-light btn-sm btn-circle" :class="'btn-color-' + sticky.sticky_type"><font-awesome-icon icon="link"/></button>
-                                        <button v-on:click.stop v-b-modal.moveStickyModal @click="setCurrentStickyID(sticky.sticky_id)" title="Move to other type" class="btn btn-light btn-sm btn-circle" :class="'btn-color-' + sticky.sticky_type"><font-awesome-icon icon="dolly"/></button>
-                                        <button v-on:click.stop v-b-modal.groupStickyModal @click="setCurrentStickyID(sticky.sticky_id)" title="Add to group" class="btn btn-light btn-sm btn-circle" :class="'btn-color-' + sticky.sticky_type"><font-awesome-icon icon="layer-group"/></button>
-                                        <button v-on:click.stop @click="confirmDeleteSticky(sticky.sticky_id)" title="Delete" class="btn btn-light btn-sm delete-sticky-button btn-circle" :class="'btn-color-' + sticky.sticky_type"><font-awesome-icon icon="trash-alt"/></button>
-                                    </div>
-                                    <div v-if="sticky.linked_sticky != 0 && sticky.sticky_type == 1" class="linked-sticky-reference">
-                                        {{sticky.linked_content}}
-                                    </div>
-                                    <div class="note-base-content">
-                                        {{sticky.sticky_content}}
-                                    </div>
-                                    <div v-if="sticky.group_id > 0" class="group-tag-container">
-                                        <span class="group-tag">#{{ getGroupNameForId(sticky.group_id) }}</span>
-                                        <font-awesome-icon icon="trash-alt" class="button-icon ml-2" @click="removeStickyFromGroup(sticky.sticky_id, sticky.group_id)"/>
-                                    </div>
-                                </div>
-                            </masonry>
+                    <masonry
+                        :cols="{default: 6, 1200: 5, 992: 4, 768: 3, 576: 2, 450: 1}"
+                        :gutter="15">
+                        <div @click="editSticky()" v-for="(sticky, index) in stickies" :key="index" :class="'note' + sticky.sticky_type" class="rb-sticky-note mr-3 my-3">
+                            <div class="upper-shadow hover-display"></div>
+                            <div class="sticky-menu hover-display">
+                                <button v-on:click.stop v-b-modal.addLinkedActionItemModal @click="setCurrentStickyID(sticky.sticky_id);setCurrentStickyContent(sticky.sticky_content)" v-if="sticky.sticky_type == 0 || sticky.sticky_type == 2" title="Create linked action item" class="btn btn-light btn-sm btn-circle" :class="'btn-color-' + sticky.sticky_type"><font-awesome-icon icon="link"/></button>
+                                <button v-on:click.stop v-b-modal.moveStickyModal @click="setCurrentStickyID(sticky.sticky_id)" title="Move to other type" class="btn btn-light btn-sm btn-circle" :class="'btn-color-' + sticky.sticky_type"><font-awesome-icon icon="dolly"/></button>
+                                <button v-on:click.stop v-b-modal.groupStickyModal @click="setCurrentStickyID(sticky.sticky_id)" title="Add to group" class="btn btn-light btn-sm btn-circle" :class="'btn-color-' + sticky.sticky_type"><font-awesome-icon icon="layer-group"/></button>
+                                <button v-on:click.stop @click="confirmDeleteSticky(sticky.sticky_id)" title="Delete" class="btn btn-light btn-sm delete-sticky-button btn-circle" :class="'btn-color-' + sticky.sticky_type"><font-awesome-icon icon="trash-alt"/></button>
+                            </div>
+                            <div v-if="sticky.linked_sticky != 0 && sticky.sticky_type == 1" class="linked-sticky-reference">
+                                {{sticky.linked_content}}
+                            </div>
+                            <div class="rb-sticky-note-content">
+                                {{sticky.sticky_content}}
+                            </div>
+                            <div v-if="sticky.group_id > 0" class="rb-sticky-note-group-container">
+                                <span class="rb-sticky-note-group-tag-overlay">DELETE</span>
+                                <span @click="removeStickyFromGroup(sticky.sticky_id, sticky.group_id)" class="rb-sticky-note-group-tag">
+                                    {{ getGroupNameForId(sticky.group_id) }}
+                                </span>
+                            </div>
                         </div>
-                        <font-awesome-icon class="nothing-visible-icon" v-else icon="eye-slash"/>
-                    </transition>
+                    </masonry>
                 </div>
             </div>
-        </div>
+        </transition>
         
         <vue-fab
             :bg-color="fab_color"

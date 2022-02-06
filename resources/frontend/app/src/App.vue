@@ -1,12 +1,16 @@
 <template>
-    <div id="app">
-        <div id="nav">
-            <p class="top-logo mx-3 my-3"><a class="top-logo-a" @click="goHome()"><img class="header-img" src="./assets/web-logo.png"></a></p>
+    <div class="main" id="app">
+        <div class="rb-container">
+            <div class="rb-sidebar">
+
+            </div>
+            <div class="rb-content">
+                <transition name="fade" mode="out-in">
+                    <router-view />
+                </transition>
+            </div>
         </div>
-        <transition name="fade" mode="out-in">
-            <router-view />
-        </transition>
-        <a class="nav-link bottom pill-bg" href="https://github.com/gulyasgergely902/retroboard/issues">Report bugs on GitHub</a>
+
     </div>
 </template>
 
