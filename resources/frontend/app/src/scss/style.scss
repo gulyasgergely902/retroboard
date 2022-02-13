@@ -432,6 +432,27 @@
     width: 65%;
 }
 
+.rb-group-label {
+    display: inline-block;
+    text-align: center;
+    line-height: 1.1;
+    background-color: #1e5eff;
+    color: #ffffff;
+    font-weight: 600;
+    min-width: 50px;
+    height: 30px;
+    padding: 6px;
+    border-radius: 16px;
+    margin-right: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    cursor: pointer;
+}
+
+.rb-group-label:hover {
+    background-color: #5786ff;
+}
+
 .rb-search {
     float: right;
     width: 35%;
@@ -450,23 +471,6 @@
 .rb-search-input:hover {
     border: 0px;
     outline-style: none;
-}
-
-.rb-group-label {
-    display: inline-block;
-    text-align: center;
-    line-height: 1.1;
-    background-color: #1e5eff;
-    color: #ffffff;
-    font-weight: 600;
-    min-width: 50px;
-    height: 30px;
-    padding: 6px;
-    border-radius: 16px;
-    margin-right: 16px;
-    padding-left: 16px;
-    padding-right: 16px;
-    cursor: pointer;
 }
 
 .rb-stickies {
@@ -521,11 +525,9 @@
     margin-bottom: 8px;
     width: fit-content;
     cursor: pointer;
-    overflow: hidden;
 }
 
 .rb-sticky-note-group-tag {
-    display: block;
     height: 20px;
     line-height: 1.1;
     font-weight: 600;
@@ -536,22 +538,6 @@
     color: #222;
     text-decoration: none;
     transition: 0.2s all;
-}
-
-.rb-sticky-note-group-tag-overlay {
-    position: absolute;
-    display: block;
-    width: fit-content;
-    font-size: 13px;
-    color: #ffffff;
-    font-weight: 600;
-    transform: translateY(-20px);
-    padding: 2px;
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.rb-sticky-note-group-container:hover > .rb-sticky-note-group-tag-overlay {
-    transform: translateY(0px);
 }
 
 .rb-sticky-note-group-container:hover > .rb-sticky-note-group-tag {

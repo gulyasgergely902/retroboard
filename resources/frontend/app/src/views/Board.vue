@@ -96,7 +96,7 @@
                     <span class="rb-group-label" @click="fetchStickyData(current_sticky_type)">
                         All
                     </span>
-                    <span class="rb-group-label" @click="fetchStickyData(current_sticky_type)">
+                    <span class="rb-group-label" @click="fetchGroupStickies(current_sticky_type, -1)">
                         Ungrouped
                     </span>
                     <span class="rb-group-label" @click="fetchGroupStickies(current_sticky_type, groupItem.group_id)" v-for="(groupItem, index) in groups" :key="index">
@@ -125,7 +125,6 @@
                                 {{sticky.sticky_content}}
                             </div>
                             <div v-if="sticky.group_id > 0" class="rb-sticky-note-group-container">
-                                <span class="rb-sticky-note-group-tag-overlay">DELETE</span>
                                 <span @click="removeStickyFromGroup(sticky.sticky_id, sticky.group_id)" class="rb-sticky-note-group-tag">
                                     {{ getGroupNameForId(sticky.group_id) }}
                                 </span>
