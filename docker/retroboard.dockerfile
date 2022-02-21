@@ -36,5 +36,7 @@ COPY docker/php.ini /usr/local/etc/php/conf.d
 RUN php artisan key:generate
 RUN php artisan config:clear
 RUN php artisan cache:clear
-CMD ["php artisan serve --host=0.0.0.0 --port=80"]
+COPY docker/start.sh /source/retroboard/
+RUN chmod +x /source/retroboard/start.sh
+CMD ["/source/retroboard/start.sh"]
 EXPOSE 80
