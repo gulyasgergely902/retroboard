@@ -18,7 +18,7 @@ services:
       - ./init:/docker-entrypoint-initdb.d
 
   app:
-    image: gulyasgergely/retroboard:2
+    image: gulyasgergely/retroboard:3
     restart: on-failure
     ports:
       - '80:80'

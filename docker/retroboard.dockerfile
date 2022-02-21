@@ -36,5 +36,5 @@ COPY docker/php.ini /usr/local/etc/php/conf.d
 RUN php artisan key:generate
 RUN php artisan config:clear
 RUN php artisan cache:clear
-CMD ["/bin/sh" "-c" "php artisan serve --host=0.0.0.0 --port=80"]
+CMD ["php artisan serve --host=0.0.0.0 --port=80"]
 EXPOSE 80
