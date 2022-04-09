@@ -124,7 +124,7 @@
         <transition name="fade" mode="out-in">
             <div v-if="visibility" class="py-3 px-5 mt-2 mb-5">
                 <masonry
-                    :cols="{default: 6, 1200: 5, 992: 4, 768: 3, 576: 2, 450: 1}"
+                    :cols="{default: 6, 1300: 5, 1100: 4, 900: 3, 700: 2, 500: 1}"
                     :gutter="15">
                     <div @click="editSticky()" v-for="(sticky, index) in stickies" :key="index" :class="'note' + sticky.sticky_type" class="note-base mr-3 my-3">
                         <div class="upper-shadow hover-display"></div>
