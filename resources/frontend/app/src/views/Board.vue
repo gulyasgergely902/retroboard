@@ -192,6 +192,9 @@ export default class Board extends Vue {
         try {
             this.loading = 1;
             const {data} = await axios.get(`/api/stickies/${this.$route.params.id}/${sticky_type}`);
+            if(data == "") {
+                this.$router.push("/");
+            }
             this.loading = 0;
             this.stickies = data;
             this.setFabColor(sticky_type);
